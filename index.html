@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="be">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -80,6 +80,39 @@ nav {
   letter-spacing: 0.2px;
 }
 .nav-cta:hover { background: #1ADEFF; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,212,255,0.25); }
+
+/* LANG SWITCHER */
+.lang-wrap { position: relative; }
+.lang-btn {
+  display: flex; align-items: center; gap: 6px;
+  background: transparent; border: 1px solid var(--border);
+  color: var(--gray); font-size: 12px; font-family: var(--font);
+  padding: 6px 12px; border-radius: 6px; cursor: pointer;
+  transition: all 0.2s; letter-spacing: 0.3px;
+}
+.lang-btn:hover { border-color: var(--cyan); color: var(--white); }
+.lang-btn .lf { font-size: 14px; line-height: 1; }
+.lang-btn .la { font-size: 8px; margin-left: 2px; transition: transform 0.2s; }
+.lang-wrap.open .la { transform: rotate(180deg); }
+.lang-dd {
+  position: absolute; top: calc(100% + 8px); right: 0;
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 8px; min-width: 200px; padding: 6px 0;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+  opacity: 0; pointer-events: none; transform: translateY(-8px);
+  transition: all 0.2s ease; z-index: 300;
+  max-height: 400px; overflow-y: auto;
+}
+.lang-wrap.open .lang-dd { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.lang-opt {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 16px; font-size: 13px; color: var(--gray);
+  cursor: pointer; transition: all 0.15s; border: none;
+  background: none; width: 100%; text-align: left; font-family: var(--font);
+}
+.lang-opt:hover { background: rgba(0,212,255,0.05); color: var(--white); }
+.lang-opt.active { color: var(--cyan); }
+.lang-opt .lf { font-size: 15px; }
 
 /* HERO */
 .hero {
@@ -494,7 +527,15 @@ footer {
     <li><a href="#team">Team</a></li>
     <li><a href="#faq">FAQ</a></li>
   </ul>
-  <a href="#indiegogo" class="nav-cta">Back on Indiegogo</a>
+  <div class="lang-wrap" id="langWrap">
+    <button class="lang-btn" onclick="document.getElementById('langWrap').classList.toggle('open')">
+      <span class="lf" id="langFlag"></span>
+      <span id="langName">BY</span>
+      <span class="la">▼</span>
+    </button>
+    <div class="lang-dd" id="langDD"></div>
+  </div>
+  <a href="#indiegogo" class="nav-cta" data-t="nav_cta">Падтрымаць на Indiegogo</a>
 </nav>
 
 <!-- HERO -->
@@ -505,16 +546,11 @@ footer {
     <span class="hero-badge-dot"></span>
     Now live on Indiegogo
   </div>
-  <h1>
-    The <span class="cyan">AI Brain</span><br>
-    of Your Dental Clinic
-  </h1>
-  <p class="hero-sub">
-    ŠČYRA.AI combines <strong>cameras, sensors, and edge AI</strong> to assist doctors, analyze patients, and grow your practice — all in one device.
-  </p>
+  <h1 data-t="hero_title">AI-<span class="cyan">мозг</span><br>вашай стаматалогіі</h1>
+  <p class="hero-sub" data-t="hero_sub">ŠČYRA.AI спалучае <strong>камеры, датчыкі і edge AI</strong>, каб дапамагаць дактарам, аналізаваць пацыентаў і развіваць ваш бізнес — усё ў адным прыладзе.</p>
   <div class="hero-actions">
-    <a href="#indiegogo" class="btn-primary">Back This Project</a>
-    <a href="#capabilities" class="btn-secondary">See How It Works</a>
+    <a href="#indiegogo" class="btn-primary" data-t="hero_btn">Падтрымаць праект</a>
+    <a href="#capabilities" class="btn-secondary" data-t="hero_btn2">Як гэта працуе</a>
   </div>
   <div class="hero-stats">
     <div class="hero-stat">
@@ -545,10 +581,10 @@ footer {
 
 <!-- WHAT IS SCHYRA -->
 <section id="what">
-  <div class="section-label">What is ŠČYRA.AI</div>
+  <div class="section-label" data-t="what_label">Што такое ŠČYRA.AI</div>
   <div class="what-grid">
     <div>
-      <h2 class="section-title">One device.<br>Your whole clinic.</h2>
+      <h2 class="section-title" data-t="what_title">Адна прылада.<br>Уся клініка.</h2>
       <p class="section-desc">ŠČYRA.AI is an edge AI system that installs in your dental clinic and immediately starts working — analyzing patients, assisting your doctors, managing appointments, and growing your revenue through intelligent communication.</p>
       <p style="margin-top: 20px; font-size: 14px; color: var(--gray); line-height: 1.7;">No cloud dependency for critical operations. Everything runs locally on the NVIDIA Jetson Orin Nano — fast, private, and reliable.</p>
     </div>
@@ -583,7 +619,7 @@ footer {
 <!-- CAPABILITIES -->
 <section id="capabilities" style="max-width: 1200px;">
   <div style="max-width: 1200px; margin: 0 auto;">
-  <div class="section-label">Capabilities</div>
+  <div class="section-label" data-t="cap_label">Магчымасці</div>
   <h2 class="section-title">Everything your clinic needs.<br><span style="color: var(--gray);">Automated.</span></h2>
   <div class="caps-grid">
     <div class="cap-card">
@@ -623,7 +659,7 @@ footer {
 <!-- HOW IT WORKS -->
 <section id="how" style="max-width: 1200px;">
   <div style="max-width: 1200px; margin: 0 auto;">
-  <div class="section-label">How it works</div>
+  <div class="section-label" data-t="how_label">Як гэта працуе</div>
   <h2 class="section-title">Plug in.<br><span style="color: var(--gray);">It learns. It works.</span></h2>
   <div class="how-wrap">
     <div class="steps">
@@ -702,7 +738,7 @@ footer {
 <!-- TECHNOLOGY -->
 <section id="tech" style="max-width: 1200px;">
   <div style="max-width: 1200px; margin: 0 auto;">
-  <div class="section-label">Technology</div>
+  <div class="section-label" data-t="tech_label">Тэхналогія</div>
   <h2 class="section-title">Enterprise AI.<br><span style="color: var(--gray);">Clinic price.</span></h2>
   <p class="section-desc">Built on the most capable edge AI hardware available, powered by open and commercial AI models — no vendor lock-in.</p>
   <div class="tech-grid">
@@ -741,24 +777,24 @@ footer {
 <!-- INDIEGOGO CTA -->
 <section id="back" style="max-width: 1200px;">
   <div class="indi-section">
-    <div class="section-label">Indiegogo Campaign</div>
+    <div class="section-label" data-t="indi_label">Кампанія Indiegogo</div>
     <h2 class="indi-title">Be the first clinic<br>to run on ŠČYRA.AI</h2>
     <p class="indi-desc">Early backers get exclusive pricing, priority installation, and lifetime updates. Limited units available for the first production run.</p>
     <div class="indi-perks">
       <div class="perk">
         <div class="perk-price">€499</div>
-        <div class="perk-name">Early Bird</div>
-        <div class="perk-desc">Device + 1 year subscription</div>
+        <div class="perk-name" data-t="perk1_name">Early Bird</div>
+        <div class="perk-desc" data-t="perk1_desc">Прылада + 1 год падпіскі</div>
       </div>
       <div class="perk">
         <div class="perk-price">€999</div>
-        <div class="perk-name">Clinic Pack</div>
-        <div class="perk-desc">Device + 2 years + priority support</div>
+        <div class="perk-name" data-t="perk2_name">Clinic Pack</div>
+        <div class="perk-desc" data-t="perk2_desc">Прылада + 2 гады + прыярытэтная падтрымка</div>
       </div>
       <div class="perk">
         <div class="perk-price">€4,999</div>
-        <div class="perk-name">Franchise Ready</div>
-        <div class="perk-desc">Full setup + franchise rights</div>
+        <div class="perk-name" data-t="perk3_name">Franchise Ready</div>
+        <div class="perk-desc" data-t="perk3_desc">Поўная ўстаноўка + правы франшызы</div>
       </div>
     </div>
     <a href="#" class="btn-primary" style="font-size: 17px; padding: 20px 60px;">Back ŠČYRA.AI on Indiegogo</a>
@@ -768,7 +804,7 @@ footer {
 <!-- FRANCHISE -->
 <section id="franchise" style="max-width: 1200px;">
   <div style="max-width: 1200px; margin: 0 auto;">
-  <div class="section-label">Franchise Program</div>
+  <div class="section-label" data-t="franchise_label">Франшыза</div>
   <h2 class="section-title">Own the AI dental<br><span style="color: var(--gray);">market in your country.</span></h2>
   <p class="section-desc">After the campaign we launch the ŠČYRA.AI franchise program — master franchise rights for every European country.</p>
   <div class="franchise-grid">
@@ -793,7 +829,7 @@ footer {
 
 <!-- TEAM -->
 <section id="team" style="max-width: 1000px;">
-  <div class="section-label">Team</div>
+  <div class="section-label" data-t="team_label">Каманда</div>
   <h2 class="section-title">Built by people who<br><span style="color: var(--gray);">understand clinics.</span></h2>
   <div class="team-grid">
     <div class="team-card team-main">
@@ -817,7 +853,7 @@ footer {
 
 <!-- FAQ -->
 <section id="faq" style="max-width: 800px;">
-  <div class="section-label">FAQ</div>
+  <div class="section-label" data-t="faq_label">FAQ</div>
   <h2 class="section-title">Frequently asked questions</h2>
   <div style="margin-top: 48px;">
     <details class="faq-item">
@@ -854,7 +890,7 @@ footer {
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">ŠČYRA<span>.AI</span></div>
-  <div class="footer-copy">© 2026 LABS67. All rights reserved.</div>
+  <div class="footer-copy" data-t="footer_copy">© 2026 LABS67. Усе правы абаронены.</div>
   <div class="footer-links">
     <a href="/privacy.html">Privacy</a>
     <a href="/terms.html">Terms</a>
@@ -887,5 +923,6 @@ document.querySelectorAll('.cap-card, .tech-card, .fr-card, .step').forEach(el =
   obs.observe(el);
 });
 </script>
+<script src="lang.js"></script>
 </body>
 </html>
