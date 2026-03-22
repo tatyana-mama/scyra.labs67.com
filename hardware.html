@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hardware Specs — ŠČYRA.AI</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #080C18; --bg2: #0D1220; --cyan: #00D4FF; --white: #FFFFFF;
+  --gray: #8892A4; --border: rgba(255,255,255,0.07);
+  --font: 'Inter', sans-serif; --font-head: 'Space Grotesk', sans-serif;
+}
+body { background: var(--bg); color: var(--white); font-family: var(--font); padding: 60px 24px; -webkit-font-smoothing: antialiased; }
+.container { max-width: 800px; margin: 0 auto; }
+a { color: var(--cyan); text-decoration: none; }
+h1 { font-family: var(--font-head); font-size: 36px; margin-bottom: 8px; }
+h2 { font-family: var(--font-head); font-size: 22px; margin: 48px 0 20px; color: var(--cyan); }
+.subtitle { font-size: 16px; color: var(--gray); margin-bottom: 48px; }
+.back { display: inline-block; margin-bottom: 40px; font-size: 13px; color: var(--gray); }
+table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+td { padding: 12px 16px; font-size: 14px; border-bottom: 1px solid var(--border); }
+td:first-child { color: var(--gray); width: 40%; }
+td:last-child { font-weight: 500; }
+.spec-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 32px; margin: 24px 0; }
+.spec-title { font-family: var(--font-head); font-size: 18px; font-weight: 700; margin-bottom: 16px; }
+ul { padding-left: 20px; }
+li { font-size: 14px; color: var(--gray); line-height: 2; }
+.check { color: var(--cyan); margin-right: 8px; }
+</style>
+</head>
+<body>
+<div class="container">
+<a href="/" class="back">&larr; Back to ŠČYRA.AI</a>
+<h1>Hardware Specification</h1>
+<p class="subtitle">Everything you need to know about the ŠČYRA.AI edge device.</p>
+
+<h2>Core Device</h2>
+<table>
+  <tr><td>Platform</td><td>NVIDIA Jetson AGX Orin 64GB</td></tr>
+  <tr><td>AI Performance</td><td>275 TOPS (INT8)</td></tr>
+  <tr><td>GPU</td><td>2048-core NVIDIA Ampere, 64 Tensor Cores</td></tr>
+  <tr><td>CPU</td><td>12-core Arm Cortex-A78AE</td></tr>
+  <tr><td>Memory</td><td>64GB LPDDR5, 204.8 GB/s</td></tr>
+  <tr><td>Storage</td><td>64GB eMMC + NVMe SSD (expandable)</td></tr>
+  <tr><td>Power</td><td>15W — 60W (configurable)</td></tr>
+  <tr><td>Size</td><td>100 x 87 mm module</td></tr>
+  <tr><td>Connectivity</td><td>Gigabit Ethernet, WiFi 6, Bluetooth 5.2, USB 3.2, HDMI</td></tr>
+  <tr><td>OS</td><td>JetPack 6 (Ubuntu-based)</td></tr>
+</table>
+
+<h2>Compatible Peripherals</h2>
+
+<div class="spec-card">
+  <div class="spec-title">Cameras</div>
+  <ul>
+    <li><span class="check">+</span> Any IP camera with RTSP stream (1080p recommended)</li>
+    <li><span class="check">+</span> USB webcams (for basic setups)</li>
+    <li><span class="check">+</span> CSI cameras (direct connection to Jetson)</li>
+    <li>Recommended: 2-3 cameras per clinic (reception, operatory, entrance)</li>
+  </ul>
+</div>
+
+<div class="spec-card">
+  <div class="spec-title">Audio</div>
+  <ul>
+    <li><span class="check">+</span> USB microphone for voice assistant</li>
+    <li><span class="check">+</span> Speaker/sound bar for AI voice output</li>
+    <li>Recommended: directional mic for operatory, omnidirectional for reception</li>
+  </ul>
+</div>
+
+<div class="spec-card">
+  <div class="spec-title">Smart Home / Automation</div>
+  <ul>
+    <li><span class="check">+</span> Aqara smart home hub (door sensors, presence detection)</li>
+    <li><span class="check">+</span> Smart lighting (Zigbee/WiFi)</li>
+    <li><span class="check">+</span> Display screen for patient-facing info</li>
+  </ul>
+</div>
+
+<h2>Clinic Checklist</h2>
+<p style="color: var(--gray); font-size: 14px; margin-bottom: 20px;">What your clinic needs before installation:</p>
+<ul>
+  <li><span class="check">1.</span> Stable internet connection (for initial setup and updates only)</li>
+  <li><span class="check">2.</span> One power outlet near the reception or server area</li>
+  <li><span class="check">3.</span> Ethernet cable run to camera locations (or WiFi cameras)</li>
+  <li><span class="check">4.</span> 30 minutes for initial setup and calibration</li>
+  <li><span class="check">5.</span> Staff briefing (15 min) — we provide training materials</li>
+</ul>
+
+<h2>What's in the Box</h2>
+<table>
+  <tr><td>NVIDIA Jetson device</td><td>Pre-configured with ŠČYRA.AI</td></tr>
+  <tr><td>Power adapter</td><td>65W USB-C</td></tr>
+  <tr><td>Ethernet cable</td><td>2m Cat6</td></tr>
+  <tr><td>Quick-start guide</td><td>Printed + digital</td></tr>
+  <tr><td>Software license</td><td>1 or 2 year (depends on tier)</td></tr>
+  <tr><td>Online dashboard access</td><td>Included</td></tr>
+</table>
+
+<div style="margin-top: 48px; text-align: center;">
+  <a href="#indiegogo" style="display: inline-block; padding: 16px 48px; background: var(--cyan); color: var(--bg); font-weight: 700; border-radius: 8px; font-size: 16px;">Back ŠČYRA.AI on Indiegogo</a>
+</div>
+</div>
+</body>
+</html>

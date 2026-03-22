@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 90" fill="none">
+  <defs>
+    <linearGradient id="cyan-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00D4FF"/>
+      <stop offset="100%" stop-color="#0099CC"/>
+    </linearGradient>
+  </defs>
+
+  <text x="230" y="64"
+    font-family="'SF Pro Display','Helvetica Neue',Arial,sans-serif"
+    font-size="58" font-weight="800"
+    letter-spacing="-2"
+    text-anchor="middle">
+    <tspan fill="#0A0E1A">ŠČYRA</tspan><tspan fill="url(#cyan-grad)">.AI</tspan>
+  </text>
+
+  <text x="230" y="84"
+    font-family="'Helvetica Neue',Arial,sans-serif"
+    font-size="10" font-weight="400"
+    letter-spacing="4"
+    fill="#8892A4"
+    text-anchor="middle">DENTAL INTELLIGENCE</text>
+</svg>
