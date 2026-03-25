@@ -18,7 +18,7 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -514,6 +514,21 @@ footer {
   .trusted { flex-direction: column; padding: 32px 24px; }
   footer { padding: 32px 24px; flex-direction: column; align-items: flex-start; }
 }
+
+  /* PULSE NAVIGATOR */
+  .pulse-nav { position:fixed;top:48px;right:0;width:48px;height:calc(100vh - 48px);background:rgba(255,255,255,0.85);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-left:1px solid rgba(0,0,0,0.04);z-index:90;display:flex;flex-direction:column;align-items:center;padding:20px 0;gap:16px;transition:width 0.3s ease }
+  .pulse-nav:hover { width:180px }
+  .pulse-nav:hover .pn-label { opacity:1;max-width:120px }
+  .pn-item { display:flex;align-items:center;gap:10px;width:100%;padding:8px 12px;text-decoration:none;transition:all 0.2s }
+  .pn-dot { width:8px;height:8px;border-radius:50%;flex-shrink:0 }
+  .pn-dot.active { box-shadow:0 0 8px currentColor }
+  .pn-label { font-size:10px;color:var(--muted,#888);white-space:nowrap;overflow:hidden;max-width:0;opacity:0;transition:all 0.3s }
+  .pn-pulse { width:2px;height:40px;background:linear-gradient(to bottom,transparent,#7F77DD,transparent);margin:auto 0;animation:pulseLine 2s ease-in-out infinite;opacity:0.4 }
+  @keyframes pulseLine { 0%,100%{opacity:0.2} 50%{opacity:0.7} }
+  .pn-action { width:32px;height:32px;border-radius:50%;border:1px solid rgba(0,0,0,0.06);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--muted,#888);cursor:pointer;transition:all 0.2s;background:white;text-decoration:none }
+  .pn-action:hover { border-color:#7F77DD;color:#7F77DD }
+  .nav-ver { font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted,#888);opacity:0.5;letter-spacing:0.04em;white-space:nowrap }
+
 </style>
 </head>
 <body>
@@ -539,7 +554,7 @@ footer {
   </div>
   <a href="https://labs67.com" class="nav-back" style="padding:8px 14px;border:1px solid rgba(255,255,255,0.12);color:var(--gray);font-size:12px;text-decoration:none;letter-spacing:0.05em;transition:all 0.3s;font-family:var(--font);" onmouseover="this.style.borderColor='var(--cyan)';this.style.color='var(--white)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.12)';this.style.color='var(--gray)'">← LABS67</a>
   <a href="#indiegogo" class="nav-cta" data-t="nav_cta">Падтрымаць на Indiegogo</a>
-</nav>
+<span class="nav-ver">v2.0 · 25.03.26</span></nav>
 
 <!-- HERO -->
 <div class="hero">
@@ -891,6 +906,18 @@ footer {
 </section>
 
 <!-- FOOTER -->
+
+<!-- PULSE NAVIGATOR -->
+<aside class="pulse-nav" id="pulseNav">
+  <a class="pn-item" href="https://labs67.com" target="_blank"><span class="pn-dot" style="background:#B8860B"></span><span class="pn-label">labs67</span></a>
+  <a class="pn-item" href="https://svyatlitsa.com" target="_blank"><span class="pn-dot" style="background:#C49A2D"></span><span class="pn-label">svyatlitsa</span></a>
+  <a class="pn-item" href="https://scyra.labs67.com" target="_blank"><span class="pn-dot active" style="background:#7F77DD;color:#7F77DD"></span><span class="pn-label">scyra.ai</span></a>
+  <a class="pn-item" href="https://academi67.com" target="_blank"><span class="pn-dot" style="background:#2B7ACC"></span><span class="pn-label">slyah.ai</span></a>
+  <a class="pn-item" href="https://trade.labs67.com" target="_blank"><span class="pn-dot" style="background:#0891B2"></span><span class="pn-label">mreza.ai</span></a>
+  <a class="pn-item" href="https://franchise.labs67.com" target="_blank"><span class="pn-dot" style="background:#BA7517"></span><span class="pn-label">ladza.ai</span></a>
+  <div class="pn-pulse"></div>
+  <button class="pn-action" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Top">↑</button>
+</aside>
 <footer>
   <div class="footer-logo">ŠČYRA<span>.AI</span></div>
   <div class="footer-copy" data-t="footer_copy">© 2026 LABS67. Усе правы абаронены.</div>
