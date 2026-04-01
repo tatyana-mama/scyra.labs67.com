@@ -3,574 +3,700 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ŠČYRA.AI — The AI Brain of Your Dental Clinic</title>
-<meta name="description" content="ŠČYRA.AI is the world's first edge AI system for dental clinics. AI receptionist, smart scheduling, surgical assistance — all on one NVIDIA Jetson device. Now on Indiegogo.">
+<title>SCYRA.AI — The AI Brain of Your Dental Clinic</title>
+<meta name="description" content="SCYRA.AI is the world's first edge AI system for dental clinics. AI receptionist, smart scheduling, surgical assistance — all on one NVIDIA Jetson device. Now on Indiegogo.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="ŠČYRA.AI — The AI Brain of Your Dental Clinic">
+<meta property="og:title" content="SCYRA.AI — The AI Brain of Your Dental Clinic">
 <meta property="og:description" content="Edge AI for dentistry. AI receptionist, surgical assistant, analytics — all running locally on NVIDIA Jetson. Privacy-first. Multilingual. Now on Indiegogo.">
 <meta property="og:url" content="https://scyra.ai">
 <meta property="og:image" content="https://scyra.ai/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@natchnennie">
-<meta name="twitter:title" content="ŠČYRA.AI — Dental Intelligence on the Edge">
+<meta name="twitter:title" content="SCYRA.AI — Dental Intelligence on the Edge">
 <meta name="twitter:description" content="The world's first edge AI system for dental clinics. Back us on Indiegogo.">
 <meta name="twitter:image" content="https://scyra.ai/og-image.png">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=SF+Pro+Display:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg: #ffffff;
-  --bg2: #f5f4f9;
-  --bg3: #eeedf5;
-  --cyan: #7F77DD;
-  --cyan2: #6B63C4;
-  --white: #1a1a1a;
-  --gray: #888880;
-  --gray2: #e8e6e2;
-  --border: rgba(0,0,0,0.06);
-  --font: 'Inter', sans-serif;
-  --font-head: 'Space Grotesk', sans-serif;
+  --bg: #000000;
+  --bg-elevated: #0a0a0a;
+  --bg-card: #111111;
+  --bg-card-hover: #1a1a1a;
+  --surface: #161616;
+  --border: rgba(255,255,255,0.08);
+  --border-hover: rgba(255,255,255,0.15);
+  --text: #f5f5f7;
+  --text-secondary: #86868b;
+  --text-muted: #6e6e73;
+  --accent: #7F77DD;
+  --accent-bright: #A29AEE;
+  --accent-glow: rgba(127,119,221,0.15);
+  --gradient-text: linear-gradient(135deg, #f5f5f7 0%, #86868b 100%);
+  --gradient-accent: linear-gradient(135deg, #7F77DD 0%, #A29AEE 50%, #7F77DD 100%);
+  --gradient-hero: radial-gradient(ellipse 80% 60% at 50% -20%, rgba(127,119,221,0.15) 0%, transparent 60%);
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Helvetica, Arial, sans-serif;
+  --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 html { scroll-behavior: smooth; }
-body { background: var(--bg); color: var(--white); font-family: var(--font); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
-::selection { background: rgba(127,119,221,0.2); }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+}
+::selection { background: rgba(127,119,221,0.3); color: #fff; }
 
-/* SCROLLBAR */
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--cyan2); border-radius: 2px; }
-
-/* NAV */
+/* ===== NAV ===== */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   height: 48px;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 40px;
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: blur(24px);
-  border-bottom: 1px solid var(--border);
+  padding: 0 clamp(20px, 4vw, 48px);
+  background: rgba(0,0,0,0.72);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.4s, background 0.4s;
 }
+nav.scrolled { border-bottom-color: var(--border); background: rgba(0,0,0,0.88); }
 .nav-logo {
-  font-family: var(--font-head);
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: -0.5px;
-  text-decoration: none;
-  color: var(--white);
+  font-size: 20px; font-weight: 600; letter-spacing: 2px;
+  text-decoration: none; color: var(--text);
 }
-.nav-logo span { color: var(--cyan); }
-.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 32px; list-style: none; }
 .nav-links a {
-  font-size: 13px; font-weight: 500; color: var(--gray);
-  text-decoration: none; letter-spacing: 0.3px;
-  transition: color 0.2s;
+  font-size: 12px; letter-spacing: 0.5px; color: var(--text-secondary);
+  text-decoration: none; font-weight: 400; transition: color 0.3s;
 }
-.nav-links a:hover { color: var(--white); }
+.nav-links a:hover { color: var(--text); }
+.nav-right { display: flex; align-items: center; gap: 16px; }
 .nav-cta {
-  padding: 10px 24px;
-  background: var(--cyan);
-  color: var(--bg);
-  font-size: 13px; font-weight: 600;
-  border: none; border-radius: 6px;
-  text-decoration: none; cursor: pointer;
-  transition: all 0.2s;
-  letter-spacing: 0.2px;
+  font-size: 11px; letter-spacing: 0.5px; padding: 8px 20px;
+  background: var(--accent); color: #fff;
+  text-decoration: none; font-weight: 500;
+  border-radius: 980px; transition: all 0.3s var(--ease);
 }
-.nav-cta:hover { background: #1ADEFF; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(127,119,221,0.25); }
+.nav-cta:hover { background: var(--accent-bright); transform: scale(1.02); }
+.nav-back {
+  font-size: 12px; color: var(--text-muted); text-decoration: none;
+  font-weight: 400; transition: color 0.3s;
+  border-left: 1px solid var(--border); padding-left: 16px; margin-left: 4px;
+}
+.nav-back:hover { color: var(--accent); }
 
-/* LANG SWITCHER */
-.lang-wrap { position: relative; }
-.lang-btn {
-  display: flex; align-items: center; gap: 6px;
-  background: transparent; border: 1px solid var(--border);
-  color: var(--gray); font-size: 12px; font-family: var(--font);
-  padding: 6px 12px; border-radius: 6px; cursor: pointer;
-  transition: all 0.2s; letter-spacing: 0.3px;
-}
-.lang-btn:hover { border-color: var(--cyan); color: var(--white); }
-.lang-btn .lf { font-size: 14px; line-height: 1; }
-.lang-btn .la { font-size: 8px; margin-left: 2px; transition: transform 0.2s; }
-.lang-wrap.open .la { transform: rotate(180deg); }
-.lang-dd {
-  position: absolute; top: calc(100% + 8px); right: 0;
-  background: var(--bg2); border: 1px solid var(--border);
-  border-radius: 8px; min-width: 200px; padding: 6px 0;
-  box-shadow: 0 12px 40px rgba(0,0,0,0.5);
-  opacity: 0; pointer-events: none; transform: translateY(-8px);
-  transition: all 0.2s ease; z-index: 300;
-  max-height: 400px; overflow-y: auto;
-}
-.lang-wrap.open .lang-dd { opacity: 1; pointer-events: auto; transform: translateY(0); }
-.lang-opt {
-  display: flex; align-items: center; gap: 10px;
-  padding: 8px 16px; font-size: 13px; color: var(--gray);
-  cursor: pointer; transition: all 0.15s; border: none;
-  background: none; width: 100%; text-align: left; font-family: var(--font);
-}
-.lang-opt:hover { background: rgba(127,119,221,0.05); color: var(--white); }
-.lang-opt.active { color: var(--cyan); }
-.lang-opt .lf { font-size: 15px; }
+/* ===== LANG ===== */
+.lang-switcher { position: relative; }
 
-/* HERO */
+/* ===== HAMBURGER ===== */
+.nav-hamburger {
+  display: none; flex-direction: column; gap: 5px; cursor: pointer;
+  padding: 12px; background: none; border: none; z-index: 200;
+  min-width: 48px; min-height: 48px; align-items: center; justify-content: center;
+}
+.nav-hamburger span { width: 20px; height: 1.5px; background: var(--text); transition: all 0.3s; display: block; }
+.nav-hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+.nav-hamburger.active span:nth-child(2) { opacity: 0; }
+.nav-hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+.mobile-menu {
+  display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.97); z-index: 150;
+  flex-direction: column; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity 0.4s;
+}
+.mobile-menu.open { display: flex; opacity: 1; }
+.mobile-menu a {
+  font-size: 24px; letter-spacing: 1px; color: var(--text-secondary);
+  text-decoration: none; font-weight: 300; padding: 16px 0; text-align: center;
+  transition: color 0.3s;
+}
+.mobile-menu a:active { color: var(--accent); }
+.mobile-menu-divider { width: 40px; height: 1px; background: var(--border); margin: 20px 0; }
+
+/* ===== HERO ===== */
 .hero {
-  min-height: 100vh;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
+  min-height: 100vh; min-height: 100dvh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
   text-align: center;
-  padding: 120px 60px 80px;
-  position: relative;
-  overflow: hidden;
+  padding: 140px 48px 100px;
+  position: relative; overflow: hidden;
+  background: var(--bg);
 }
-.hero-bg {
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(127,119,221,0.08) 0%, transparent 70%);
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: var(--gradient-hero);
   pointer-events: none;
 }
-.hero-grid {
-  position: absolute; inset: 0;
-  background-image:
-    linear-gradient(rgba(127,119,221,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(127,119,221,0.04) 1px, transparent 1px);
-  background-size: 60px 60px;
+.hero::after {
+  content: ''; position: absolute;
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, rgba(127,119,221,0.06) 0%, transparent 70%);
   pointer-events: none;
-  mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  animation: heroGlow 6s ease-in-out infinite alternate;
 }
+@keyframes heroGlow {
+  0% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+}
+
 .hero-badge {
   display: inline-flex; align-items: center; gap: 8px;
-  padding: 6px 16px;
-  background: rgba(127,119,221,0.1);
-  border: 1px solid rgba(127,119,221,0.25);
-  border-radius: 100px;
-  font-size: 12px; font-weight: 500; color: var(--cyan);
-  letter-spacing: 0.5px;
-  margin-bottom: 32px;
-}
-.hero-badge-dot {
-  width: 6px; height: 6px;
-  background: var(--cyan);
-  border-radius: 50%;
-  animation: pulse 2s infinite;
-}
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(0.8); }
-}
-.hero h1 {
-  font-family: var(--font-head);
-  font-size: clamp(48px, 7vw, 88px);
-  font-weight: 700;
-  line-height: 1.05;
-  letter-spacing: -2px;
-  margin-bottom: 8px;
-}
-.hero h1 .cyan { color: var(--cyan); }
-.hero h1 .dim { color: rgba(255,255,255,0.35); }
-.hero-sub {
-  font-size: clamp(18px, 2.5vw, 26px);
-  font-weight: 300;
-  color: var(--gray);
-  max-width: 700px;
-  margin: 24px auto 48px;
-  line-height: 1.5;
-}
-.hero-sub strong { color: var(--white); font-weight: 500; }
-.hero-actions { display: flex; gap: 16px; align-items: center; justify-content: center; flex-wrap: wrap; }
-.btn-primary {
-  padding: 16px 40px;
-  background: var(--cyan);
-  color: var(--bg);
-  font-size: 15px; font-weight: 700;
-  border: none; border-radius: 8px;
-  text-decoration: none; cursor: pointer;
-  transition: all 0.25s;
-  letter-spacing: 0.3px;
-}
-.btn-primary:hover { background: #1ADEFF; transform: translateY(-2px); box-shadow: 0 12px 32px rgba(127,119,221,0.3); }
-.btn-secondary {
-  padding: 16px 40px;
-  background: transparent;
-  color: var(--white);
-  font-size: 15px; font-weight: 500;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  text-decoration: none; cursor: pointer;
-  transition: all 0.25s;
-}
-.btn-secondary:hover { border-color: rgba(255,255,255,0.25); background: rgba(0,0,0,0.03); }
-.hero-stats {
-  display: flex; gap: 60px; margin-top: 72px;
-  justify-content: center; flex-wrap: wrap;
-}
-.hero-stat {}
-.hero-stat-num {
-  font-family: var(--font-head);
-  font-size: 36px; font-weight: 700;
-  color: var(--white);
-  letter-spacing: -1px;
-}
-.hero-stat-num span { color: var(--cyan); }
-.hero-stat-label {
-  font-size: 12px; color: var(--gray);
-  margin-top: 4px; letter-spacing: 0.3px;
-}
-
-/* TRUSTED */
-.trusted {
-  padding: 40px 60px;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: center; gap: 16px;
-}
-.trusted-label { font-size: 11px; color: var(--gray); letter-spacing: 1px; text-transform: uppercase; white-space: nowrap; }
-.trusted-logos { display: flex; gap: 40px; align-items: center; flex-wrap: wrap; justify-content: center; }
-.trusted-logo { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.2); letter-spacing: 1px; text-transform: uppercase; }
-
-/* SECTION */
-section { padding: 100px 60px; max-width: 1200px; margin: 0 auto; }
-.section-label {
-  font-size: 11px; font-weight: 600; color: var(--cyan);
-  letter-spacing: 2px; text-transform: uppercase;
-  margin-bottom: 16px;
-}
-.section-title {
-  font-family: var(--font-head);
-  font-size: clamp(32px, 4vw, 52px);
-  font-weight: 700; line-height: 1.1;
-  letter-spacing: -1px;
-  margin-bottom: 20px;
-}
-.section-desc {
-  font-size: 17px; color: var(--gray);
-  max-width: 560px; line-height: 1.7;
-}
-
-/* WHAT IS */
-.what-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 80px; align-items: center;
-  margin-top: 80px;
-}
-.what-visual {
-  position: relative;
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 48px;
-  overflow: hidden;
-}
-.what-visual::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--cyan), transparent);
-}
-.device-box {
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 24px;
-  margin-bottom: 16px;
-}
-.device-label { font-size: 10px; color: var(--gray); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
-.device-name { font-family: var(--font-head); font-size: 18px; font-weight: 600; margin-bottom: 4px; }
-.device-spec { font-size: 12px; color: var(--cyan); }
-.device-feeds {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 8px; margin-top: 16px;
-}
-.feed-item {
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 14px;
-  display: flex; align-items: center; gap: 8px;
-}
-.feed-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-.feed-dot.active { background: #22C55E; box-shadow: 0 0 8px rgba(34,197,94,0.5); }
-.feed-dot.cyan { background: var(--cyan); box-shadow: 0 0 8px rgba(127,119,221,0.4); }
-.feed-text { font-size: 11px; color: var(--gray); }
-
-/* CAPABILITIES */
-.caps-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  margin-top: 60px;
-}
-.cap-card {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 32px;
-  transition: all 0.3s;
-  position: relative;
-  overflow: hidden;
-}
-.cap-card::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(circle at top left, rgba(127,119,221,0.05), transparent 60%);
-  opacity: 0; transition: opacity 0.3s;
-}
-.cap-card:hover { border-color: rgba(127,119,221,0.2); transform: translateY(-4px); }
-.cap-card:hover::before { opacity: 1; }
-.cap-icon {
-  width: 48px; height: 48px;
+  padding: 6px 18px;
   background: rgba(127,119,221,0.1);
   border: 1px solid rgba(127,119,221,0.2);
-  border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 22px;
-  margin-bottom: 20px;
+  border-radius: 980px;
+  font-size: 11px; font-weight: 400; color: var(--accent-bright);
+  letter-spacing: 1px; margin-bottom: 40px;
+  position: relative;
 }
-.cap-title { font-family: var(--font-head); font-size: 18px; font-weight: 600; margin-bottom: 10px; }
-.cap-desc { font-size: 14px; color: var(--gray); line-height: 1.6; }
+.hero-badge-dot {
+  width: 6px; height: 6px; background: var(--accent-bright);
+  border-radius: 50%; animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(162,154,238,0.4); }
+  50% { opacity: 0.8; box-shadow: 0 0 0 8px rgba(162,154,238,0); }
+}
 
-/* HOW IT WORKS */
-.how-wrap { background: var(--bg2); border-radius: 24px; padding: 80px; margin-top: 60px; border: 1px solid var(--border); position: relative; overflow: hidden; }
+.hero h1 {
+  font-size: clamp(52px, 12vw, 96px);
+  font-weight: 700; line-height: 1.0;
+  letter-spacing: -2px;
+  margin-bottom: 24px;
+  position: relative;
+  background: linear-gradient(180deg, #f5f5f7 30%, #86868b 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero h1 .cyan {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-sub {
+  font-size: 18px; font-weight: 300; color: var(--text-secondary);
+  max-width: 600px; margin: 0 auto 48px;
+  line-height: 1.6; letter-spacing: 0.2px;
+  position: relative;
+}
+.hero-sub strong { color: var(--text); font-weight: 500; }
+
+.hero-actions {
+  display: flex; gap: 16px; align-items: center;
+  justify-content: center; flex-wrap: wrap; position: relative;
+}
+.btn-primary {
+  font-size: 16px; font-weight: 500; padding: 16px 32px;
+  background: var(--accent); color: #fff;
+  text-decoration: none; border-radius: 980px;
+  transition: all 0.4s var(--ease); font-family: var(--font);
+  box-shadow: 0 0 20px rgba(127,119,221,0.3);
+}
+.btn-primary:hover {
+  background: var(--accent-bright);
+  box-shadow: 0 0 40px rgba(127,119,221,0.4);
+  transform: scale(1.02);
+}
+.btn-secondary {
+  font-size: 16px; font-weight: 500; padding: 16px 32px;
+  background: transparent;
+  border: 1px solid var(--border-hover); color: var(--text);
+  text-decoration: none; border-radius: 980px;
+  transition: all 0.4s var(--ease); font-family: var(--font);
+}
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.25);
+}
+
+.hero-stats {
+  display: flex; gap: 80px; margin-top: 80px;
+  justify-content: center; flex-wrap: wrap; position: relative;
+}
+.hero-stat { text-align: center; }
+.hero-stat-num {
+  font-size: 48px; font-weight: 700; letter-spacing: -1px;
+  background: linear-gradient(180deg, #f5f5f7 20%, var(--accent) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-stat-num span {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-stat-label {
+  font-size: 12px; color: var(--text-muted); margin-top: 4px;
+  letter-spacing: 0.5px; font-weight: 400;
+}
+
+/* ===== REVEAL ===== */
+.reveal {
+  opacity: 0; transform: translateY(40px);
+  transition: opacity 1s var(--ease-out), transform 1s var(--ease-out);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ===== TRUSTED ===== */
+.trusted {
+  padding: 32px 48px;
+  display: flex; align-items: center; justify-content: center; gap: 20px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-elevated);
+}
+.trusted-label {
+  font-size: 11px; color: var(--text-muted); letter-spacing: 2px;
+  text-transform: uppercase; font-weight: 500; white-space: nowrap;
+}
+.trusted-logos { display: flex; gap: 48px; align-items: center; flex-wrap: wrap; justify-content: center; }
+.trusted-logo {
+  font-size: 13px; font-weight: 500; color: var(--text-muted);
+  letter-spacing: 1px; opacity: 0.6; transition: opacity 0.3s;
+}
+.trusted-logo:hover { opacity: 1; }
+
+/* ===== SECTIONS ===== */
+.section { padding: 140px 48px; max-width: 1200px; margin: 0 auto; }
+.section-full { max-width: 100%; padding-left: 48px; padding-right: 48px; }
+.section-dark { background: var(--bg-elevated); }
+
+.section-label {
+  font-size: 13px; letter-spacing: 3px; color: var(--accent);
+  text-transform: uppercase; font-weight: 500; margin-bottom: 16px;
+}
+.section-title {
+  font-size: clamp(40px, 5vw, 64px); font-weight: 700;
+  letter-spacing: -1.5px; line-height: 1.05; margin-bottom: 20px;
+  color: var(--text);
+}
+.section-title .dim { color: var(--text-muted); }
+.section-desc {
+  font-size: 18px; color: var(--text-secondary); max-width: 560px;
+  line-height: 1.6; font-weight: 300;
+}
+
+/* ===== WHAT IS ===== */
+.what-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center; margin-top: 80px;
+}
+.what-visual {
+  position: relative; background: var(--bg-card);
+  border: 1px solid var(--border); border-radius: 20px;
+  padding: 48px; overflow: hidden;
+}
+.what-visual::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+.device-box {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 24px; margin-bottom: 16px;
+}
+.device-label {
+  font-size: 11px; color: var(--text-muted); letter-spacing: 2px;
+  text-transform: uppercase; font-weight: 500; margin-bottom: 8px;
+}
+.device-name { font-size: 20px; font-weight: 600; margin-bottom: 4px; }
+.device-spec { font-size: 14px; color: var(--accent); font-weight: 400; letter-spacing: 0.5px; }
+.device-feeds { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 16px; }
+.feed-item {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; padding: 14px; display: flex; align-items: center; gap: 10px;
+}
+.feed-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.feed-dot.active { background: #30D158; box-shadow: 0 0 10px rgba(48,209,88,0.5); }
+.feed-dot.cyan { background: var(--accent); box-shadow: 0 0 10px rgba(127,119,221,0.4); }
+.feed-text { font-size: 12px; color: var(--text-secondary); font-weight: 400; }
+
+/* ===== CAPABILITIES ===== */
+.caps-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; margin-top: 60px;
+  background: var(--border); border-radius: 20px; overflow: hidden;
+}
+.cap-card {
+  background: var(--bg-card); padding: 48px 36px;
+  transition: background 0.4s var(--ease);
+}
+.cap-card:hover { background: var(--bg-card-hover); }
+.cap-icon {
+  width: 48px; height: 48px;
+  background: var(--accent-glow);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; margin-bottom: 24px;
+}
+.cap-title { font-size: 20px; font-weight: 600; margin-bottom: 12px; }
+.cap-desc { font-size: 15px; color: var(--text-secondary); line-height: 1.6; font-weight: 300; }
+
+/* ===== HOW IT WORKS ===== */
+.how-wrap {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 24px; padding: 80px; margin-top: 60px;
+  position: relative; overflow: hidden;
+}
 .how-wrap::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+  content: ''; position: absolute; top: 0; left: 20%; right: 20%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
 }
 .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-top: 48px; }
 .step { text-align: center; }
 .step-num {
   width: 48px; height: 48px;
-  background: rgba(127,119,221,0.1);
-  border: 1px solid rgba(127,119,221,0.3);
+  border: 1.5px solid var(--accent);
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-head); font-size: 18px; font-weight: 700; color: var(--cyan);
+  font-size: 16px; font-weight: 600; color: var(--accent);
   margin: 0 auto 20px;
+  transition: all 0.4s var(--ease);
 }
-.step-title { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
-.step-desc { font-size: 13px; color: var(--gray); line-height: 1.6; }
+.step:hover .step-num {
+  background: var(--accent); color: #fff;
+  box-shadow: 0 0 30px rgba(127,119,221,0.3);
+}
+.step-title { font-size: 18px; font-weight: 600; margin-bottom: 10px; }
+.step-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.6; font-weight: 300; }
 
-/* ADMIN ROLE */
+/* ===== ADMIN ===== */
 .admin-grid {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 60px; align-items: center; margin-top: 60px;
 }
 .admin-card {
-  background: var(--bg2); border: 1px solid var(--border);
-  border-radius: 16px; padding: 40px;
-  position: relative; overflow: hidden;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 20px; padding: 40px; position: relative; overflow: hidden;
 }
 .admin-card::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
   background: linear-gradient(90deg, transparent, rgba(127,119,221,0.5), transparent);
 }
 .admin-convo { display: flex; flex-direction: column; gap: 12px; }
 .msg {
-  max-width: 85%; padding: 12px 16px;
-  border-radius: 12px; font-size: 13px; line-height: 1.5;
+  max-width: 85%; padding: 14px 18px;
+  font-size: 14px; line-height: 1.6; font-weight: 300;
+  border-radius: 16px;
 }
 .msg.patient {
-  background: var(--bg3); color: var(--white);
+  background: var(--surface); border: 1px solid var(--border);
+  color: var(--text); align-self: flex-start;
   border-bottom-left-radius: 4px;
-  align-self: flex-start;
 }
 .msg.ai {
-  background: rgba(127,119,221,0.12);
-  border: 1px solid rgba(127,119,221,0.2);
-  color: var(--white);
+  background: rgba(127,119,221,0.1); border: 1px solid rgba(127,119,221,0.15);
+  color: var(--text); align-self: flex-end;
   border-bottom-right-radius: 4px;
-  align-self: flex-end;
 }
-.msg-sender { font-size: 10px; color: var(--gray); margin-bottom: 4px; letter-spacing: 0.5px; }
-.msg-sender.ai-sender { color: var(--cyan); }
+.msg-sender {
+  font-size: 10px; color: var(--text-muted); margin-bottom: 4px;
+  letter-spacing: 1.5px; text-transform: uppercase; font-weight: 500;
+}
+.msg-sender.ai-sender { color: var(--accent); }
+.admin-list {
+  margin-top: 32px; display: flex; flex-direction: column; gap: 16px; list-style: none;
+}
+.admin-list li {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 15px; font-weight: 300; color: var(--text-secondary);
+}
+.admin-list li span { color: var(--accent); font-size: 16px; }
 
-/* TECH */
-.tech-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 60px; }
+/* ===== TECH ===== */
+.tech-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 1px; background: var(--border); border-radius: 20px;
+  overflow: hidden; margin-top: 60px;
+}
 .tech-card {
-  background: var(--bg2); border: 1px solid var(--border);
-  border-radius: 12px; padding: 28px;
-  display: flex; gap: 20px; align-items: flex-start;
+  background: var(--bg-card); padding: 40px;
+  display: flex; gap: 24px; align-items: flex-start;
+  transition: background 0.4s var(--ease);
 }
-.tech-icon { font-size: 28px; flex-shrink: 0; }
-.tech-title { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
-.tech-desc { font-size: 13px; color: var(--gray); line-height: 1.6; }
+.tech-card:hover { background: var(--bg-card-hover); }
+.tech-icon {
+  font-size: 28px; flex-shrink: 0;
+  width: 56px; height: 56px;
+  background: var(--accent-glow); border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+}
+.tech-title { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+.tech-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.6; font-weight: 300; }
 
-/* INDIEGOGO */
+/* ===== INDIEGOGO ===== */
 .indi-section {
-  background: linear-gradient(135deg, rgba(127,119,221,0.08) 0%, transparent 60%);
-  border: 1px solid rgba(127,119,221,0.15);
-  border-radius: 24px;
-  padding: 80px;
-  text-align: center;
-  position: relative; overflow: hidden;
-  margin: 0 auto;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 32px; padding: 100px 80px; text-align: center;
+  position: relative; overflow: hidden; max-width: 1100px; margin: 0 auto;
 }
 .indi-section::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+  content: ''; position: absolute; top: -1px; left: 20%; right: 20%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+.indi-section::after {
+  content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 600px; height: 300px;
+  background: radial-gradient(ellipse, rgba(127,119,221,0.08) 0%, transparent 70%);
+  pointer-events: none;
 }
 .indi-title {
-  font-family: var(--font-head);
-  font-size: clamp(32px, 4vw, 56px);
-  font-weight: 700; line-height: 1.1;
-  letter-spacing: -1px;
-  margin: 16px 0 20px;
+  font-size: clamp(36px, 5vw, 56px); font-weight: 700;
+  line-height: 1.08; letter-spacing: -1px; margin: 16px 0 20px;
 }
-.indi-desc { font-size: 18px; color: var(--gray); max-width: 560px; margin: 0 auto 40px; line-height: 1.6; }
-.indi-perks { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-bottom: 48px; }
-.perk {
-  background: rgba(0,0,0,0.03);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 20px 28px;
-  text-align: center;
+.indi-desc {
+  font-size: 17px; color: var(--text-secondary); max-width: 500px;
+  margin: 0 auto 48px; line-height: 1.6; font-weight: 300;
 }
-.perk-price { font-family: var(--font-head); font-size: 28px; font-weight: 700; color: var(--cyan); }
-.perk-name { font-size: 14px; font-weight: 600; margin: 4px 0; }
-.perk-desc { font-size: 12px; color: var(--gray); }
+.indi-perks {
+  display: flex; gap: 1px; justify-content: center; flex-wrap: wrap;
+  margin-bottom: 48px; background: var(--border);
+  border-radius: 20px; overflow: hidden;
+  display: inline-flex;
+}
+.perk { background: var(--surface); padding: 36px 44px; text-align: center; }
+.perk-price {
+  font-size: 36px; font-weight: 700;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.perk-name { font-size: 14px; font-weight: 500; margin: 6px 0; letter-spacing: 0.5px; }
+.perk-desc { font-size: 13px; color: var(--text-muted); font-weight: 300; }
 
-/* FRANCHISE */
-.franchise-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 60px; }
-.fr-card {
-  background: var(--bg2); border: 1px solid var(--border);
-  border-radius: 12px; padding: 32px;
-  text-align: center;
+/* ===== FRANCHISE ===== */
+.franchise-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--border); border-radius: 20px;
+  overflow: hidden; margin-top: 60px;
 }
+.fr-card {
+  background: var(--bg-card); padding: 48px 36px; text-align: center;
+  transition: background 0.4s var(--ease);
+}
+.fr-card:hover { background: var(--bg-card-hover); }
 .fr-step {
-  width: 40px; height: 40px;
-  background: rgba(127,119,221,0.1);
-  border: 1px solid rgba(127,119,221,0.25);
+  width: 48px; height: 48px; border: 1.5px solid var(--accent);
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  font-size: 14px; font-weight: 700; color: var(--cyan);
-  margin: 0 auto 16px;
+  font-size: 16px; font-weight: 600; color: var(--accent); margin: 0 auto 20px;
 }
-.fr-title { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
-.fr-desc { font-size: 13px; color: var(--gray); line-height: 1.6; }
+.fr-title { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
+.fr-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.6; font-weight: 300; }
 
-/* TEAM */
+/* ===== TEAM ===== */
 .team-grid {
   display: grid; grid-template-columns: 2fr 1fr 1fr;
-  gap: 20px; margin-top: 60px;
+  gap: 1px; background: var(--border); border-radius: 20px;
+  overflow: hidden; margin-top: 60px;
 }
 .team-card {
-  background: var(--bg2); border: 1px solid var(--border);
-  border-radius: 12px; padding: 32px;
+  background: var(--bg-card); padding: 48px 36px;
+  transition: background 0.4s var(--ease);
 }
-.team-main { border-color: rgba(127,119,221,0.15); }
-.team-role { font-size: 11px; font-weight: 600; color: var(--cyan); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
-.team-name { font-family: var(--font-head); font-size: 22px; font-weight: 700; margin-bottom: 12px; }
-.team-desc { font-size: 14px; color: var(--gray); line-height: 1.7; }
-.team-link { display: inline-block; margin-top: 16px; font-size: 13px; color: var(--cyan); text-decoration: none; transition: opacity 0.2s; }
+.team-card:hover { background: var(--bg-card-hover); }
+.team-role {
+  font-size: 11px; letter-spacing: 2px; color: var(--accent);
+  text-transform: uppercase; font-weight: 500; margin-bottom: 10px;
+}
+.team-name { font-size: 24px; font-weight: 700; margin-bottom: 14px; }
+.team-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.6; font-weight: 300; }
+.team-link {
+  display: inline-block; margin-top: 16px; font-size: 14px;
+  color: var(--accent); text-decoration: none; font-weight: 400;
+  transition: opacity 0.3s;
+}
 .team-link:hover { opacity: 0.7; }
 
-/* FAQ */
-.faq-item {
-  border-bottom: 1px solid var(--border);
-  padding: 20px 0;
-}
+/* ===== FAQ ===== */
+.faq-list { margin-top: 48px; max-width: 800px; }
+.faq-item { border-bottom: 1px solid var(--border); padding: 24px 0; }
 .faq-item summary {
-  font-size: 16px; font-weight: 600; cursor: pointer;
-  list-style: none; display: flex; align-items: center; justify-content: space-between;
-  color: var(--white); transition: color 0.2s;
-}
-.faq-item summary:hover { color: var(--cyan); }
-.faq-item summary::after { content: '+'; font-size: 22px; color: var(--cyan); transition: transform 0.2s; }
-.faq-item[open] summary::after { content: '-'; }
-.faq-item p {
-  font-size: 14px; color: var(--gray); line-height: 1.7;
-  margin-top: 12px; padding-right: 40px;
-}
-
-/* FOOTER */
-footer {
-  border-top: 1px solid var(--border);
-  padding: 40px 60px;
+  font-size: 20px; font-weight: 600; cursor: pointer; list-style: none;
   display: flex; align-items: center; justify-content: space-between;
-  flex-wrap: wrap; gap: 20px;
+  color: var(--text); transition: color 0.3s;
 }
-.footer-logo { font-family: var(--font-head); font-size: 18px; font-weight: 700; color: var(--white); }
-.footer-logo span { color: var(--cyan); }
-.footer-copy { font-size: 13px; color: var(--gray); }
-.footer-links { display: flex; gap: 24px; }
-.footer-links a { font-size: 13px; color: var(--gray); text-decoration: none; transition: color 0.2s; }
-.footer-links a:hover { color: var(--white); }
+.faq-item summary:hover { color: var(--accent); }
+.faq-item summary::after {
+  content: '+'; font-size: 24px; color: var(--accent);
+  transition: transform 0.3s; font-weight: 300;
+}
+.faq-item[open] summary::after { transform: rotate(45deg); }
+.faq-item p {
+  font-size: 15px; color: var(--text-secondary); line-height: 1.7;
+  margin-top: 16px; padding-right: 40px; font-weight: 300;
+}
 
-/* MOBILE */
-@media (max-width: 768px) {
+/* ===== FOOTER ===== */
+footer {
+  background: var(--bg-elevated); padding: 80px 48px 40px;
+  position: relative; border-top: 1px solid var(--border);
+}
+.footer-top {
+  display: flex; justify-content: space-between;
+  align-items: flex-start; margin-bottom: 60px;
+}
+.footer-logo {
+  font-size: 48px; font-weight: 700; letter-spacing: 2px; color: var(--text);
+}
+.footer-logo span { color: var(--accent); }
+.footer-copy {
+  font-size: 12px; color: var(--text-muted); font-weight: 400;
+}
+.footer-links { display: flex; gap: 24px; padding-top: 12px; }
+.footer-links a {
+  font-size: 13px; color: var(--text-muted); text-decoration: none;
+  font-weight: 400; transition: color 0.3s;
+}
+.footer-links a:hover { color: var(--accent); }
+.footer-brands {
+  display: flex; justify-content: center; flex-wrap: wrap; gap: 24px;
+  padding: 32px 0; border-top: 1px solid var(--border);
+}
+.footer-brands a {
+  font-size: 13px; color: var(--text-muted); text-decoration: none;
+  font-weight: 400; transition: color 0.3s;
+}
+.footer-brands a:hover { color: var(--accent); }
+.footer-brands-sep { color: var(--text-muted); font-size: 12px; opacity: 0.3; align-self: center; }
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 32px; border-top: 1px solid var(--border);
+}
+.footer-ai {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 12px; color: var(--text-muted); font-weight: 400;
+}
+.dot-live {
+  width: 6px; height: 6px; background: var(--accent-bright);
+  border-radius: 50%; animation: pulse 2s ease-in-out infinite;
+}
+
+/* ===== PULSE NAVIGATOR ===== */
+.pulse-nav {
+  position: fixed; top: 48px; right: 0; width: 48px; height: calc(100vh - 48px);
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-left: 1px solid var(--border);
+  z-index: 90; display: flex; flex-direction: column;
+  align-items: center; padding: 20px 0; gap: 16px;
+  transition: width 0.3s var(--ease);
+}
+.pulse-nav:hover { width: 180px; }
+.pulse-nav:hover .pn-label { opacity: 1; max-width: 120px; }
+.pn-item {
+  display: flex; align-items: center; gap: 10px; width: 100%;
+  padding: 8px 12px; text-decoration: none; transition: all 0.2s;
+}
+.pn-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.pn-dot.active { box-shadow: 0 0 10px currentColor; }
+.pn-label {
+  font-size: 11px; color: var(--text-muted); white-space: nowrap;
+  overflow: hidden; max-width: 0; opacity: 0;
+  transition: all 0.3s var(--ease); font-weight: 400;
+}
+.pn-pulse {
+  width: 2px; height: 40px;
+  background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+  margin: auto 0; animation: pulseLine 2s ease-in-out infinite; opacity: 0.4;
+}
+@keyframes pulseLine { 0%,100% { opacity: 0.2; } 50% { opacity: 0.7; } }
+.pn-action {
+  width: 32px; height: 32px; border: 1px solid var(--border);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; color: var(--text-muted); cursor: pointer;
+  transition: all 0.3s; background: transparent; text-decoration: none;
+}
+.pn-action:hover { border-color: var(--accent); color: var(--accent); }
+.nav-ver {
+  font-size: 9px; color: var(--text-muted); opacity: 0.4;
+  letter-spacing: 0.5px; white-space: nowrap; font-weight: 400;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
   nav { padding: 0 20px; }
-  .nav-links { display: none; }
-  .hero { padding: 100px 24px 60px; }
-  section { padding: 60px 24px; }
-  .hero-stats { gap: 32px; }
+  .nav-links, .nav-back { display: none; }
+  .nav-hamburger { display: flex; }
+  .hero { padding: 120px 24px 80px; }
+  .hero h1 { letter-spacing: -1px; }
+  .section { padding: 100px 24px; }
+  .hero-stats { gap: 40px; }
   .what-grid, .admin-grid { grid-template-columns: 1fr; gap: 40px; }
   .caps-grid, .franchise-grid, .team-grid { grid-template-columns: 1fr; }
   .steps { grid-template-columns: 1fr 1fr; gap: 24px; }
   .tech-grid { grid-template-columns: 1fr; }
-  .how-wrap, .indi-section { padding: 40px 24px; }
-  .trusted { flex-direction: column; padding: 32px 24px; }
-  footer { padding: 32px 24px; flex-direction: column; align-items: flex-start; }
+  .how-wrap { padding: 40px 24px; }
+  .indi-section { padding: 60px 24px; border-radius: 20px; }
+  .trusted { flex-direction: column; padding: 24px; }
+  footer { padding: 40px 24px 32px; }
+  .footer-top { flex-direction: column; gap: 32px; }
+  .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+  .pulse-nav { display: none; }
+  .nav-ver { display: none; }
+  .btn-primary, .btn-secondary { font-size: 15px; padding: 14px 28px; }
+  .section-desc { font-size: 16px; }
 }
-
-  /* PULSE NAVIGATOR */
-  .pulse-nav { position:fixed;top:48px;right:0;width:48px;height:calc(100vh - 48px);background:rgba(255,255,255,0.85);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-left:1px solid rgba(0,0,0,0.04);z-index:90;display:flex;flex-direction:column;align-items:center;padding:20px 0;gap:16px;transition:width 0.3s ease }
-  .pulse-nav:hover { width:180px }
-  .pulse-nav:hover .pn-label { opacity:1;max-width:120px }
-  .pn-item { display:flex;align-items:center;gap:10px;width:100%;padding:8px 12px;text-decoration:none;transition:all 0.2s }
-  .pn-dot { width:8px;height:8px;border-radius:50%;flex-shrink:0 }
-  .pn-dot.active { box-shadow:0 0 8px currentColor }
-  .pn-label { font-size:10px;color:var(--muted,#888);white-space:nowrap;overflow:hidden;max-width:0;opacity:0;transition:all 0.3s }
-  .pn-pulse { width:2px;height:40px;background:linear-gradient(to bottom,transparent,#7F77DD,transparent);margin:auto 0;animation:pulseLine 2s ease-in-out infinite;opacity:0.4 }
-  @keyframes pulseLine { 0%,100%{opacity:0.2} 50%{opacity:0.7} }
-  .pn-action { width:32px;height:32px;border-radius:50%;border:1px solid rgba(0,0,0,0.06);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--muted,#888);cursor:pointer;transition:all 0.2s;background:white;text-decoration:none }
-  .pn-action:hover { border-color:#7F77DD;color:#7F77DD }
-  .nav-ver { font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted,#888);opacity:0.5;letter-spacing:0.04em;white-space:nowrap }
-
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">ŠČYRA<span>.AI</span></a>
+  <a href="#" class="nav-logo">SCYRA<span>.AI</span></a>
   <ul class="nav-links">
     <li><a href="#capabilities">Capabilities</a></li>
-    <li><a href="#how">How it works</a></li>
+    <li><a href="#how">How It Works</a></li>
     <li><a href="#tech">Technology</a></li>
     <li><a href="#franchise">Franchise</a></li>
     <li><a href="#team">Team</a></li>
     <li><a href="#faq">FAQ</a></li>
   </ul>
-  <div class="lang-wrap" id="langWrap">
-    <button class="lang-btn" onclick="document.getElementById('langWrap').classList.toggle('open')">
-      <span class="lf" id="langFlag"></span>
-      <span id="langName">BY</span>
-      <span class="la">▼</span>
-    </button>
-    <div class="lang-dd" id="langDD"></div>
+  <div class="nav-right">
+    <a href="https://labs67.com" class="nav-back">&#8592; labs67</a>
+    <div class="lang-switcher"></div>
+    <a href="#back" class="nav-cta" data-t="nav_cta">Back on Indiegogo</a>
   </div>
-  <a href="https://labs67.com" class="nav-back" style="padding:8px 14px;border:1px solid rgba(255,255,255,0.12);color:var(--gray);font-size:12px;text-decoration:none;letter-spacing:0.05em;transition:all 0.3s;font-family:var(--font);" onmouseover="this.style.borderColor='var(--cyan)';this.style.color='var(--white)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.12)';this.style.color='var(--gray)'">← LABS67</a>
-  <a href="#indiegogo" class="nav-cta" data-t="nav_cta">Падтрымаць на Indiegogo</a>
-<span class="nav-ver">v2.0 · 25.03.26</span></nav>
+  <button class="nav-hamburger" id="hamburger" onclick="toggleMobile()"><span></span><span></span><span></span></button>
+<span class="nav-ver">v3.0</span></nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#capabilities" onclick="closeMobile()">Capabilities</a>
+  <a href="#how" onclick="closeMobile()">How It Works</a>
+  <a href="#tech" onclick="closeMobile()">Technology</a>
+  <a href="#franchise" onclick="closeMobile()">Franchise</a>
+  <a href="#team" onclick="closeMobile()">Team</a>
+  <a href="#faq" onclick="closeMobile()">FAQ</a>
+  <div class="mobile-menu-divider"></div>
+  <a href="https://labs67.com" onclick="closeMobile()">&#8592; labs67</a>
+</div>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
-  <div class="hero-badge">
+  <div class="hero-badge reveal">
     <span class="hero-badge-dot"></span>
-    Now live on Indiegogo
+    Now Live on Indiegogo
   </div>
-  <h1 data-t="hero_title">AI-<span class="cyan">мозг</span><br>вашай стаматалогіі</h1>
-  <p class="hero-sub" data-t="hero_sub">ŠČYRA.AI спалучае <strong>камеры, датчыкі і edge AI</strong>, каб дапамагаць дактарам, аналізаваць пацыентаў і развіваць ваш бізнес — усё ў адным прыладзе.</p>
-  <div class="hero-actions">
-    <a href="#indiegogo" class="btn-primary" data-t="hero_btn">Падтрымаць праект</a>
-    <a href="#capabilities" class="btn-secondary" data-t="hero_btn2">Як гэта працуе</a>
+  <h1 class="reveal" data-t="hero_title">AI-<span class="cyan">Brain</span><br>of Your Clinic</h1>
+  <p class="hero-sub reveal" data-t="hero_sub">SCYRA.AI combines <strong>cameras, sensors, and edge AI</strong> to assist doctors, analyze patients, and grow your business — all in one device.</p>
+  <div class="hero-actions reveal">
+    <a href="#back" class="btn-primary" data-t="hero_btn">Back This Project</a>
+    <a href="#capabilities" class="btn-secondary" data-t="hero_btn2">See How It Works</a>
   </div>
-  <div class="hero-stats">
+  <div class="hero-stats reveal">
     <div class="hero-stat">
       <div class="hero-stat-num">6<span>+</span></div>
       <div class="hero-stat-label">AI modules in one device</div>
@@ -580,7 +706,7 @@ footer {
       <div class="hero-stat-label">Clinic intelligence</div>
     </div>
     <div class="hero-stat">
-      <div class="hero-stat-num">EU<span>×</span></div>
+      <div class="hero-stat-num">EU<span>&times;</span></div>
       <div class="hero-stat-label">Franchise program</div>
     </div>
   </div>
@@ -597,76 +723,64 @@ footer {
   </div>
 </div>
 
-<!-- WHAT IS SCHYRA -->
-<section id="what">
-  <div class="section-label" data-t="what_label">Што такое ŠČYRA.AI</div>
+<!-- WHAT IS -->
+<section class="section" id="what">
+  <div class="section-label reveal" data-t="what_label">What is SCYRA.AI</div>
   <div class="what-grid">
-    <div>
-      <h2 class="section-title" data-t="what_title">Адна прылада.<br>Уся клініка.</h2>
-      <p class="section-desc">ŠČYRA.AI is an edge AI system that installs in your dental clinic and immediately starts working — analyzing patients, assisting your doctors, managing appointments, and growing your revenue through intelligent communication.</p>
-      <p style="margin-top: 20px; font-size: 14px; color: var(--gray); line-height: 1.7;">No cloud dependency for critical operations. Everything runs locally on the NVIDIA Jetson Orin Nano — fast, private, and reliable.</p>
+    <div class="reveal">
+      <h2 class="section-title" data-t="what_title">One device.<br><span class="dim">Your entire clinic.</span></h2>
+      <p class="section-desc">An edge AI system that installs in your dental clinic and immediately starts working — analyzing patients, assisting doctors, managing appointments, and growing revenue.</p>
+      <p style="margin-top: 20px; font-size: 15px; color: var(--text-muted); line-height: 1.6; font-weight: 300;">No cloud dependency. Everything runs locally on NVIDIA Jetson — fast, private, and reliable.</p>
     </div>
-    <div class="what-visual">
+    <div class="what-visual reveal">
       <div class="device-box">
         <div class="device-label">Hardware</div>
         <div class="device-name">NVIDIA Jetson Orin Nano</div>
         <div class="device-spec">64 GB · Edge AI · Always On</div>
       </div>
       <div class="device-feeds">
-        <div class="feed-item">
-          <div class="feed-dot active"></div>
-          <div class="feed-text">Camera feed: active</div>
-        </div>
-        <div class="feed-item">
-          <div class="feed-dot cyan"></div>
-          <div class="feed-text">Patient analysis: on</div>
-        </div>
-        <div class="feed-item">
-          <div class="feed-dot active"></div>
-          <div class="feed-text">Voice assistant: listening</div>
-        </div>
-        <div class="feed-item">
-          <div class="feed-dot cyan"></div>
-          <div class="feed-text">Admin bot: active</div>
-        </div>
+        <div class="feed-item"><div class="feed-dot active"></div><div class="feed-text">Camera feed: active</div></div>
+        <div class="feed-item"><div class="feed-dot cyan"></div><div class="feed-text">Patient analysis: on</div></div>
+        <div class="feed-item"><div class="feed-dot active"></div><div class="feed-text">Voice assistant: listening</div></div>
+        <div class="feed-item"><div class="feed-dot cyan"></div><div class="feed-text">Admin bot: active</div></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- CAPABILITIES -->
-<section id="capabilities" style="max-width: 1200px;">
-  <div style="max-width: 1200px; margin: 0 auto;">
-  <div class="section-label" data-t="cap_label">Магчымасці</div>
-  <h2 class="section-title">Everything your clinic needs.<br><span style="color: var(--gray);">Automated.</span></h2>
-  <div class="caps-grid">
+<section class="section section-full section-dark" id="capabilities">
+  <div style="max-width:1200px;margin:0 auto;">
+  <div class="section-label reveal" data-t="cap_label">Capabilities</div>
+  <h2 class="section-title reveal">Everything your clinic needs.<br><span class="dim">Automated.</span></h2>
+  <div class="caps-grid reveal">
     <div class="cap-card">
-      <div class="cap-icon">📷</div>
+      <div class="cap-icon">&#128247;</div>
       <div class="cap-title">Patient Analysis</div>
       <div class="cap-desc">Cameras and sensors track patient flow, waiting times, and stress levels. Real-time insights for your front desk.</div>
     </div>
     <div class="cap-card">
-      <div class="cap-icon">🦷</div>
+      <div class="cap-icon">&#129463;</div>
       <div class="cap-title">Doctor Assistant</div>
       <div class="cap-desc">AI assists during procedures — voice-controlled instrument requests, real-time notes, protocol reminders.</div>
     </div>
     <div class="cap-card">
-      <div class="cap-icon">💬</div>
+      <div class="cap-icon">&#128172;</div>
       <div class="cap-title">Smart Administrator</div>
       <div class="cap-desc">Handles incoming messages, books appointments, answers questions, and converts leads into patients automatically.</div>
     </div>
     <div class="cap-card">
-      <div class="cap-icon">📊</div>
+      <div class="cap-icon">&#128202;</div>
       <div class="cap-title">Clinic Analytics</div>
       <div class="cap-desc">Dashboard with revenue forecasting, chair utilization, no-show predictions, and patient retention scores.</div>
     </div>
     <div class="cap-card">
-      <div class="cap-icon">🔒</div>
-      <div class="cap-title">Local & Private</div>
+      <div class="cap-icon">&#128274;</div>
+      <div class="cap-title">Local &amp; Private</div>
       <div class="cap-desc">Patient data never leaves your clinic. All processing runs on-device — GDPR-ready from day one.</div>
     </div>
     <div class="cap-card">
-      <div class="cap-icon">🌍</div>
+      <div class="cap-icon">&#127758;</div>
       <div class="cap-title">Multilingual</div>
       <div class="cap-desc">Speaks to patients in their language. Built for European clinics — 12 languages supported out of the box.</div>
     </div>
@@ -675,11 +789,11 @@ footer {
 </section>
 
 <!-- HOW IT WORKS -->
-<section id="how" style="max-width: 1200px;">
-  <div style="max-width: 1200px; margin: 0 auto;">
-  <div class="section-label" data-t="how_label">Як гэта працуе</div>
-  <h2 class="section-title">Plug in.<br><span style="color: var(--gray);">It learns. It works.</span></h2>
-  <div class="how-wrap">
+<section class="section" id="how">
+  <div style="max-width:1200px;margin:0 auto;">
+  <div class="section-label reveal" data-t="how_label">How It Works</div>
+  <h2 class="section-title reveal">Plug in.<br><span class="dim">It learns. It works.</span></h2>
+  <div class="how-wrap reveal">
     <div class="steps">
       <div class="step">
         <div class="step-num">1</div>
@@ -694,7 +808,7 @@ footer {
       <div class="step">
         <div class="step-num">3</div>
         <div class="step-title">Learn</div>
-        <div class="step-desc">ŠČYRA studies your clinic patterns and adapts to your team in 7 days.</div>
+        <div class="step-desc">SCYRA studies your clinic patterns and adapts to your team in 7 days.</div>
       </div>
       <div class="step">
         <div class="step-num">4</div>
@@ -707,45 +821,37 @@ footer {
 </section>
 
 <!-- ADMIN ROLE -->
-<section id="admin" style="max-width: 1200px;">
-  <div style="max-width: 1200px; margin: 0 auto;">
-  <div class="section-label">Smart Administrator</div>
+<section class="section section-full section-dark" id="admin">
+  <div style="max-width:1200px;margin:0 auto;">
+  <div class="section-label reveal">Smart Administrator</div>
   <div class="admin-grid">
-    <div>
-      <h2 class="section-title">More patients.<br><span style="color: var(--gray);">Zero missed calls.</span></h2>
-      <p class="section-desc">ŠČYRA's administrator doesn't just answer questions — it sells. Every conversation is an opportunity to book a new patient. It handles WhatsApp, Instagram, Telegram, and phone — simultaneously.</p>
-      <ul style="margin-top: 24px; display: flex; flex-direction: column; gap: 12px; list-style: none;">
-        <li style="display: flex; align-items: center; gap: 10px; font-size: 14px;">
-          <span style="color: var(--cyan); font-size: 18px;">✓</span> Responds in under 30 seconds, 24/7
-        </li>
-        <li style="display: flex; align-items: center; gap: 10px; font-size: 14px;">
-          <span style="color: var(--cyan); font-size: 18px;">✓</span> Books appointments directly in your calendar
-        </li>
-        <li style="display: flex; align-items: center; gap: 10px; font-size: 14px;">
-          <span style="color: var(--cyan); font-size: 18px;">✓</span> Sends reminders and reduces no-shows by 40%
-        </li>
-        <li style="display: flex; align-items: center; gap: 10px; font-size: 14px;">
-          <span style="color: var(--cyan); font-size: 18px;">✓</span> Upsells treatments naturally in conversation
-        </li>
+    <div class="reveal">
+      <h2 class="section-title">More patients.<br><span class="dim">Zero missed calls.</span></h2>
+      <p class="section-desc">SCYRA's administrator doesn't just answer questions — it sells. Every conversation is an opportunity. It handles WhatsApp, Instagram, Telegram, and phone — simultaneously.</p>
+      <ul class="admin-list">
+        <li><span>&#10003;</span> Responds in under 30 seconds, 24/7</li>
+        <li><span>&#10003;</span> Books appointments directly in your calendar</li>
+        <li><span>&#10003;</span> Sends reminders and reduces no-shows by 40%</li>
+        <li><span>&#10003;</span> Upsells treatments naturally in conversation</li>
       </ul>
     </div>
-    <div class="admin-card">
+    <div class="admin-card reveal">
       <div class="admin-convo">
         <div class="msg patient">
           <div class="msg-sender">Patient</div>
           Hi, how much is teeth whitening?
         </div>
         <div class="msg ai">
-          <div class="msg-sender ai-sender">ŠČYRA.AI</div>
-          Hi! Our professional whitening starts at €199 and takes about 60 minutes. Many patients combine it with a cleaning for best results (€299 total). Would you like to book this week? We have openings Thursday and Friday.
+          <div class="msg-sender ai-sender">SCYRA.AI</div>
+          Hi! Our professional whitening starts at &#8364;199 and takes about 60 minutes. Many patients combine it with a cleaning for best results (&#8364;299 total). Would you like to book this week?
         </div>
         <div class="msg patient">
           <div class="msg-sender">Patient</div>
           Friday works! What time?
         </div>
         <div class="msg ai">
-          <div class="msg-sender ai-sender">ŠČYRA.AI</div>
-          We have 10:00 and 14:30 on Friday. Which works better for you? I can send a confirmation and reminder to your WhatsApp.
+          <div class="msg-sender ai-sender">SCYRA.AI</div>
+          We have 10:00 and 14:30 on Friday. Which works better? I'll send a confirmation to your WhatsApp.
         </div>
       </div>
     </div>
@@ -754,35 +860,35 @@ footer {
 </section>
 
 <!-- TECHNOLOGY -->
-<section id="tech" style="max-width: 1200px;">
-  <div style="max-width: 1200px; margin: 0 auto;">
-  <div class="section-label" data-t="tech_label">Тэхналогія</div>
-  <h2 class="section-title">Enterprise AI.<br><span style="color: var(--gray);">Clinic price.</span></h2>
-  <p class="section-desc">Built on the most capable edge AI hardware available, powered by open and commercial AI models — no vendor lock-in.</p>
-  <div class="tech-grid">
+<section class="section" id="tech">
+  <div style="max-width:1200px;margin:0 auto;">
+  <div class="section-label reveal" data-t="tech_label">Technology</div>
+  <h2 class="section-title reveal">Enterprise AI.<br><span class="dim">Clinic price.</span></h2>
+  <p class="section-desc reveal">Built on the most capable edge AI hardware, powered by open and commercial AI models — no vendor lock-in.</p>
+  <div class="tech-grid reveal">
     <div class="tech-card">
-      <div class="tech-icon">⚡</div>
+      <div class="tech-icon">&#9889;</div>
       <div>
         <div class="tech-title">NVIDIA Jetson Orin Nano</div>
         <div class="tech-desc">64GB edge AI module with 40 TOPS processing power. Runs everything locally — vision models, LLMs, voice recognition.</div>
       </div>
     </div>
     <div class="tech-card">
-      <div class="tech-icon">👁️</div>
+      <div class="tech-icon">&#128065;</div>
       <div>
         <div class="tech-title">Computer Vision</div>
         <div class="tech-desc">Multi-camera setup with NVIDIA DeepStream for real-time patient tracking, occupancy analysis, and safety monitoring.</div>
       </div>
     </div>
     <div class="tech-card">
-      <div class="tech-icon">🧠</div>
+      <div class="tech-icon">&#129504;</div>
       <div>
         <div class="tech-title">Large Language Models</div>
         <div class="tech-desc">Local Llama/Mistral for private tasks + GPT-4 / Gemini for complex reasoning. Best of both worlds.</div>
       </div>
     </div>
     <div class="tech-card">
-      <div class="tech-icon">🎙️</div>
+      <div class="tech-icon">&#127908;</div>
       <div>
         <div class="tech-title">Voice AI</div>
         <div class="tech-desc">Whisper-based voice recognition for doctor commands in the operatory. Hands-free control during procedures.</div>
@@ -793,52 +899,52 @@ footer {
 </section>
 
 <!-- INDIEGOGO CTA -->
-<section id="back" style="max-width: 1200px;">
-  <div class="indi-section">
-    <div class="section-label" data-t="indi_label">Кампанія Indiegogo</div>
-    <h2 class="indi-title">Be the first clinic<br>to run on ŠČYRA.AI</h2>
-    <p class="indi-desc">Early backers get exclusive pricing, priority installation, and lifetime updates. Limited units available for the first production run.</p>
+<section class="section section-full" id="back">
+  <div class="indi-section reveal">
+    <div class="section-label" data-t="indi_label">Indiegogo Campaign</div>
+    <h2 class="indi-title">Be the first clinic<br>to run on SCYRA.AI</h2>
+    <p class="indi-desc">Early backers get exclusive pricing, priority installation, and lifetime updates. Limited units available.</p>
     <div class="indi-perks">
       <div class="perk">
-        <div class="perk-price">€499</div>
+        <div class="perk-price">&#8364;499</div>
         <div class="perk-name" data-t="perk1_name">Early Bird</div>
-        <div class="perk-desc" data-t="perk1_desc">Прылада + 1 год падпіскі</div>
+        <div class="perk-desc" data-t="perk1_desc">Device + 1 year subscription</div>
       </div>
       <div class="perk">
-        <div class="perk-price">€999</div>
+        <div class="perk-price">&#8364;999</div>
         <div class="perk-name" data-t="perk2_name">Clinic Pack</div>
-        <div class="perk-desc" data-t="perk2_desc">Прылада + 2 гады + прыярытэтная падтрымка</div>
+        <div class="perk-desc" data-t="perk2_desc">Device + 2 years + priority support</div>
       </div>
       <div class="perk">
-        <div class="perk-price">€4,999</div>
+        <div class="perk-price">&#8364;4,999</div>
         <div class="perk-name" data-t="perk3_name">Franchise Ready</div>
-        <div class="perk-desc" data-t="perk3_desc">Поўная ўстаноўка + правы франшызы</div>
+        <div class="perk-desc" data-t="perk3_desc">Full installation + franchise rights</div>
       </div>
     </div>
-    <a href="#" class="btn-primary" style="font-size: 17px; padding: 20px 60px;">Back ŠČYRA.AI on Indiegogo</a>
+    <a href="#" class="btn-primary" style="padding:18px 48px;">Back SCYRA.AI on Indiegogo</a>
   </div>
 </section>
 
 <!-- FRANCHISE -->
-<section id="franchise" style="max-width: 1200px;">
-  <div style="max-width: 1200px; margin: 0 auto;">
-  <div class="section-label" data-t="franchise_label">Франшыза</div>
-  <h2 class="section-title">Own the AI dental<br><span style="color: var(--gray);">market in your country.</span></h2>
-  <p class="section-desc">After the campaign we launch the ŠČYRA.AI franchise program — master franchise rights for every European country.</p>
-  <div class="franchise-grid">
+<section class="section" id="franchise">
+  <div style="max-width:1200px;margin:0 auto;">
+  <div class="section-label reveal" data-t="franchise_label">Franchise</div>
+  <h2 class="section-title reveal">Own the AI dental<br><span class="dim">market in your country.</span></h2>
+  <p class="section-desc reveal">After the campaign we launch the SCYRA.AI franchise program — master franchise rights for every European country.</p>
+  <div class="franchise-grid reveal">
     <div class="fr-card">
       <div class="fr-step">1</div>
-      <div class="fr-title">Campaign closes</div>
+      <div class="fr-title">Campaign Closes</div>
       <div class="fr-desc">Indiegogo funds production of first 100 units. Backers get priority delivery.</div>
     </div>
     <div class="fr-card">
       <div class="fr-step">2</div>
-      <div class="fr-title">Concept finalized</div>
-      <div class="fr-desc">Full franchise package developed — documentation, training, support system, pricing model.</div>
+      <div class="fr-title">Concept Finalized</div>
+      <div class="fr-desc">Full franchise package — documentation, training, support system, pricing model.</div>
     </div>
     <div class="fr-card">
       <div class="fr-step">3</div>
-      <div class="fr-title">Master franchise launch</div>
+      <div class="fr-title">Master Franchise</div>
       <div class="fr-desc">One master franchisee per European country. Exclusive territory. Maximum upside.</div>
     </div>
   </div>
@@ -846,41 +952,42 @@ footer {
 </section>
 
 <!-- TEAM -->
-<section id="team" style="max-width: 1000px;">
-  <div class="section-label" data-t="team_label">Каманда</div>
-  <h2 class="section-title">Built by people who<br><span style="color: var(--gray);">understand clinics.</span></h2>
-  <div class="team-grid">
-    <div class="team-card team-main">
-      <div class="team-role">Founder & CEO</div>
+<section class="section" id="team" style="max-width:1000px;">
+  <div class="section-label reveal" data-t="team_label">Team</div>
+  <h2 class="section-title reveal">Built by people who<br><span class="dim">understand clinics.</span></h2>
+  <div class="team-grid reveal">
+    <div class="team-card">
+      <div class="team-role">Founder &amp; CEO</div>
       <div class="team-name">LABS67</div>
-      <div class="team-desc">Years of hands-on experience with dental equipment — repairing motors, building units, understanding every operational process inside a clinic. Combined with deep AI expertise to create a system that truly fits how clinics work.</div>
+      <div class="team-desc">Years of hands-on experience with dental equipment — repairing motors, building units, understanding every process inside a clinic. Combined with deep AI expertise.</div>
       <a href="https://x.com/natchnennie" class="team-link" target="_blank">@natchnennie</a>
     </div>
     <div class="team-card">
       <div class="team-role">AI Engineering</div>
       <div class="team-name">5 AI Agents</div>
-      <div class="team-desc">A team of specialized AI agents handling code, research, design, operations, and testing — 24/7. The future of lean startups.</div>
+      <div class="team-desc">Specialized AI agents handling code, research, design, operations, and testing — 24/7.</div>
     </div>
     <div class="team-card">
       <div class="team-role">Hardware</div>
       <div class="team-name">NVIDIA Jetson</div>
-      <div class="team-desc">Edge AI compute platform. 275 TOPS of AI performance in a compact, clinic-ready form factor.</div>
+      <div class="team-desc">Edge AI compute. 275 TOPS of AI performance in a compact, clinic-ready form factor.</div>
     </div>
   </div>
 </section>
 
 <!-- FAQ -->
-<section id="faq" style="max-width: 800px;">
-  <div class="section-label" data-t="faq_label">FAQ</div>
-  <h2 class="section-title">Frequently asked questions</h2>
-  <div style="margin-top: 48px;">
+<section class="section section-full section-dark" id="faq">
+  <div style="max-width:800px;margin:0 auto;">
+  <div class="section-label reveal" data-t="faq_label">FAQ</div>
+  <h2 class="section-title reveal">Frequently Asked Questions</h2>
+  <div class="faq-list reveal">
     <details class="faq-item">
       <summary>What's included in the box?</summary>
-      <p>NVIDIA Jetson Orin device, pre-configured with ŠČYRA.AI software, power adapter, quick-start guide, and access to the online dashboard. Camera and microphone hardware sold separately or available as add-ons.</p>
+      <p>NVIDIA Jetson Orin device, pre-configured with SCYRA.AI software, power adapter, quick-start guide, and access to the online dashboard. Camera and microphone hardware sold separately or available as add-ons.</p>
     </details>
     <details class="faq-item">
       <summary>Does it require internet to work?</summary>
-      <p>No. ŠČYRA.AI runs entirely on the local device — all AI processing happens on-premise. Internet is optional for software updates and cloud analytics sync.</p>
+      <p>No. SCYRA.AI runs entirely on the local device — all AI processing happens on-premise. Internet is optional for software updates and cloud analytics sync.</p>
     </details>
     <details class="faq-item">
       <summary>What languages does it support?</summary>
@@ -892,20 +999,19 @@ footer {
     </details>
     <details class="faq-item">
       <summary>Is my patient data safe?</summary>
-      <p>Yes. All data stays on your local device — nothing is sent to external servers. ŠČYRA.AI is designed GDPR-compliant from day one. Sensitive records (PESEL, passport) are stored in encrypted local storage only.</p>
+      <p>Yes. All data stays on your local device — nothing is sent to external servers. SCYRA.AI is designed GDPR-compliant from day one.</p>
     </details>
     <details class="faq-item">
       <summary>What kind of clinic is this for?</summary>
-      <p>Any dental clinic — from solo practices to multi-chair clinics. The system scales from 1 to 10+ operatory rooms. It's especially effective for clinics that want to automate reception, scheduling, and patient follow-up.</p>
+      <p>Any dental clinic — from solo practices to multi-chair clinics. Scales from 1 to 10+ operatory rooms. Especially effective for clinics automating reception, scheduling, and patient follow-up.</p>
     </details>
     <details class="faq-item">
       <summary>Can I get a refund?</summary>
-      <p>Indiegogo offers a 14-day refund window after the campaign ends. After production begins, refunds follow our standard warranty policy. See our Terms of Service for details.</p>
+      <p>Indiegogo offers a 14-day refund window after the campaign ends. After production begins, refunds follow our standard warranty policy.</p>
     </details>
   </div>
+  </div>
 </section>
-
-<!-- FOOTER -->
 
 <!-- PULSE NAVIGATOR -->
 <aside class="pulse-nav" id="pulseNav">
@@ -916,43 +1022,80 @@ footer {
   <a class="pn-item" href="https://trade.labs67.com" target="_blank"><span class="pn-dot" style="background:#0891B2"></span><span class="pn-label">mreza.ai</span></a>
   <a class="pn-item" href="https://franchise.labs67.com" target="_blank"><span class="pn-dot" style="background:#BA7517"></span><span class="pn-label">ladza.ai</span></a>
   <div class="pn-pulse"></div>
-  <button class="pn-action" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Top">↑</button>
+  <button class="pn-action" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Top">&#8593;</button>
 </aside>
+
+<!-- FOOTER -->
 <footer>
-  <div class="footer-logo">ŠČYRA<span>.AI</span></div>
-  <div class="footer-copy" data-t="footer_copy">© 2026 LABS67. Усе правы абаронены.</div>
-  <div class="footer-links">
-    <a href="/privacy.html">Privacy</a>
-    <a href="/terms.html">Terms</a>
-    <a href="#faq">FAQ</a>
-    <a href="https://labs67.com" target="_blank">labs67.com</a>
-    <a href="https://x.com/natchnennie" target="_blank">@natchnennie</a>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">SCYRA<span>.AI</span></div>
+    </div>
+    <div class="footer-links">
+      <a href="/privacy.html">Privacy</a>
+      <a href="/terms.html">Terms</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://labs67.com" target="_blank">labs67.com</a>
+      <a href="https://x.com/natchnennie" target="_blank">@natchnennie</a>
+    </div>
+  </div>
+  <div class="footer-brands">
+    <a href="https://labs67.com" target="_blank">labs67</a>
+    <span class="footer-brands-sep">&#183;</span>
+    <a href="https://svyatlitsa.com" target="_blank">svyatlitsa</a>
+    <span class="footer-brands-sep">&#183;</span>
+    <a href="https://trade.labs67.com" target="_blank">mreza.ai</a>
+    <span class="footer-brands-sep">&#183;</span>
+    <a href="https://franchise.labs67.com" target="_blank">ladza.ai</a>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy" data-t="footer_copy">&#169; 2026 LABS67. All rights reserved.</div>
+    <div class="footer-ai"><span class="dot-live"></span> SCYRA AI &#183; Online</div>
   </div>
 </footer>
 
 <script>
-// Nav scroll effect
+// Nav scroll
 window.addEventListener('scroll', () => {
-  document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 20);
+  document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 40);
 });
 
-// Animate on scroll
-const obs = new IntersectionObserver((entries) => {
+// Reveal on scroll
+const obs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
-      e.target.style.opacity = '1';
-      e.target.style.transform = 'translateY(0)';
+      e.target.classList.add('visible');
+      obs.unobserve(e.target);
     }
   });
-}, { threshold: 0.1 });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-document.querySelectorAll('.cap-card, .tech-card, .fr-card, .step').forEach(el => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(20px)';
-  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-  obs.observe(el);
+// Mobile menu
+function toggleMobile() {
+  document.getElementById('hamburger').classList.toggle('active');
+  document.getElementById('mobileMenu').classList.toggle('open');
+  document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
+}
+function closeMobile() {
+  document.getElementById('hamburger').classList.remove('active');
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Smooth parallax glow on hero
+document.addEventListener('mousemove', (e) => {
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+  const rect = hero.getBoundingClientRect();
+  if (e.clientY > rect.bottom) return;
+  const x = ((e.clientX / window.innerWidth) - 0.5) * 30;
+  const y = ((e.clientY / window.innerHeight) - 0.5) * 30;
+  hero.style.setProperty('--glow-x', `${50 + x}%`);
+  hero.style.setProperty('--glow-y', `${50 + y}%`);
 });
 </script>
 <script src="lang.js"></script>
+<script src="labs67-i18n.js"></script>
 </body>
 </html>

@@ -1,23 +1,31 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 90" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 90" fill="none">
   <defs>
-    <linearGradient id="cyan-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#00D4FF"/>
-      <stop offset="100%" stop-color="#0099CC"/>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7F77DD"/>
+      <stop offset="100%" stop-color="#A29AEE"/>
     </linearGradient>
   </defs>
 
-  <text x="230" y="64"
-    font-family="'SF Pro Display','Helvetica Neue',Arial,sans-serif"
-    font-size="58" font-weight="800"
-    letter-spacing="-2"
-    text-anchor="middle">
-    <tspan fill="#0A0E1A">ŠČYRA</tspan><tspan fill="url(#cyan-grad)">.AI</tspan>
+  <!-- AI eye symbol -->
+  <circle cx="36" cy="40" r="18" fill="none" stroke="url(#accent)" stroke-width="1.5"/>
+  <circle cx="36" cy="40" r="7" fill="url(#accent)"/>
+  <line x1="36" y1="18" x2="36" y2="24" stroke="url(#accent)" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="36" y1="56" x2="36" y2="62" stroke="url(#accent)" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="14" y1="40" x2="20" y2="40" stroke="url(#accent)" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="52" y1="40" x2="58" y2="40" stroke="url(#accent)" stroke-width="1.2" stroke-linecap="round"/>
+
+  <!-- SCYRA text -->
+  <text x="80" y="52"
+    font-family="'Inter','SF Pro Display','Helvetica Neue',Arial,sans-serif"
+    font-size="42" font-weight="700"
+    letter-spacing="-1">
+    <tspan fill="#f5f5f7">SCYRA</tspan><tspan fill="url(#accent)">.AI</tspan>
   </text>
 
-  <text x="230" y="84"
-    font-family="'Helvetica Neue',Arial,sans-serif"
-    font-size="10" font-weight="400"
+  <!-- Tagline -->
+  <text x="80" y="72"
+    font-family="'Inter','Helvetica Neue',Arial,sans-serif"
+    font-size="10" font-weight="500"
     letter-spacing="4"
-    fill="#8892A4"
-    text-anchor="middle">DENTAL INTELLIGENCE</text>
+    fill="#86868b">DENTAL INTELLIGENCE</text>
 </svg>
