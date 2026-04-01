@@ -717,12 +717,12 @@ footer {
 <nav>
   <a href="#" class="nav-logo">SCYRA<span>.AI</span></a>
   <ul class="nav-links">
-    <li><a href="#capabilities">Capabilities</a></li>
-    <li><a href="#how">How It Works</a></li>
-    <li><a href="#tech">Technology</a></li>
-    <li><a href="#franchise">Franchise</a></li>
-    <li><a href="#team">Team</a></li>
-    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#capabilities" data-t="nav_cap">Capabilities</a></li>
+    <li><a href="#how" data-t="nav_how">How It Works</a></li>
+    <li><a href="#tech" data-t="nav_tech">Technology</a></li>
+    <li><a href="#franchise" data-t="nav_franchise">Franchise</a></li>
+    <li><a href="#team" data-t="nav_team">Team</a></li>
+    <li><a href="#faq" data-t="nav_faq">FAQ</a></li>
   </ul>
   <div class="nav-right">
     <a href="https://labs67.com" class="nav-back">&#8592; labs67</a>
@@ -734,12 +734,12 @@ footer {
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#capabilities" onclick="closeMobile()">Capabilities</a>
-  <a href="#how" onclick="closeMobile()">How It Works</a>
-  <a href="#tech" onclick="closeMobile()">Technology</a>
-  <a href="#franchise" onclick="closeMobile()">Franchise</a>
-  <a href="#team" onclick="closeMobile()">Team</a>
-  <a href="#faq" onclick="closeMobile()">FAQ</a>
+  <a href="#capabilities" onclick="closeMobile()" data-t="nav_cap">Capabilities</a>
+  <a href="#how" onclick="closeMobile()" data-t="nav_how">How It Works</a>
+  <a href="#tech" onclick="closeMobile()" data-t="nav_tech">Technology</a>
+  <a href="#franchise" onclick="closeMobile()" data-t="nav_franchise">Franchise</a>
+  <a href="#team" onclick="closeMobile()" data-t="nav_team">Team</a>
+  <a href="#faq" onclick="closeMobile()" data-t="nav_faq">FAQ</a>
   <div class="mobile-menu-divider"></div>
   <a href="https://labs67.com" onclick="closeMobile()">&#8592; labs67</a>
 </div>
@@ -748,7 +748,7 @@ footer {
 <div class="hero">
   <div class="hero-badge reveal">
     <span class="hero-badge-dot"></span>
-    Now Live on Indiegogo
+    <span data-t="hero_badge">Now Live on Indiegogo</span>
   </div>
   <h1 class="reveal" data-t="hero_title">AI-<span class="cyan">Brain</span><br>of Your Clinic</h1>
   <p class="hero-sub reveal" data-t="hero_sub">SCYRA.AI combines <strong>cameras, sensors, and edge AI</strong> to assist doctors, analyze patients, and grow your business — all in one device.</p>
@@ -759,22 +759,22 @@ footer {
   <div class="hero-stats reveal">
     <div class="hero-stat">
       <div class="hero-stat-num">6<span>+</span></div>
-      <div class="hero-stat-label">AI modules in one device</div>
+      <div class="hero-stat-label" data-t="hero_stat1">AI modules in one device</div>
     </div>
     <div class="hero-stat">
       <div class="hero-stat-num">24<span>/7</span></div>
-      <div class="hero-stat-label">Clinic intelligence</div>
+      <div class="hero-stat-label" data-t="hero_stat2">Clinic intelligence</div>
     </div>
     <div class="hero-stat">
       <div class="hero-stat-num">EU<span>&times;</span></div>
-      <div class="hero-stat-label">Franchise program</div>
+      <div class="hero-stat-label" data-t="hero_stat3">Franchise program</div>
     </div>
   </div>
 </div>
 
 <!-- TRUSTED -->
 <div class="trusted">
-  <span class="trusted-label">Powered by</span>
+  <span class="trusted-label" data-t="trusted_label">Powered by</span>
   <div class="trusted-logos">
     <span class="trusted-logo">NVIDIA Jetson</span>
     <span class="trusted-logo">Gemini AI</span>
@@ -789,20 +789,20 @@ footer {
   <div class="what-grid">
     <div class="reveal">
       <h2 class="section-title" data-t="what_title">One device.<br><span class="dim">Your entire clinic.</span></h2>
-      <p class="section-desc">An edge AI system that installs in your dental clinic and immediately starts working — analyzing patients, assisting doctors, managing appointments, and growing revenue.</p>
-      <p style="margin-top: 20px; font-size: 15px; color: var(--text-muted); line-height: 1.6; font-weight: 300;">No cloud dependency. Everything runs locally on NVIDIA Jetson — fast, private, and reliable.</p>
+      <p class="section-desc" data-t="what_desc">An edge AI system that installs in your dental clinic and immediately starts working — analyzing patients, assisting doctors, managing appointments, and growing revenue.</p>
+      <p style="margin-top: 20px; font-size: 15px; color: var(--text-muted); line-height: 1.6; font-weight: 300;" data-t="what_desc2">No cloud dependency. Everything runs locally on NVIDIA Jetson — fast, private, and reliable.</p>
     </div>
     <div class="what-visual reveal">
       <div class="device-box">
-        <div class="device-label">Hardware</div>
+        <div class="device-label" data-t="device_label">Hardware</div>
         <div class="device-name">NVIDIA Jetson Orin Nano</div>
-        <div class="device-spec">64 GB · Edge AI · Always On</div>
+        <div class="device-spec" data-t="device_spec">64 GB · Edge AI · Always On</div>
       </div>
       <div class="device-feeds">
-        <div class="feed-item"><div class="feed-dot active"></div><div class="feed-text">Camera feed: active</div></div>
-        <div class="feed-item"><div class="feed-dot cyan"></div><div class="feed-text">Patient analysis: on</div></div>
-        <div class="feed-item"><div class="feed-dot active"></div><div class="feed-text">Voice assistant: listening</div></div>
-        <div class="feed-item"><div class="feed-dot cyan"></div><div class="feed-text">Admin bot: active</div></div>
+        <div class="feed-item"><div class="feed-dot active"></div><div class="feed-text" data-t="feed1">Camera feed: active</div></div>
+        <div class="feed-item"><div class="feed-dot cyan"></div><div class="feed-text" data-t="feed2">Patient analysis: on</div></div>
+        <div class="feed-item"><div class="feed-dot active"></div><div class="feed-text" data-t="feed3">Voice assistant: listening</div></div>
+        <div class="feed-item"><div class="feed-dot cyan"></div><div class="feed-text" data-t="feed4">Admin bot: active</div></div>
       </div>
     </div>
   </div>
@@ -812,37 +812,37 @@ footer {
 <section class="section section-full section-dark" id="capabilities">
   <div style="max-width:1200px;margin:0 auto;">
   <div class="section-label reveal" data-t="cap_label">Capabilities</div>
-  <h2 class="section-title reveal">Everything your clinic needs.<br><span class="dim">Automated.</span></h2>
+  <h2 class="section-title reveal" data-t="cap_title">Everything your clinic needs.<br><span class="dim">Automated.</span></h2>
   <div class="caps-grid reveal">
     <div class="cap-card">
       <div class="cap-icon">&#128247;</div>
-      <div class="cap-title">Patient Analysis</div>
-      <div class="cap-desc">Cameras and sensors track patient flow, waiting times, and stress levels. Real-time insights for your front desk.</div>
+      <div class="cap-title" data-t="cap1_title">Patient Analysis</div>
+      <div class="cap-desc" data-t="cap1_desc">Cameras and sensors track patient flow, waiting times, and stress levels. Real-time insights for your front desk.</div>
     </div>
     <div class="cap-card">
       <div class="cap-icon">&#129463;</div>
-      <div class="cap-title">Doctor Assistant</div>
-      <div class="cap-desc">AI assists during procedures — voice-controlled instrument requests, real-time notes, protocol reminders.</div>
+      <div class="cap-title" data-t="cap2_title">Doctor Assistant</div>
+      <div class="cap-desc" data-t="cap2_desc">AI assists during procedures — voice-controlled instrument requests, real-time notes, protocol reminders.</div>
     </div>
     <div class="cap-card">
       <div class="cap-icon">&#128172;</div>
-      <div class="cap-title">Smart Administrator</div>
-      <div class="cap-desc">Handles incoming messages, books appointments, answers questions, and converts leads into patients automatically.</div>
+      <div class="cap-title" data-t="cap3_title">Smart Administrator</div>
+      <div class="cap-desc" data-t="cap3_desc">Handles incoming messages, books appointments, answers questions, and converts leads into patients automatically.</div>
     </div>
     <div class="cap-card">
       <div class="cap-icon">&#128202;</div>
-      <div class="cap-title">Clinic Analytics</div>
-      <div class="cap-desc">Dashboard with revenue forecasting, chair utilization, no-show predictions, and patient retention scores.</div>
+      <div class="cap-title" data-t="cap4_title">Clinic Analytics</div>
+      <div class="cap-desc" data-t="cap4_desc">Dashboard with revenue forecasting, chair utilization, no-show predictions, and patient retention scores.</div>
     </div>
     <div class="cap-card">
       <div class="cap-icon">&#128274;</div>
-      <div class="cap-title">Local &amp; Private</div>
-      <div class="cap-desc">Patient data never leaves your clinic. All processing runs on-device — GDPR-ready from day one.</div>
+      <div class="cap-title" data-t="cap5_title">Local &amp; Private</div>
+      <div class="cap-desc" data-t="cap5_desc">Patient data never leaves your clinic. All processing runs on-device — GDPR-ready from day one.</div>
     </div>
     <div class="cap-card">
       <div class="cap-icon">&#127758;</div>
-      <div class="cap-title">Multilingual</div>
-      <div class="cap-desc">Speaks to patients in their language. Built for European clinics — 12 languages supported out of the box.</div>
+      <div class="cap-title" data-t="cap6_title">Multilingual</div>
+      <div class="cap-desc" data-t="cap6_desc">Speaks to patients in their language. Built for European clinics — 12 languages supported out of the box.</div>
     </div>
   </div>
   </div>
@@ -852,28 +852,28 @@ footer {
 <section class="section" id="how">
   <div style="max-width:1200px;margin:0 auto;">
   <div class="section-label reveal" data-t="how_label">How It Works</div>
-  <h2 class="section-title reveal">Plug in.<br><span class="dim">It learns. It works.</span></h2>
+  <h2 class="section-title reveal" data-t="how_title">Plug in.<br><span class="dim">It learns. It works.</span></h2>
   <div class="how-wrap reveal">
     <div class="steps">
       <div class="step">
         <div class="step-num">1</div>
-        <div class="step-title">Install</div>
-        <div class="step-desc">Mount the device, connect cameras and sensors. Setup takes one day.</div>
+        <div class="step-title" data-t="step1_title">Install</div>
+        <div class="step-desc" data-t="step1_desc">Mount the device, connect cameras and sensors. Setup takes one day.</div>
       </div>
       <div class="step">
         <div class="step-num">2</div>
-        <div class="step-title">Configure</div>
-        <div class="step-desc">Set your clinic's profile, services, pricing, and communication style.</div>
+        <div class="step-title" data-t="step2_title">Configure</div>
+        <div class="step-desc" data-t="step2_desc">Set your clinic's profile, services, pricing, and communication style.</div>
       </div>
       <div class="step">
         <div class="step-num">3</div>
-        <div class="step-title">Learn</div>
-        <div class="step-desc">SCYRA studies your clinic patterns and adapts to your team in 7 days.</div>
+        <div class="step-title" data-t="step3_title">Learn</div>
+        <div class="step-desc" data-t="step3_desc">SCYRA studies your clinic patterns and adapts to your team in 7 days.</div>
       </div>
       <div class="step">
         <div class="step-num">4</div>
-        <div class="step-title">Grow</div>
-        <div class="step-desc">More patients booked, less admin work, better doctor focus. Every day.</div>
+        <div class="step-title" data-t="step4_title">Grow</div>
+        <div class="step-desc" data-t="step4_desc">More patients booked, less admin work, better doctor focus. Every day.</div>
       </div>
     </div>
   </div>
@@ -883,35 +883,35 @@ footer {
 <!-- ADMIN ROLE -->
 <section class="section section-full section-dark" id="admin">
   <div style="max-width:1200px;margin:0 auto;">
-  <div class="section-label reveal">Smart Administrator</div>
+  <div class="section-label reveal" data-t="admin_label">Smart Administrator</div>
   <div class="admin-grid">
     <div class="reveal">
-      <h2 class="section-title">More patients.<br><span class="dim">Zero missed calls.</span></h2>
-      <p class="section-desc">SCYRA's administrator doesn't just answer questions — it sells. Every conversation is an opportunity. It handles WhatsApp, Instagram, Telegram, and phone — simultaneously.</p>
+      <h2 class="section-title" data-t="admin_title">More patients.<br><span class="dim">Zero missed calls.</span></h2>
+      <p class="section-desc" data-t="admin_desc">SCYRA's administrator doesn't just answer questions — it sells. Every conversation is an opportunity. It handles WhatsApp, Instagram, Telegram, and phone — simultaneously.</p>
       <ul class="admin-list">
-        <li><span>&#10003;</span> Responds in under 30 seconds, 24/7</li>
-        <li><span>&#10003;</span> Books appointments directly in your calendar</li>
-        <li><span>&#10003;</span> Sends reminders and reduces no-shows by 40%</li>
-        <li><span>&#10003;</span> Upsells treatments naturally in conversation</li>
+        <li><span>&#10003;</span> <span data-t="admin_li1">Responds in under 30 seconds, 24/7</span></li>
+        <li><span>&#10003;</span> <span data-t="admin_li2">Books appointments directly in your calendar</span></li>
+        <li><span>&#10003;</span> <span data-t="admin_li3">Sends reminders and reduces no-shows by 40%</span></li>
+        <li><span>&#10003;</span> <span data-t="admin_li4">Upsells treatments naturally in conversation</span></li>
       </ul>
     </div>
     <div class="admin-card reveal">
       <div class="admin-convo">
         <div class="msg patient">
-          <div class="msg-sender">Patient</div>
-          Hi, how much is teeth whitening?
+          <div class="msg-sender" data-t="admin_patient">Patient</div>
+          <span data-t="admin_msg1">Hi, how much is teeth whitening?</span>
         </div>
         <div class="msg ai">
           <div class="msg-sender ai-sender">SCYRA.AI</div>
-          Hi! Our professional whitening starts at &#8364;199 and takes about 60 minutes. Many patients combine it with a cleaning for best results (&#8364;299 total). Would you like to book this week?
+          <span data-t="admin_msg2">Hi! Our professional whitening starts at &#8364;199 and takes about 60 minutes. Many patients combine it with a cleaning for best results (&#8364;299 total). Would you like to book this week?</span>
         </div>
         <div class="msg patient">
-          <div class="msg-sender">Patient</div>
-          Friday works! What time?
+          <div class="msg-sender" data-t="admin_patient">Patient</div>
+          <span data-t="admin_msg3">Friday works! What time?</span>
         </div>
         <div class="msg ai">
           <div class="msg-sender ai-sender">SCYRA.AI</div>
-          We have 10:00 and 14:30 on Friday. Which works better? I'll send a confirmation to your WhatsApp.
+          <span data-t="admin_msg4">We have 10:00 and 14:30 on Friday. Which works better? I'll send a confirmation to your WhatsApp.</span>
         </div>
       </div>
     </div>
@@ -923,35 +923,35 @@ footer {
 <section class="section" id="tech">
   <div style="max-width:1200px;margin:0 auto;">
   <div class="section-label reveal" data-t="tech_label">Technology</div>
-  <h2 class="section-title reveal">Enterprise AI.<br><span class="dim">Clinic price.</span></h2>
-  <p class="section-desc reveal">Built on the most capable edge AI hardware, powered by open and commercial AI models — no vendor lock-in.</p>
+  <h2 class="section-title reveal" data-t="tech_title">Enterprise AI.<br><span class="dim">Clinic price.</span></h2>
+  <p class="section-desc reveal" data-t="tech_desc">Built on the most capable edge AI hardware, powered by open and commercial AI models — no vendor lock-in.</p>
   <div class="tech-grid reveal">
     <div class="tech-card">
       <div class="tech-icon">&#9889;</div>
       <div>
-        <div class="tech-title">NVIDIA Jetson Orin Nano</div>
-        <div class="tech-desc">64GB edge AI module with 40 TOPS processing power. Runs everything locally — vision models, LLMs, voice recognition.</div>
+        <div class="tech-title" data-t="tech1_title">NVIDIA Jetson Orin Nano</div>
+        <div class="tech-desc" data-t="tech1_desc">64GB edge AI module with 40 TOPS processing power. Runs everything locally — vision models, LLMs, voice recognition.</div>
       </div>
     </div>
     <div class="tech-card">
       <div class="tech-icon">&#128065;</div>
       <div>
-        <div class="tech-title">Computer Vision</div>
-        <div class="tech-desc">Multi-camera setup with NVIDIA DeepStream for real-time patient tracking, occupancy analysis, and safety monitoring.</div>
+        <div class="tech-title" data-t="tech2_title">Computer Vision</div>
+        <div class="tech-desc" data-t="tech2_desc">Multi-camera setup with NVIDIA DeepStream for real-time patient tracking, occupancy analysis, and safety monitoring.</div>
       </div>
     </div>
     <div class="tech-card">
       <div class="tech-icon">&#129504;</div>
       <div>
-        <div class="tech-title">Large Language Models</div>
-        <div class="tech-desc">Local Llama/Mistral for private tasks + GPT-4 / Gemini for complex reasoning. Best of both worlds.</div>
+        <div class="tech-title" data-t="tech3_title">Large Language Models</div>
+        <div class="tech-desc" data-t="tech3_desc">Local Llama/Mistral for private tasks + GPT-4 / Gemini for complex reasoning. Best of both worlds.</div>
       </div>
     </div>
     <div class="tech-card">
       <div class="tech-icon">&#127908;</div>
       <div>
-        <div class="tech-title">Voice AI</div>
-        <div class="tech-desc">Whisper-based voice recognition for doctor commands in the operatory. Hands-free control during procedures.</div>
+        <div class="tech-title" data-t="tech4_title">Voice AI</div>
+        <div class="tech-desc" data-t="tech4_desc">Whisper-based voice recognition for doctor commands in the operatory. Hands-free control during procedures.</div>
       </div>
     </div>
   </div>
@@ -962,8 +962,8 @@ footer {
 <section class="section section-full" id="back">
   <div class="indi-section reveal">
     <div class="section-label" data-t="indi_label">Indiegogo Campaign</div>
-    <h2 class="indi-title">Be the first clinic<br>to run on SCYRA.AI</h2>
-    <p class="indi-desc">Early backers get exclusive pricing, priority installation, and lifetime updates. Limited units available.</p>
+    <h2 class="indi-title" data-t="indi_title">Be the first clinic<br>to run on SCYRA.AI</h2>
+    <p class="indi-desc" data-t="indi_desc">Early backers get exclusive pricing, priority installation, and lifetime updates. Limited units available.</p>
     <div class="indi-perks">
       <div class="perk">
         <div class="perk-price">&#8364;499</div>
@@ -981,7 +981,7 @@ footer {
         <div class="perk-desc" data-t="perk3_desc">Full installation + franchise rights</div>
       </div>
     </div>
-    <div style="text-align:center;"><a href="#" class="btn-primary" style="padding:18px 48px;display:inline-block;">Back SCYRA.AI on Indiegogo</a></div>
+    <div style="text-align:center;"><a href="#" class="btn-primary" style="padding:18px 48px;display:inline-block;" data-t="indi_btn">Back SCYRA.AI on Indiegogo</a></div>
   </div>
 </section>
 
@@ -989,23 +989,23 @@ footer {
 <section class="section" id="franchise">
   <div style="max-width:1200px;margin:0 auto;">
   <div class="section-label reveal" data-t="franchise_label">Franchise</div>
-  <h2 class="section-title reveal">Own the AI dental<br><span class="dim">market in your country.</span></h2>
-  <p class="section-desc reveal">After the campaign we launch the SCYRA.AI franchise program — master franchise rights for every European country.</p>
+  <h2 class="section-title reveal" data-t="franchise_title">Own the AI dental<br><span class="dim">market in your country.</span></h2>
+  <p class="section-desc reveal" data-t="franchise_desc">After the campaign we launch the SCYRA.AI franchise program — master franchise rights for every European country.</p>
   <div class="franchise-grid reveal">
     <div class="fr-card">
       <div class="fr-step">1</div>
-      <div class="fr-title">Campaign Closes</div>
-      <div class="fr-desc">Indiegogo funds production of first 100 units. Backers get priority delivery.</div>
+      <div class="fr-title" data-t="fr1_title">Campaign Closes</div>
+      <div class="fr-desc" data-t="fr1_desc">Indiegogo funds production of first 100 units. Backers get priority delivery.</div>
     </div>
     <div class="fr-card">
       <div class="fr-step">2</div>
-      <div class="fr-title">Concept Finalized</div>
-      <div class="fr-desc">Full franchise package — documentation, training, support system, pricing model.</div>
+      <div class="fr-title" data-t="fr2_title">Concept Finalized</div>
+      <div class="fr-desc" data-t="fr2_desc">Full franchise package — documentation, training, support system, pricing model.</div>
     </div>
     <div class="fr-card">
       <div class="fr-step">3</div>
-      <div class="fr-title">Master Franchise</div>
-      <div class="fr-desc">One master franchisee per European country. Exclusive territory. Maximum upside.</div>
+      <div class="fr-title" data-t="fr3_title">Master Franchise</div>
+      <div class="fr-desc" data-t="fr3_desc">One master franchisee per European country. Exclusive territory. Maximum upside.</div>
     </div>
   </div>
   </div>
@@ -1014,23 +1014,23 @@ footer {
 <!-- TEAM -->
 <section class="section" id="team" style="max-width:1000px;">
   <div class="section-label reveal" data-t="team_label">Team</div>
-  <h2 class="section-title reveal">Built by people who<br><span class="dim">understand clinics.</span></h2>
+  <h2 class="section-title reveal" data-t="team_title">Built by people who<br><span class="dim">understand clinics.</span></h2>
   <div class="team-grid reveal">
     <div class="team-card">
-      <div class="team-role">Founder &amp; CEO</div>
+      <div class="team-role" data-t="team1_role">Founder &amp; CEO</div>
       <div class="team-name">LABS67</div>
-      <div class="team-desc">Years of hands-on experience with dental equipment — repairing motors, building units, understanding every process inside a clinic. Combined with deep AI expertise.</div>
+      <div class="team-desc" data-t="team1_desc">Years of hands-on experience with dental equipment — repairing motors, building units, understanding every process inside a clinic. Combined with deep AI expertise.</div>
       <a href="https://x.com/natchnennie" class="team-link" target="_blank">@natchnennie</a>
     </div>
     <div class="team-card">
-      <div class="team-role">AI Engineering</div>
-      <div class="team-name">5 AI Agents</div>
-      <div class="team-desc">Specialized AI agents handling code, research, design, operations, and testing — 24/7.</div>
+      <div class="team-role" data-t="team2_role">AI Engineering</div>
+      <div class="team-name" data-t="team2_name">5 AI Agents</div>
+      <div class="team-desc" data-t="team2_desc">Specialized AI agents handling code, research, design, operations, and testing — 24/7.</div>
     </div>
     <div class="team-card">
-      <div class="team-role">Hardware</div>
+      <div class="team-role" data-t="team3_role">Hardware</div>
       <div class="team-name">NVIDIA Jetson</div>
-      <div class="team-desc">Edge AI compute. 275 TOPS of AI performance in a compact, clinic-ready form factor.</div>
+      <div class="team-desc" data-t="team3_desc">Edge AI compute. 275 TOPS of AI performance in a compact, clinic-ready form factor.</div>
     </div>
   </div>
 </section>
@@ -1039,35 +1039,35 @@ footer {
 <section class="section section-full section-dark" id="faq">
   <div style="max-width:800px;margin:0 auto;">
   <div class="section-label reveal" data-t="faq_label">FAQ</div>
-  <h2 class="section-title reveal">Frequently Asked Questions</h2>
+  <h2 class="section-title reveal" data-t="faq_title">Frequently Asked Questions</h2>
   <div class="faq-list reveal">
     <details class="faq-item">
-      <summary>What's included in the box?</summary>
-      <p>NVIDIA Jetson Orin device, pre-configured with SCYRA.AI software, power adapter, quick-start guide, and access to the online dashboard. Camera and microphone hardware sold separately or available as add-ons.</p>
+      <summary data-t="faq1_q">What's included in the box?</summary>
+      <p data-t="faq1_a">NVIDIA Jetson Orin device, pre-configured with SCYRA.AI software, power adapter, quick-start guide, and access to the online dashboard. Camera and microphone hardware sold separately or available as add-ons.</p>
     </details>
     <details class="faq-item">
-      <summary>Does it require internet to work?</summary>
-      <p>No. SCYRA.AI runs entirely on the local device — all AI processing happens on-premise. Internet is optional for software updates and cloud analytics sync.</p>
+      <summary data-t="faq2_q">Does it require internet to work?</summary>
+      <p data-t="faq2_a">No. SCYRA.AI runs entirely on the local device — all AI processing happens on-premise. Internet is optional for software updates and cloud analytics sync.</p>
     </details>
     <details class="faq-item">
-      <summary>What languages does it support?</summary>
-      <p>Currently: English, German, Belarusian, Russian, Ukrainian, Polish. More languages are added based on backer demand. The system is designed for multilingual European clinics.</p>
+      <summary data-t="faq3_q">What languages does it support?</summary>
+      <p data-t="faq3_a">12 languages: Belarusian, German, English, Spanish, French, Italian, Japanese, Korean, Polish, Portuguese, Russian, Ukrainian. The system is designed for multilingual European clinics.</p>
     </details>
     <details class="faq-item">
-      <summary>When will backers receive their devices?</summary>
-      <p>Estimated delivery: Q4 2026 for Early Bird and Clinic Pack tiers. Franchise Ready tier includes a pre-launch consultation starting within 30 days of campaign close.</p>
+      <summary data-t="faq4_q">When will backers receive their devices?</summary>
+      <p data-t="faq4_a">Estimated delivery: Q4 2026 for Early Bird and Clinic Pack tiers. Franchise Ready tier includes a pre-launch consultation starting within 30 days of campaign close.</p>
     </details>
     <details class="faq-item">
-      <summary>Is my patient data safe?</summary>
-      <p>Yes. All data stays on your local device — nothing is sent to external servers. SCYRA.AI is designed GDPR-compliant from day one.</p>
+      <summary data-t="faq5_q">Is my patient data safe?</summary>
+      <p data-t="faq5_a">Yes. All data stays on your local device — nothing is sent to external servers. SCYRA.AI is designed GDPR-compliant from day one.</p>
     </details>
     <details class="faq-item">
-      <summary>What kind of clinic is this for?</summary>
-      <p>Any dental clinic — from solo practices to multi-chair clinics. Scales from 1 to 10+ operatory rooms. Especially effective for clinics automating reception, scheduling, and patient follow-up.</p>
+      <summary data-t="faq6_q">What kind of clinic is this for?</summary>
+      <p data-t="faq6_a">Any dental clinic — from solo practices to multi-chair clinics. Scales from 1 to 10+ operatory rooms. Especially effective for clinics automating reception, scheduling, and patient follow-up.</p>
     </details>
     <details class="faq-item">
-      <summary>Can I get a refund?</summary>
-      <p>Indiegogo offers a 14-day refund window after the campaign ends. After production begins, refunds follow our standard warranty policy.</p>
+      <summary data-t="faq7_q">Can I get a refund?</summary>
+      <p data-t="faq7_a">Indiegogo offers a 14-day refund window after the campaign ends. After production begins, refunds follow our standard warranty policy.</p>
     </details>
   </div>
   </div>
@@ -1112,8 +1112,8 @@ footer {
       <div class="footer-logo">SCYRA<span>.AI</span></div>
     </div>
     <div class="footer-links">
-      <a href="/privacy.html">Privacy</a>
-      <a href="/terms.html">Terms</a>
+      <a href="/privacy.html" data-t="footer_privacy">Privacy</a>
+      <a href="/terms.html" data-t="footer_terms">Terms</a>
       <a href="#faq">FAQ</a>
       <a href="https://labs67.com" target="_blank">labs67.com</a>
       <a href="https://x.com/natchnennie" target="_blank">@natchnennie</a>
