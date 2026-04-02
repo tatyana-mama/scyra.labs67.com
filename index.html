@@ -3,1188 +3,609 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SCYRA.AI — The AI Brain of Your Dental Clinic</title>
-<meta name="description" content="SCYRA.AI is the world's first edge AI system for dental clinics. AI receptionist, smart scheduling, surgical assistance — all on one NVIDIA Jetson device. Now on Indiegogo.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="SCYRA.AI — The AI Brain of Your Dental Clinic">
-<meta property="og:description" content="Edge AI for dentistry. AI receptionist, surgical assistant, analytics — all running locally on NVIDIA Jetson. Privacy-first. Multilingual. Now on Indiegogo.">
-<meta property="og:url" content="https://scyra.ai">
-<meta property="og:image" content="https://scyra.ai/og-image.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@natchnennie">
-<meta name="twitter:title" content="SCYRA.AI — Dental Intelligence on the Edge">
-<meta name="twitter:description" content="The world's first edge AI system for dental clinics. Back us on Indiegogo.">
-<meta name="twitter:image" content="https://scyra.ai/og-image.png">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<title>SCYRA.AI — Edge AI for Dental Clinics</title>
+<meta name="description" content="SCYRA.AI — intelligent edge AI system for dental clinics. Powered by NVIDIA Jetson. Diagnostics, scheduling, analytics, automation.">
+<meta property="og:title" content="SCYRA.AI — Edge AI for Dental Clinics">
+<meta property="og:description" content="One device. Your entire clinic. Powered by NVIDIA Jetson AGX Orin.">
+<meta property="og:image" content="og-image.png">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=SF+Pro+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#050508;
+  --bg-elevated:#0a0a10;
+  --bg-card:#111118;
+  --bg-card-hover:#16161f;
+  --text:#e8e8ed;
+  --text-secondary:#86868b;
+  --text-muted:#48484a;
+  --accent:#7F77DD;
+  --accent2:#00D4FF;
+  --gradient:linear-gradient(135deg,#7F77DD,#00D4FF);
+  --gradient-text:linear-gradient(135deg,#7F77DD 0%,#00D4FF 100%);
+  --glow:rgba(127,119,221,0.15);
+  --glow2:rgba(0,212,255,0.1);
+  --border:rgba(255,255,255,0.06);
+  --border-hover:rgba(127,119,221,0.3);
+  --font:'Inter',-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+  --ease:cubic-bezier(0.25,0.46,0.45,0.94);
+  --ease-out:cubic-bezier(0.16,1,0.3,1);
+  --nav-h:48px;
+  --section-pad:140px 48px;
+  --max-w:1200px;
+}
+html{scroll-behavior:smooth;background:var(--bg);color:var(--text);font-family:var(--font);-webkit-font-smoothing:antialiased}
+body{background:var(--bg);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;height:auto;display:block}
 
-:root {
-  --bg: #fbfbfd;
-  --bg-elevated: #f5f5f7;
-  --bg-card: #ffffff;
-  --bg-card-hover: #f9f9fb;
-  --surface: #f0f0f3;
-  --border: rgba(0,0,0,0.06);
-  --border-hover: rgba(0,0,0,0.12);
-  --text: #1d1d1f;
-  --text-secondary: #6e6e73;
-  --text-muted: #86868b;
-  --accent: #7F77DD;
-  --accent-bright: #6B63C4;
-  --accent-glow: rgba(127,119,221,0.08);
-  --gradient-text: linear-gradient(135deg, #1d1d1f 0%, #6e6e73 100%);
-  --gradient-accent: linear-gradient(135deg, #7F77DD 0%, #A29AEE 50%, #7F77DD 100%);
-  --gradient-hero: radial-gradient(ellipse 80% 60% at 50% -20%, rgba(127,119,221,0.08) 0%, transparent 60%);
-  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Helvetica, Arial, sans-serif;
-  --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-}
+/* === NAV === */
+nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 24px;background:rgba(5,5,8,0.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);z-index:1000}
+.nav-logo{font-size:18px;font-weight:600;letter-spacing:.5px}
+.nav-logo span{background:var(--gradient-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-size:13px;font-weight:400;color:var(--text-secondary);transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-right{display:flex;align-items:center;gap:16px}
+.nav-cta{font-size:13px;padding:6px 16px;border-radius:980px;background:var(--gradient);color:#fff;font-weight:500;transition:opacity .2s}
+.nav-cta:hover{opacity:.85}
+.nav-back{font-size:12px;color:var(--text-muted);transition:color .2s}
+.nav-back:hover{color:var(--text-secondary)}
 
-html { scroll-behavior: smooth; }
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-  text-rendering: optimizeLegibility;
-}
-::selection { background: rgba(127,119,221,0.2); }
+/* === SECTIONS === */
+.section{padding:var(--section-pad);max-width:var(--max-w);margin:0 auto}
+.section-label{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:16px}
+.section-title{font-size:52px;font-weight:700;line-height:1.08;letter-spacing:-.02em;margin-bottom:20px}
+.section-title .grad{background:var(--gradient-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.section-desc{font-size:18px;line-height:1.6;color:var(--text-secondary);max-width:620px;font-weight:300}
 
-/* ===== NAV ===== */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  height: 48px;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 clamp(20px, 4vw, 48px);
-  background: rgba(251,251,253,0.72);
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.4s, background 0.4s;
-}
-nav.scrolled { border-bottom-color: var(--border); background: rgba(251,251,253,0.92); }
-.nav-logo {
-  font-size: 20px; font-weight: 600; letter-spacing: 2px;
-  text-decoration: none; color: var(--text);
-}
-.nav-logo span { color: var(--accent); }
-.nav-links { display: flex; gap: 32px; list-style: none; }
-.nav-links a {
-  font-size: 12px; letter-spacing: 0.5px; color: var(--text-secondary);
-  text-decoration: none; font-weight: 400; transition: color 0.3s;
-}
-.nav-links a:hover { color: var(--text); }
-.nav-right { display: flex; align-items: center; gap: 16px; }
-.nav-cta {
-  font-size: 11px; letter-spacing: 0.5px; padding: 8px 20px;
-  background: var(--accent); color: #fff;
-  text-decoration: none; font-weight: 500;
-  border-radius: 980px; transition: all 0.3s var(--ease);
-}
-.nav-cta:hover { background: var(--accent-bright); transform: scale(1.02); }
-.nav-back {
-  font-size: 12px; color: var(--text-muted); text-decoration: none;
-  font-weight: 400; transition: color 0.3s;
-  border-left: 1px solid var(--border); padding-left: 16px; margin-left: 4px;
-}
-.nav-back:hover { color: var(--accent); }
+/* === HERO === */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(127,119,221,0.12) 0%,rgba(0,212,255,0.05) 40%,transparent 70%);pointer-events:none;animation:heroGlow 6s ease-in-out infinite alternate}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:980px;border:1px solid var(--border);background:var(--bg-elevated);font-size:12px;color:var(--text-secondary);margin-bottom:32px}
+.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite}
+.hero h1{font-size:72px;font-weight:700;line-height:1.05;letter-spacing:-.03em;max-width:800px;margin-bottom:24px}
+.hero h1 .grad{background:var(--gradient-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{font-size:20px;color:var(--text-secondary);font-weight:300;max-width:560px;line-height:1.5;margin-bottom:48px}
+.hero-btns{display:flex;gap:16px;margin-bottom:64px}
+.btn-primary{padding:16px 36px;border-radius:980px;background:var(--gradient);color:#fff;font-size:16px;font-weight:500;border:none;cursor:pointer;transition:all .3s var(--ease);box-shadow:0 0 30px var(--glow)}
+.btn-primary:hover{transform:scale(1.03);box-shadow:0 0 50px var(--glow)}
+.btn-secondary{padding:16px 36px;border-radius:980px;background:transparent;color:var(--text);font-size:16px;font-weight:400;border:1px solid var(--border);cursor:pointer;transition:all .3s}
+.btn-secondary:hover{border-color:var(--border-hover);background:var(--bg-elevated)}
+.hero-img{width:100%;max-width:700px;border-radius:20px;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,.5),0 0 60px var(--glow)}
+.hero-img img{width:100%;display:block}
+.hero-stats{display:flex;gap:48px;margin-top:48px}
+.hero-stat{text-align:center}
+.hero-stat-num{font-size:36px;font-weight:700;background:var(--gradient-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-stat-label{font-size:12px;color:var(--text-muted);margin-top:4px;letter-spacing:1px;text-transform:uppercase}
 
-/* ===== LANG ===== */
-.lang-switcher { position: relative; }
-.lang-current { font-family: var(--font-mono, 'SF Mono', monospace); font-size: 9px; letter-spacing: 0.06em; padding: 4px 10px; border: 1px solid var(--border); border-radius: 3px; background: transparent; color: var(--text-muted); cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 6px; }
-.lang-current:hover { color: var(--accent); border-color: var(--accent); }
-.lang-arrow { font-size: 7px; transition: transform 0.2s; margin-left: 2px; }
-.lang-switcher.open .lang-arrow { transform: rotate(180deg); }
-.lang-dropdown { position: absolute; top: calc(100% + 6px); right: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; box-shadow: 0 8px 32px rgba(0,0,0,0.08); min-width: 140px; max-height: 300px; overflow-y: auto; opacity: 0; pointer-events: none; transform: translateY(-8px); transition: all 0.25s ease; z-index: 200; }
-.lang-switcher.open .lang-dropdown { opacity: 1; pointer-events: auto; transform: translateY(0); }
-.lang-option { display: block; width: 100%; padding: 8px 14px; border: none; background: none; font-family: var(--font-mono, 'SF Mono', monospace); font-size: 10px; letter-spacing: 0.04em; color: var(--text-muted); cursor: pointer; text-align: left; transition: all 0.15s; }
-.lang-option:hover { background: var(--bg-elevated); color: var(--accent); }
-.lang-option.active { color: var(--accent); font-weight: 500; }
+/* === WHAT === */
+.what-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:64px}
+.what-card{background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:48px;transition:all .4s var(--ease);overflow:hidden;position:relative}
+.what-card:hover{border-color:var(--border-hover);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.what-card-icon{width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:24px}
+.what-card:nth-child(1) .what-card-icon{background:linear-gradient(135deg,rgba(127,119,221,.15),rgba(127,119,221,.05))}
+.what-card:nth-child(2) .what-card-icon{background:linear-gradient(135deg,rgba(0,212,255,.15),rgba(0,212,255,.05))}
+.what-card h3{font-size:24px;font-weight:600;margin-bottom:12px}
+.what-card p{color:var(--text-secondary);font-size:15px;line-height:1.6;font-weight:300}
+.what-card-img{margin-top:32px;border-radius:12px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.3)}
+.what-card-img img{width:100%}
 
-/* ===== HAMBURGER ===== */
-.nav-hamburger {
-  display: none; flex-direction: column; gap: 5px; cursor: pointer;
-  padding: 12px; background: none; border: none; z-index: 200;
-  min-width: 48px; min-height: 48px; align-items: center; justify-content: center;
-}
-.nav-hamburger span { width: 20px; height: 1.5px; background: #1d1d1f; transition: all 0.3s; display: block; }
-.nav-hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
-.nav-hamburger.active span:nth-child(2) { opacity: 0; }
-.nav-hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-.mobile-menu {
-  display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(251,251,253,0.97); z-index: 150;
-  flex-direction: column; align-items: center; justify-content: center;
-  opacity: 0; transition: opacity 0.4s;
-}
-.mobile-menu.open { display: flex; opacity: 1; }
-.mobile-menu a {
-  font-size: 24px; letter-spacing: 1px; color: var(--text);
-  text-decoration: none; font-weight: 300; padding: 16px 0; text-align: center;
-  transition: color 0.3s;
-}
-.mobile-menu a:active { color: var(--accent); }
-.mobile-menu-divider { width: 40px; height: 1px; background: rgba(0,0,0,0.1); margin: 20px 0; }
+/* === CAPABILITIES === */
+.cap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:64px}
+.cap-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:32px;transition:all .4s var(--ease);cursor:default}
+.cap-card:hover{border-color:var(--border-hover);background:var(--bg-card-hover);transform:translateY(-2px)}
+.cap-icon{font-size:28px;margin-bottom:16px}
+.cap-card h4{font-size:17px;font-weight:600;margin-bottom:8px}
+.cap-card p{font-size:14px;color:var(--text-secondary);line-height:1.5;font-weight:300}
 
-/* ===== HERO ===== */
-.hero {
-  min-height: 100vh; min-height: 100dvh;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  text-align: center;
-  padding: 140px 48px 100px;
-  position: relative; overflow: hidden;
-  background: var(--bg);
-}
-.hero::before {
-  content: ''; position: absolute; inset: 0;
-  background: var(--gradient-hero);
-  pointer-events: none;
-}
-.hero::after {
-  content: ''; position: absolute;
-  top: 50%; left: 50%; transform: translate(-50%, -50%);
-  width: 900px; height: 900px;
-  background: radial-gradient(circle, rgba(127,119,221,0.06) 0%, transparent 60%);
-  pointer-events: none;
-  animation: heroGlow 6s ease-in-out infinite alternate;
-}
-@keyframes heroGlow {
-  0% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
-  100% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.15); }
-}
+/* === BRAIN / JETSON === */
+.brain{position:relative;overflow:hidden}
+.brain-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;margin-top:64px}
+.brain-img{border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.4),0 0 40px rgba(0,212,255,.1);transition:transform .5s var(--ease)}
+.brain-img:hover{transform:scale(1.02)}
+.brain-img img{width:100%}
+.brain-specs{display:flex;flex-direction:column;gap:24px}
+.brain-spec{display:flex;gap:16px;align-items:flex-start}
+.brain-spec-dot{width:8px;height:8px;border-radius:50%;margin-top:8px;flex-shrink:0}
+.brain-spec h5{font-size:15px;font-weight:600;margin-bottom:4px}
+.brain-spec p{font-size:13px;color:var(--text-secondary);line-height:1.5;font-weight:300}
 
-/* Animated grid background */
-.bg-grid {
-  position: fixed; inset: 0; z-index: -1; pointer-events: none;
-  background-image:
-    linear-gradient(rgba(127,119,221,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(127,119,221,0.04) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse 70% 50% at 50% 30%, black 20%, transparent 70%);
-  -webkit-mask-image: radial-gradient(ellipse 70% 50% at 50% 30%, black 20%, transparent 70%);
-}
-.bg-orbs {
-  position: fixed; inset: 0; z-index: -2; pointer-events: none; overflow: hidden;
-}
-.bg-orb {
-  position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.4;
-  animation: orbFloat 20s ease-in-out infinite alternate;
-}
-.bg-orb:nth-child(1) {
-  width: 500px; height: 500px; top: -10%; left: 20%;
-  background: rgba(127,119,221,0.08);
-}
-.bg-orb:nth-child(2) {
-  width: 400px; height: 400px; top: 40%; right: -5%;
-  background: rgba(162,154,238,0.06);
-  animation-delay: -7s; animation-duration: 25s;
-}
-.bg-orb:nth-child(3) {
-  width: 350px; height: 350px; bottom: 10%; left: 10%;
-  background: rgba(127,119,221,0.05);
-  animation-delay: -14s; animation-duration: 22s;
-}
-@keyframes orbFloat {
-  0% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(30px, -20px) scale(1.05); }
-  66% { transform: translate(-20px, 15px) scale(0.95); }
-  100% { transform: translate(10px, -10px) scale(1.02); }
-}
+/* === HOW === */
+.how-steps{display:flex;gap:32px;margin-top:64px;position:relative}
+.how-steps::before{content:'';position:absolute;top:32px;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--accent),var(--accent2),transparent)}
+.how-step{flex:1;text-align:center;position:relative;padding-top:64px}
+.how-num{position:absolute;top:0;left:50%;transform:translateX(-50%);width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;background:var(--bg-card);border:2px solid var(--accent);color:var(--accent);z-index:1}
+.how-step h4{font-size:18px;font-weight:600;margin-bottom:8px}
+.how-step p{font-size:14px;color:var(--text-secondary);line-height:1.5;font-weight:300}
 
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 6px 18px;
-  background: rgba(127,119,221,0.1);
-  border: 1px solid rgba(127,119,221,0.2);
-  border-radius: 980px;
-  font-size: 11px; font-weight: 400; color: var(--accent-bright);
-  letter-spacing: 1px; margin-bottom: 40px;
-  position: relative;
-}
-.hero-badge-dot {
-  width: 6px; height: 6px; background: var(--accent-bright);
-  border-radius: 50%; animation: pulse 2s infinite;
-}
-@keyframes pulse {
-  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(162,154,238,0.4); }
-  50% { opacity: 0.8; box-shadow: 0 0 0 8px rgba(162,154,238,0); }
-}
+/* === AGENT === */
+.agent-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;margin-top:64px}
+.agent-visual{position:relative;display:flex;align-items:center;justify-content:center}
+.agent-avatar{width:300px;height:300px;border-radius:50%;overflow:hidden;box-shadow:0 0 80px var(--glow),0 0 160px rgba(127,119,221,0.08);animation:agentFloat 4s ease-in-out infinite alternate}
+.agent-avatar img{width:100%;height:100%;object-fit:cover}
+.agent-chat{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:24px;font-family:var(--mono);font-size:13px}
+.agent-chat-line{margin-bottom:8px;line-height:1.5}
+.agent-chat-line .role{color:var(--accent);font-weight:500}
+.agent-chat-line .msg{color:var(--text-secondary)}
 
-.hero h1 {
-  font-size: clamp(52px, 12vw, 96px);
-  font-weight: 700; line-height: 1.0;
-  letter-spacing: -2px;
-  margin-bottom: 24px;
-  position: relative;
-  background: linear-gradient(180deg, #1d1d1f 30%, #86868b 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.hero h1 .cyan {
-  background: var(--gradient-accent);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
+/* === CLINICS === */
+.clinics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:64px}
+.clinic-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:32px;text-align:center;transition:all .4s var(--ease)}
+.clinic-card:hover{border-color:var(--border-hover);transform:translateY(-2px)}
+.clinic-card-icon{font-size:36px;margin-bottom:16px}
+.clinic-card h4{font-size:17px;font-weight:600;margin-bottom:8px}
+.clinic-card p{font-size:14px;color:var(--text-secondary);line-height:1.5;font-weight:300}
 
-.hero-sub {
-  font-size: 18px; font-weight: 300; color: var(--text-secondary);
-  max-width: 600px; margin: 0 auto 48px;
-  line-height: 1.6; letter-spacing: 0.2px;
-  position: relative;
-}
-.hero-sub strong { color: var(--text); font-weight: 500; }
+/* === PRICING === */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:64px}
+.price-card{background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:40px;transition:all .4s var(--ease)}
+.price-card.featured{border-color:var(--accent);box-shadow:0 0 40px var(--glow);position:relative}
+.price-card.featured::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:60%;height:2px;background:var(--gradient)}
+.price-card:hover{transform:translateY(-4px)}
+.price-tier{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:16px}
+.price-amount{font-size:48px;font-weight:700;margin-bottom:8px}
+.price-amount .currency{font-size:20px;font-weight:400;color:var(--text-secondary);vertical-align:super}
+.price-amount .period{font-size:14px;font-weight:300;color:var(--text-muted)}
+.price-desc{font-size:14px;color:var(--text-secondary);margin-bottom:24px;line-height:1.5}
+.price-features{list-style:none;margin-bottom:32px}
+.price-features li{font-size:14px;color:var(--text-secondary);padding:8px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.price-features li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0}
+.price-btn{display:block;width:100%;padding:14px;border-radius:980px;text-align:center;font-size:15px;font-weight:500;transition:all .3s;cursor:pointer;border:none}
+.price-btn-primary{background:var(--gradient);color:#fff}
+.price-btn-secondary{background:transparent;border:1px solid var(--border);color:var(--text)}
+.price-btn:hover{transform:scale(1.02)}
 
-.hero-actions {
-  display: flex; gap: 16px; align-items: center;
-  justify-content: center; flex-wrap: wrap; position: relative;
-}
-.btn-primary {
-  font-size: 16px; font-weight: 500; padding: 16px 32px;
-  background: var(--accent); color: #fff;
-  text-decoration: none; border-radius: 980px;
-  transition: all 0.4s var(--ease); font-family: var(--font);
-  box-shadow: 0 0 20px rgba(127,119,221,0.3);
-}
-.btn-primary:hover {
-  background: var(--accent-bright);
-  box-shadow: 0 0 40px rgba(127,119,221,0.4);
-  transform: scale(1.02);
-}
-.btn-secondary {
-  font-size: 16px; font-weight: 500; padding: 16px 32px;
-  background: transparent;
-  border: 1px solid var(--border-hover); color: var(--text);
-  text-decoration: none; border-radius: 980px;
-  transition: all 0.4s var(--ease); font-family: var(--font);
-}
-.btn-secondary:hover {
-  background: rgba(255,255,255,0.06);
-  border-color: rgba(255,255,255,0.25);
-}
+/* === FAQ === */
+.faq-list{max-width:720px;margin:64px auto 0}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:24px 0;cursor:pointer;font-size:17px;font-weight:500;transition:color .2s}
+.faq-q:hover{color:var(--accent)}
+.faq-q::after{content:'+';font-size:24px;color:var(--text-muted);transition:transform .3s}
+.faq-item.open .faq-q::after{transform:rotate(45deg);color:var(--accent)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s var(--ease);font-size:15px;color:var(--text-secondary);line-height:1.6}
+.faq-item.open .faq-a{max-height:300px}
+.faq-a-inner{padding:0 0 24px}
 
-.hero-stats {
-  display: flex; gap: 80px; margin-top: 80px;
-  justify-content: center; flex-wrap: wrap; position: relative;
-}
-.hero-stat { text-align: center; }
-.hero-stat-num {
-  font-size: 48px; font-weight: 700; letter-spacing: -1px;
-  background: linear-gradient(180deg, #1d1d1f 20%, var(--accent) 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.hero-stat-num span {
-  background: var(--gradient-accent);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.hero-stat-label {
-  font-size: 12px; color: var(--text-muted); margin-top: 4px;
-  letter-spacing: 0.5px; font-weight: 400;
-}
+/* === CTA === */
+.cta{text-align:center;padding:120px 24px;position:relative;overflow:hidden}
+.cta::before{content:'';position:absolute;bottom:-200px;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,var(--glow) 0%,transparent 70%);pointer-events:none}
+.cta h2{font-size:48px;font-weight:700;margin-bottom:20px;letter-spacing:-.02em}
+.cta p{font-size:18px;color:var(--text-secondary);margin-bottom:40px;font-weight:300}
 
-/* ===== REVEAL ===== */
-.reveal {
-  opacity: 0; transform: translateY(40px);
-  transition: opacity 1s var(--ease-out), transform 1s var(--ease-out);
-}
-.reveal.visible { opacity: 1; transform: translateY(0); }
+/* === FOOTER === */
+footer{padding:48px 24px;border-top:1px solid var(--border);text-align:center}
+.footer-links{display:flex;justify-content:center;gap:32px;margin-bottom:16px}
+.footer-links a{font-size:13px;color:var(--text-muted);transition:color .2s}
+.footer-links a:hover{color:var(--text-secondary)}
+.footer-copy{font-size:12px;color:var(--text-muted)}
 
-/* ===== TRUSTED ===== */
-.trusted {
-  padding: 32px 48px;
-  display: flex; align-items: center; justify-content: center; gap: 20px;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  background: var(--bg-elevated);
-}
-.trusted-label {
-  font-size: 11px; color: var(--text-muted); letter-spacing: 2px;
-  text-transform: uppercase; font-weight: 500; white-space: nowrap;
-}
-.trusted-logos { display: flex; gap: 48px; align-items: center; flex-wrap: wrap; justify-content: center; }
-.trusted-logo {
-  font-size: 13px; font-weight: 500; color: var(--text-muted);
-  letter-spacing: 1px; opacity: 0.6; transition: opacity 0.3s;
-}
-.trusted-logo:hover { opacity: 1; }
+/* === PULSE NAV === */
+.pulse-nav{position:fixed;right:18px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:14px;z-index:999}
+.pulse-dot{width:12px;height:12px;border-radius:50%;background:var(--c);box-shadow:0 0 6px var(--c);transition:transform .2s,box-shadow .2s}
+.pulse-dot:hover{transform:scale(1.5);box-shadow:0 0 14px var(--c)}
 
-/* ===== SECTIONS ===== */
-.section { padding: 140px 48px; max-width: 1200px; margin: 0 auto; }
-.section-full { max-width: 100%; padding-left: 48px; padding-right: 48px; }
-.section-dark { background: var(--bg-elevated); }
+/* === REVEAL === */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s var(--ease-out),transform .8s var(--ease-out)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
 
-.section-label {
-  font-size: 13px; letter-spacing: 3px; color: var(--accent);
-  text-transform: uppercase; font-weight: 500; margin-bottom: 16px;
-}
-.section-title {
-  font-size: clamp(40px, 5vw, 64px); font-weight: 700;
-  letter-spacing: -1.5px; line-height: 1.05; margin-bottom: 20px;
-  color: var(--text);
-}
-.section-title .dim { color: var(--text-muted); }
-.section-desc {
-  font-size: 18px; color: var(--text-secondary); max-width: 560px;
-  line-height: 1.6; font-weight: 300;
-}
+/* === ANIMATIONS === */
+@keyframes heroGlow{0%{opacity:.6;transform:translateX(-50%) scale(1)}100%{opacity:1;transform:translateX(-50%) scale(1.1)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+@keyframes agentFloat{0%{transform:translateY(0)}100%{transform:translateY(-12px)}}
 
-/* ===== WHAT IS ===== */
-.what-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 80px; align-items: center; margin-top: 80px;
+/* === RESPONSIVE === */
+@media(max-width:960px){
+  .nav-links{display:none}
+  .hero h1{font-size:44px}
+  .section-title{font-size:36px}
+  .section{padding:80px 24px}
+  .what-grid,.brain-grid,.agent-grid{grid-template-columns:1fr}
+  .cap-grid,.clinics-grid,.pricing-grid{grid-template-columns:1fr 1fr}
+  .how-steps{flex-direction:column;gap:48px}
+  .how-steps::before{display:none}
+  .hero-stats{gap:24px}
+  .pulse-nav{display:none}
 }
-.what-visual {
-  position: relative; background: var(--bg-card);
-  border: 1px solid var(--border); border-radius: 20px;
-  padding: 48px; overflow: hidden;
-}
-.what-visual::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--accent), transparent);
-}
-.device-box {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 12px; padding: 24px; margin-bottom: 16px;
-}
-.device-label {
-  font-size: 11px; color: var(--text-muted); letter-spacing: 2px;
-  text-transform: uppercase; font-weight: 500; margin-bottom: 8px;
-}
-.device-name { font-size: 20px; font-weight: 600; margin-bottom: 4px; }
-.device-spec { font-size: 14px; color: var(--accent); font-weight: 400; letter-spacing: 0.5px; }
-.device-feeds { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 16px; }
-.feed-item {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 10px; padding: 14px; display: flex; align-items: center; gap: 10px;
-}
-.feed-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-.feed-dot.active { background: #30D158; box-shadow: 0 0 10px rgba(48,209,88,0.5); }
-.feed-dot.cyan { background: var(--accent); box-shadow: 0 0 10px rgba(127,119,221,0.4); }
-.feed-text { font-size: 12px; color: var(--text-secondary); font-weight: 400; }
-
-/* ===== CAPABILITIES ===== */
-.caps-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 1px; margin-top: 60px;
-  background: var(--border); border-radius: 20px; overflow: hidden;
-}
-.cap-card {
-  background: var(--bg-card); padding: 48px 36px;
-  transition: background 0.4s var(--ease);
-}
-.cap-card:hover { background: var(--bg-card-hover); }
-.cap-icon {
-  width: 48px; height: 48px;
-  background: var(--accent-glow);
-  border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 22px; margin-bottom: 24px;
-}
-.cap-title { font-size: 20px; font-weight: 600; margin-bottom: 12px; }
-.cap-desc { font-size: 15px; color: var(--text-secondary); line-height: 1.6; font-weight: 300; }
-
-/* ===== HOW IT WORKS ===== */
-.how-wrap {
-  background: var(--bg-card); border: 1px solid var(--border);
-  border-radius: 24px; padding: 80px; margin-top: 60px;
-  position: relative; overflow: hidden;
-}
-.how-wrap::before {
-  content: ''; position: absolute; top: 0; left: 20%; right: 20%; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--accent), transparent);
-}
-.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-top: 48px; }
-.step { text-align: center; }
-.step-num {
-  width: 48px; height: 48px;
-  border: 1.5px solid var(--accent);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 16px; font-weight: 600; color: var(--accent);
-  margin: 0 auto 20px;
-  transition: all 0.4s var(--ease);
-}
-.step:hover .step-num {
-  background: var(--accent); color: #fff;
-  box-shadow: 0 0 30px rgba(127,119,221,0.3);
-}
-.step-title { font-size: 18px; font-weight: 600; margin-bottom: 10px; }
-.step-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.6; font-weight: 300; }
-
-/* ===== ADMIN ===== */
-.admin-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 60px; align-items: center; margin-top: 60px;
-}
-.admin-card {
-  background: var(--bg-card); border: 1px solid var(--border);
-  border-radius: 20px; padding: 40px; position: relative; overflow: hidden;
-}
-.admin-card::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(127,119,221,0.5), transparent);
-}
-.admin-convo { display: flex; flex-direction: column; gap: 12px; }
-.msg {
-  max-width: 85%; padding: 14px 18px;
-  font-size: 14px; line-height: 1.6; font-weight: 300;
-  border-radius: 16px;
-}
-.msg.patient {
-  background: var(--surface); border: 1px solid var(--border);
-  color: var(--text); align-self: flex-start;
-  border-bottom-left-radius: 4px;
-}
-.msg.ai {
-  background: rgba(127,119,221,0.1); border: 1px solid rgba(127,119,221,0.15);
-  color: var(--text); align-self: flex-end;
-  border-bottom-right-radius: 4px;
-}
-.msg-sender {
-  font-size: 10px; color: var(--text-muted); margin-bottom: 4px;
-  letter-spacing: 1.5px; text-transform: uppercase; font-weight: 500;
-}
-.msg-sender.ai-sender { color: var(--accent); }
-.admin-list {
-  margin-top: 32px; display: flex; flex-direction: column; gap: 16px; list-style: none;
-}
-.admin-list li {
-  display: flex; align-items: center; gap: 12px;
-  font-size: 15px; font-weight: 300; color: var(--text-secondary);
-}
-.admin-list li span { color: var(--accent); font-size: 16px; }
-
-/* ===== TECH ===== */
-.tech-grid {
-  display: grid; grid-template-columns: repeat(2, 1fr);
-  gap: 1px; background: var(--border); border-radius: 20px;
-  overflow: hidden; margin-top: 60px;
-}
-.tech-card {
-  background: var(--bg-card); padding: 40px;
-  display: flex; gap: 24px; align-items: flex-start;
-  transition: background 0.4s var(--ease);
-}
-.tech-card:hover { background: var(--bg-card-hover); }
-.tech-icon {
-  font-size: 28px; flex-shrink: 0;
-  width: 56px; height: 56px;
-  background: var(--accent-glow); border-radius: 14px;
-  display: flex; align-items: center; justify-content: center;
-}
-.tech-title { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
-.tech-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.6; font-weight: 300; }
-
-/* ===== INDIEGOGO ===== */
-.indi-section {
-  background: var(--bg-card); border: 1px solid var(--border);
-  border-radius: 32px; padding: 100px 60px; text-align: center;
-  position: relative; overflow: hidden; max-width: 1060px; margin: 0 auto;
-}
-.indi-section::before {
-  content: ''; position: absolute; top: -1px; left: 20%; right: 20%; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--accent), transparent);
-}
-.indi-section::after {
-  content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-  width: 600px; height: 300px;
-  background: radial-gradient(ellipse, rgba(127,119,221,0.08) 0%, transparent 70%);
-  pointer-events: none;
-}
-.indi-title {
-  font-size: clamp(36px, 5vw, 56px); font-weight: 700;
-  line-height: 1.08; letter-spacing: -1px; margin: 16px 0 20px;
-}
-.indi-desc {
-  font-size: 17px; color: var(--text-secondary); max-width: 500px;
-  margin: 0 auto 48px; line-height: 1.6; font-weight: 300;
-}
-.indi-perks {
-  display: flex; gap: 1px; justify-content: center; flex-wrap: wrap;
-  margin-bottom: 48px; background: var(--border);
-  border-radius: 20px; overflow: hidden;
-  display: inline-flex;
-}
-.perk { background: var(--surface); padding: 36px 44px; text-align: center; }
-.perk-price {
-  font-size: 36px; font-weight: 700;
-  background: var(--gradient-accent);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.perk-name { font-size: 14px; font-weight: 500; margin: 6px 0; letter-spacing: 0.5px; }
-.perk-desc { font-size: 13px; color: var(--text-muted); font-weight: 300; }
-
-/* ===== FRANCHISE ===== */
-.franchise-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 1px; background: var(--border); border-radius: 20px;
-  overflow: hidden; margin-top: 60px;
-}
-.fr-card {
-  background: var(--bg-card); padding: 48px 36px; text-align: center;
-  transition: background 0.4s var(--ease);
-}
-.fr-card:hover { background: var(--bg-card-hover); }
-.fr-step {
-  width: 48px; height: 48px; border: 1.5px solid var(--accent);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 16px; font-weight: 600; color: var(--accent); margin: 0 auto 20px;
-}
-.fr-title { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
-.fr-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.6; font-weight: 300; }
-
-/* ===== TEAM ===== */
-.team-grid {
-  display: grid; grid-template-columns: 2fr 1fr 1fr;
-  gap: 1px; background: var(--border); border-radius: 20px;
-  overflow: hidden; margin-top: 60px;
-}
-.team-card {
-  background: var(--bg-card); padding: 48px 36px;
-  transition: background 0.4s var(--ease);
-}
-.team-card:hover { background: var(--bg-card-hover); }
-.team-role {
-  font-size: 11px; letter-spacing: 2px; color: var(--accent);
-  text-transform: uppercase; font-weight: 500; margin-bottom: 10px;
-}
-.team-name { font-size: 24px; font-weight: 700; margin-bottom: 14px; }
-.team-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.6; font-weight: 300; }
-.team-link {
-  display: inline-block; margin-top: 16px; font-size: 14px;
-  color: var(--accent); text-decoration: none; font-weight: 400;
-  transition: opacity 0.3s;
-}
-.team-link:hover { opacity: 0.7; }
-
-/* ===== FAQ ===== */
-.faq-list { margin-top: 48px; max-width: 800px; }
-.faq-item { border-bottom: 1px solid var(--border); padding: 24px 0; }
-.faq-item summary {
-  font-size: 20px; font-weight: 600; cursor: pointer; list-style: none;
-  display: flex; align-items: center; justify-content: space-between;
-  color: var(--text); transition: color 0.3s;
-}
-.faq-item summary:hover { color: var(--accent); }
-.faq-item summary::after {
-  content: '+'; font-size: 24px; color: var(--accent);
-  transition: transform 0.3s; font-weight: 300;
-}
-.faq-item[open] summary::after { transform: rotate(45deg); }
-.faq-item p {
-  font-size: 15px; color: var(--text-secondary); line-height: 1.7;
-  margin-top: 16px; padding-right: 40px; font-weight: 300;
-}
-
-/* ===== FOOTER ===== */
-footer {
-  background: #1d1d1f; padding: 80px 48px 40px;
-  position: relative;
-}
-.footer-top {
-  display: flex; justify-content: space-between;
-  align-items: flex-start; margin-bottom: 60px;
-}
-.footer-logo {
-  font-size: 48px; font-weight: 700; letter-spacing: 2px; color: #f5f5f7;
-}
-.footer-logo span { color: var(--accent); }
-.footer-copy {
-  font-size: 12px; color: rgba(255,255,255,0.4); font-weight: 400;
-}
-.footer-links { display: flex; gap: 24px; padding-top: 12px; }
-.footer-links a {
-  font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none;
-  font-weight: 400; transition: color 0.3s;
-}
-.footer-links a:hover { color: var(--accent); }
-.footer-brands {
-  display: flex; justify-content: center; flex-wrap: wrap; gap: 24px;
-  padding: 32px 0; border-top: 1px solid rgba(255,255,255,0.08);
-}
-.footer-brands a {
-  font-size: 13px; color: rgba(255,255,255,0.4); text-decoration: none;
-  font-weight: 400; transition: color 0.3s;
-}
-.footer-brands a:hover { color: var(--accent); }
-.footer-brands-sep { color: rgba(255,255,255,0.2); font-size: 12px; align-self: center; }
-.footer-bottom {
-  display: flex; justify-content: space-between; align-items: center;
-  padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.08);
-}
-.footer-ai {
-  display: flex; align-items: center; gap: 8px;
-  font-size: 12px; color: rgba(255,255,255,0.4); font-weight: 400;
-}
-.dot-live {
-  width: 6px; height: 6px; background: var(--accent-bright);
-  border-radius: 50%; animation: pulse 2s ease-in-out infinite;
-}
-
-/* ===== PULSE NAVIGATOR ===== */
-.pulse-nav {
-  position: fixed; top: 50%; right: 16px; transform: translateY(-50%);
-  width: 56px; z-index: 90;
-  display: flex; flex-direction: column; align-items: center; gap: 0;
-  transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
-  background: rgba(255,255,255,0.85);
-  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-  border-radius: 28px; padding: 16px 0;
-  border: 1px solid rgba(0,0,0,0.06);
-  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
-}
-.pulse-nav:hover {
-  width: 200px; border-radius: 16px;
-  border-color: rgba(127,119,221,0.2);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
-}
-.pulse-nav:hover .pn-label { opacity: 1; max-width: 120px; margin-left: 4px; }
-.pn-item {
-  display: flex; align-items: center; gap: 8px; width: 100%;
-  padding: 10px 16px; text-decoration: none; transition: all 0.25s; border-radius: 0;
-  pointer-events: none; opacity: 0.5;
-}
-.pulse-nav:hover .pn-item { pointer-events: auto; opacity: 1; }
-.pn-item:hover { background: rgba(127,119,221,0.06); }
-.pn-item:hover .pn-label { color: var(--accent); }
-.pn-dot {
-  width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
-  transition: all 0.3s;
-}
-.pn-dot.active { box-shadow: 0 0 10px currentColor, 0 0 4px currentColor; }
-.pn-label {
-  font-size: 9px; letter-spacing: 1px; color: var(--text-muted);
-  white-space: nowrap; overflow: hidden; max-width: 0; opacity: 0;
-  transition: all 0.35s; font-weight: 300; text-transform: uppercase;
-}
-.pn-divider { width: 24px; height: 1px; background: rgba(0,0,0,0.06); margin: 4px auto; }
-.pn-pulse {
-  width: 2px; height: 24px;
-  background: linear-gradient(to bottom, transparent, var(--accent), transparent);
-  margin: 6px auto; animation: pulseLine 2.5s ease-in-out infinite; opacity: 0.5;
-}
-@keyframes pulseLine { 0%,100% { opacity: 0.15; } 50% { opacity: 0.6; } }
-.pn-action {
-  width: 32px; height: 32px; border: 1px solid rgba(0,0,0,0.08);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 12px; color: var(--text-muted); cursor: pointer;
-  transition: all 0.25s; background: transparent; margin: 4px auto 0; text-decoration: none;
-}
-.pn-action:hover { border-color: var(--accent); color: var(--accent); background: rgba(127,119,221,0.06); }
-.nav-ver {
-  font-size: 9px; color: var(--text-muted); opacity: 0.4;
-  letter-spacing: 0.5px; white-space: nowrap; font-weight: 400;
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 900px) {
-  nav { padding: 0 20px; }
-  .nav-links, .nav-back { display: none; }
-  .nav-hamburger { display: flex; }
-  .hero { padding: 120px 24px 80px; }
-  .hero h1 { letter-spacing: -1px; }
-  .section { padding: 100px 24px; }
-  .hero-stats { gap: 40px; }
-  .what-grid, .admin-grid { grid-template-columns: 1fr; gap: 40px; }
-  .caps-grid, .franchise-grid, .team-grid { grid-template-columns: 1fr; }
-  .steps { grid-template-columns: 1fr 1fr; gap: 24px; }
-  .tech-grid { grid-template-columns: 1fr; }
-  .how-wrap { padding: 40px 24px; }
-  .indi-section { padding: 60px 24px; border-radius: 20px; }
-  .trusted { flex-direction: column; padding: 24px; }
-  footer { padding: 40px 24px 32px; }
-  .footer-top { flex-direction: column; gap: 32px; }
-  .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
-  .pulse-nav { display: none !important; }
-  .nav-ver { display: none; }
-  .btn-primary, .btn-secondary { font-size: 15px; padding: 14px 28px; }
-  .section-desc { font-size: 16px; }
+@media(max-width:600px){
+  .hero h1{font-size:32px}
+  .section-title{font-size:28px}
+  .cap-grid,.clinics-grid,.pricing-grid{grid-template-columns:1fr}
+  .hero-btns{flex-direction:column;align-items:center}
+  .hero-stats{flex-direction:column;gap:16px}
+  .price-amount{font-size:36px}
 }
 </style>
 </head>
 <body>
 
-<!-- BACKGROUND -->
-<div class="bg-grid"></div>
-<div class="bg-orbs">
-  <div class="bg-orb"></div>
-  <div class="bg-orb"></div>
-  <div class="bg-orb"></div>
-</div>
-
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">SCYRA<span>.AI</span></a>
   <ul class="nav-links">
-    <li><a href="#capabilities" data-t="nav_cap">Capabilities</a></li>
-    <li><a href="#how" data-t="nav_how">How It Works</a></li>
-    <li><a href="#tech" data-t="nav_tech">Technology</a></li>
-    <li><a href="#franchise" data-t="nav_franchise">Franchise</a></li>
-    <li><a href="#team" data-t="nav_team">Team</a></li>
-    <li><a href="#faq" data-t="nav_faq">FAQ</a></li>
+    <li><a href="#what" data-t="nav.what">What is SCYRA</a></li>
+    <li><a href="#capabilities" data-t="nav.cap">Capabilities</a></li>
+    <li><a href="#brain" data-t="nav.brain">The Brain</a></li>
+    <li><a href="#agent" data-t="nav.agent">AI Agent</a></li>
+    <li><a href="#pricing" data-t="nav.pricing">Pricing</a></li>
+    <li><a href="#faq" data-t="nav.faq">FAQ</a></li>
   </ul>
   <div class="nav-right">
-    <a href="https://labs67.com" class="nav-back">&#8592; labs67</a>
+    <a href="https://labs67.com" class="nav-back" data-t="nav.back">&larr; labs67</a>
     <div class="lang-switcher"></div>
-    <a href="#back" class="nav-cta" data-t="nav_cta">Back on Indiegogo</a>
+    <a href="#pricing" class="nav-cta" data-t="nav.cta">Get Started</a>
   </div>
-  <button class="nav-hamburger" id="hamburger" onclick="toggleMobile()"><span></span><span></span><span></span></button>
-<span class="nav-ver">v3.0</span></nav>
-
-<!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#capabilities" onclick="closeMobile()" data-t="nav_cap">Capabilities</a>
-  <a href="#how" onclick="closeMobile()" data-t="nav_how">How It Works</a>
-  <a href="#tech" onclick="closeMobile()" data-t="nav_tech">Technology</a>
-  <a href="#franchise" onclick="closeMobile()" data-t="nav_franchise">Franchise</a>
-  <a href="#team" onclick="closeMobile()" data-t="nav_team">Team</a>
-  <a href="#faq" onclick="closeMobile()" data-t="nav_faq">FAQ</a>
-  <div class="mobile-menu-divider"></div>
-  <a href="https://labs67.com" onclick="closeMobile()">&#8592; labs67</a>
-</div>
+</nav>
 
 <!-- HERO -->
-<div class="hero">
-  <div class="hero-badge reveal">
-    <span class="hero-badge-dot"></span>
-    <span data-t="hero_badge">Now Live on Indiegogo</span>
+<section class="hero" id="hero">
+  <div class="hero-badge"><span class="dot"></span> <span data-t="hero.badge">Powered by NVIDIA Jetson</span></div>
+  <h1 data-t="hero.title">The <span class="grad">AI Brain</span> for Your Clinic</h1>
+  <p class="hero-sub" data-t="hero.sub">One device. Complete intelligence. SCYRA transforms your dental clinic with edge AI that sees, thinks, and acts — right on site.</p>
+  <div class="hero-btns">
+    <a href="#pricing" class="btn-primary" data-t="hero.btn1">Start Free Trial</a>
+    <a href="#what" class="btn-secondary" data-t="hero.btn2">Learn More</a>
   </div>
-  <h1 class="reveal" data-t="hero_title">AI-<span class="cyan">Brain</span><br>of Your Clinic</h1>
-  <p class="hero-sub reveal" data-t="hero_sub">SCYRA.AI combines <strong>cameras, sensors, and edge AI</strong> to assist doctors, analyze patients, and grow your business — all in one device.</p>
-  <div class="hero-actions reveal">
-    <a href="#back" class="btn-primary" data-t="hero_btn">Back This Project</a>
-    <a href="#capabilities" class="btn-secondary" data-t="hero_btn2">See How It Works</a>
+  <div class="hero-img">
+    <img src="img/hero-brain.png" alt="SCYRA AI Neural Network" loading="eager">
   </div>
-  <div class="hero-stats reveal">
+  <div class="hero-stats">
     <div class="hero-stat">
-      <div class="hero-stat-num">6<span>+</span></div>
-      <div class="hero-stat-label" data-t="hero_stat1">AI modules in one device</div>
+      <div class="hero-stat-num" data-t="hero.stat1.num">64 GB</div>
+      <div class="hero-stat-label" data-t="hero.stat1.label">Unified Memory</div>
     </div>
     <div class="hero-stat">
-      <div class="hero-stat-num">24<span>/7</span></div>
-      <div class="hero-stat-label" data-t="hero_stat2">Clinic intelligence</div>
+      <div class="hero-stat-num" data-t="hero.stat2.num">275 TOPS</div>
+      <div class="hero-stat-label" data-t="hero.stat2.label">AI Performance</div>
     </div>
     <div class="hero-stat">
-      <div class="hero-stat-num">EU<span>&times;</span></div>
-      <div class="hero-stat-label" data-t="hero_stat3">Franchise program</div>
+      <div class="hero-stat-num" data-t="hero.stat3.num">100%</div>
+      <div class="hero-stat-label" data-t="hero.stat3.label">On-Premise</div>
     </div>
   </div>
-</div>
+</section>
 
-<!-- TRUSTED -->
-<div class="trusted">
-  <span class="trusted-label" data-t="trusted_label">Powered by</span>
-  <div class="trusted-logos">
-    <span class="trusted-logo">NVIDIA Jetson</span>
-    <span class="trusted-logo">Gemini AI</span>
-    <span class="trusted-logo">OpenAI</span>
-    <span class="trusted-logo">LABS67</span>
-  </div>
-</div>
-
-<!-- WHAT IS -->
+<!-- WHAT IS SCYRA -->
 <section class="section" id="what">
-  <div class="section-label reveal" data-t="what_label">What is SCYRA.AI</div>
+  <div class="reveal">
+    <div class="section-label" data-t="what.label">What is SCYRA</div>
+    <h2 class="section-title" data-t="what.title">Two pillars. <span class="grad">One system.</span></h2>
+    <p class="section-desc" data-t="what.desc">SCYRA combines a powerful AI agent with dedicated edge hardware. No cloud dependency. No data leaving your clinic.</p>
+  </div>
   <div class="what-grid">
-    <div class="reveal">
-      <h2 class="section-title" data-t="what_title">One device.<br><span class="dim">Your entire clinic.</span></h2>
-      <p class="section-desc" data-t="what_desc">An edge AI system that installs in your dental clinic and immediately starts working — analyzing patients, assisting doctors, managing appointments, and growing revenue.</p>
-      <p style="margin-top: 20px; font-size: 15px; color: var(--text-muted); line-height: 1.6; font-weight: 300;" data-t="what_desc2">No cloud dependency. Everything runs locally on NVIDIA Jetson — fast, private, and reliable.</p>
+    <div class="what-card reveal reveal-delay-1">
+      <div class="what-card-icon">&#x1F916;</div>
+      <h3 data-t="what.agent.title">AI Agent</h3>
+      <p data-t="what.agent.desc">Intelligent assistant that handles diagnostics support, patient scheduling, document automation, and real-time analytics. Speaks 12 languages. Works 24/7.</p>
+      <div class="what-card-img"><img src="img/agent-avatar.png" alt="SCYRA AI Agent" loading="lazy"></div>
     </div>
-    <div class="what-visual reveal">
-      <div class="device-box">
-        <div class="device-label" data-t="device_label">Hardware</div>
-        <div class="device-name">NVIDIA Jetson Orin Nano</div>
-        <div class="device-spec" data-t="device_spec">64 GB · Edge AI · Always On</div>
-      </div>
-      <div class="device-feeds">
-        <div class="feed-item"><div class="feed-dot active"></div><div class="feed-text" data-t="feed1">Camera feed: active</div></div>
-        <div class="feed-item"><div class="feed-dot cyan"></div><div class="feed-text" data-t="feed2">Patient analysis: on</div></div>
-        <div class="feed-item"><div class="feed-dot active"></div><div class="feed-text" data-t="feed3">Voice assistant: listening</div></div>
-        <div class="feed-item"><div class="feed-dot cyan"></div><div class="feed-text" data-t="feed4">Admin bot: active</div></div>
-      </div>
+    <div class="what-card reveal reveal-delay-2">
+      <div class="what-card-icon">&#x1F4BB;</div>
+      <h3 data-t="what.hw.title">Hardware Brain</h3>
+      <p data-t="what.hw.desc">NVIDIA Jetson AGX Orin 64GB — a compact device with datacenter-class AI performance. Processes everything locally. Your data never leaves the building.</p>
+      <div class="what-card-img"><img src="img/jetson-box.png" alt="NVIDIA Jetson Hardware" loading="lazy"></div>
     </div>
   </div>
 </section>
 
 <!-- CAPABILITIES -->
-<section class="section section-full section-dark" id="capabilities">
-  <div style="max-width:1200px;margin:0 auto;">
-  <div class="section-label reveal" data-t="cap_label">Capabilities</div>
-  <h2 class="section-title reveal" data-t="cap_title">Everything your clinic needs.<br><span class="dim">Automated.</span></h2>
-  <div class="caps-grid reveal">
-    <div class="cap-card">
-      <div class="cap-icon">&#128247;</div>
-      <div class="cap-title" data-t="cap1_title">Patient Analysis</div>
-      <div class="cap-desc" data-t="cap1_desc">Cameras and sensors track patient flow, waiting times, and stress levels. Real-time insights for your front desk.</div>
+<section class="section" id="capabilities">
+  <div class="reveal">
+    <div class="section-label" data-t="cap.label">Capabilities</div>
+    <h2 class="section-title" data-t="cap.title">Everything your clinic <span class="grad">needs.</span></h2>
+    <p class="section-desc" data-t="cap.desc">Six AI modules working in concert. Each one trained for dental workflows.</p>
+  </div>
+  <div class="cap-grid">
+    <div class="cap-card reveal reveal-delay-1">
+      <div class="cap-icon">&#x1F50D;</div>
+      <h4 data-t="cap.diag.title">AI Diagnostics</h4>
+      <p data-t="cap.diag.desc">Real-time analysis of X-rays and intraoral images. Detects caries, fractures, and anomalies with clinical-grade accuracy.</p>
     </div>
-    <div class="cap-card">
-      <div class="cap-icon">&#129463;</div>
-      <div class="cap-title" data-t="cap2_title">Doctor Assistant</div>
-      <div class="cap-desc" data-t="cap2_desc">AI assists during procedures — voice-controlled instrument requests, real-time notes, protocol reminders.</div>
+    <div class="cap-card reveal reveal-delay-1">
+      <div class="cap-icon">&#x1F4C5;</div>
+      <h4 data-t="cap.sched.title">Smart Scheduling</h4>
+      <p data-t="cap.sched.desc">AI-optimized appointment management. Reduces no-shows, balances workload, and maximizes chair utilization.</p>
     </div>
-    <div class="cap-card">
-      <div class="cap-icon">&#128172;</div>
-      <div class="cap-title" data-t="cap3_title">Smart Administrator</div>
-      <div class="cap-desc" data-t="cap3_desc">Handles incoming messages, books appointments, answers questions, and converts leads into patients automatically.</div>
+    <div class="cap-card reveal reveal-delay-2">
+      <div class="cap-icon">&#x1F4CA;</div>
+      <h4 data-t="cap.analytics.title">Business Analytics</h4>
+      <p data-t="cap.analytics.desc">Real-time dashboards for revenue, patient flow, treatment completion rates, and operational efficiency.</p>
     </div>
-    <div class="cap-card">
-      <div class="cap-icon">&#128202;</div>
-      <div class="cap-title" data-t="cap4_title">Clinic Analytics</div>
-      <div class="cap-desc" data-t="cap4_desc">Dashboard with revenue forecasting, chair utilization, no-show predictions, and patient retention scores.</div>
+    <div class="cap-card reveal reveal-delay-2">
+      <div class="cap-icon">&#x1F4CB;</div>
+      <h4 data-t="cap.docs.title">Document Automation</h4>
+      <p data-t="cap.docs.desc">Auto-generates treatment plans, invoices, consent forms. Integrates with your existing practice management system.</p>
     </div>
-    <div class="cap-card">
-      <div class="cap-icon">&#128274;</div>
-      <div class="cap-title" data-t="cap5_title">Local &amp; Private</div>
-      <div class="cap-desc" data-t="cap5_desc">Patient data never leaves your clinic. All processing runs on-device — GDPR-ready from day one.</div>
+    <div class="cap-card reveal reveal-delay-3">
+      <div class="cap-icon">&#x1F465;</div>
+      <h4 data-t="cap.crm.title">Patient CRM</h4>
+      <p data-t="cap.crm.desc">Complete patient history, treatment tracking, automated follow-ups, and personalized communication in their language.</p>
     </div>
-    <div class="cap-card">
-      <div class="cap-icon">&#127758;</div>
-      <div class="cap-title" data-t="cap6_title">Multilingual</div>
-      <div class="cap-desc" data-t="cap6_desc">Speaks to patients in their language. Built for European clinics — 12 languages supported out of the box.</div>
+    <div class="cap-card reveal reveal-delay-3">
+      <div class="cap-icon">&#x1F393;</div>
+      <h4 data-t="cap.learn.title">Staff Training</h4>
+      <p data-t="cap.learn.desc">AI-assisted onboarding and continuous education. Protocol checklists, procedure guides, certification tracking.</p>
     </div>
   </div>
+</section>
+
+<!-- THE BRAIN -->
+<section class="section brain" id="brain">
+  <div class="reveal">
+    <div class="section-label" data-t="brain.label">The Brain</div>
+    <h2 class="section-title" data-t="brain.title">NVIDIA Jetson. <span class="grad">Your edge.</span></h2>
+    <p class="section-desc" data-t="brain.desc">Datacenter-class AI in a device that fits on your desk. No cloud required.</p>
+  </div>
+  <div class="brain-grid">
+    <div class="brain-img reveal"><img src="img/jetson-box.png" alt="NVIDIA Jetson AGX Orin" loading="lazy"></div>
+    <div class="brain-specs reveal reveal-delay-1">
+      <div class="brain-spec">
+        <div class="brain-spec-dot" style="background:var(--accent)"></div>
+        <div>
+          <h5 data-t="brain.spec1.title">64 GB Unified Memory</h5>
+          <p data-t="brain.spec1.desc">Run multiple AI models simultaneously. No memory bottlenecks.</p>
+        </div>
+      </div>
+      <div class="brain-spec">
+        <div class="brain-spec-dot" style="background:var(--accent2)"></div>
+        <div>
+          <h5 data-t="brain.spec2.title">275 TOPS AI Performance</h5>
+          <p data-t="brain.spec2.desc">Process X-rays, run diagnostics, and generate reports in real-time.</p>
+        </div>
+      </div>
+      <div class="brain-spec">
+        <div class="brain-spec-dot" style="background:#34C759"></div>
+        <div>
+          <h5 data-t="brain.spec3.title">2 TB NVMe Storage</h5>
+          <p data-t="brain.spec3.desc">Store years of patient data, models, and analytics locally.</p>
+        </div>
+      </div>
+      <div class="brain-spec">
+        <div class="brain-spec-dot" style="background:#FF9500"></div>
+        <div>
+          <h5 data-t="brain.spec4.title">60W Power Consumption</h5>
+          <p data-t="brain.spec4.desc">Runs on less power than a lightbulb. Silent, compact, always-on.</p>
+        </div>
+      </div>
+      <div class="brain-spec">
+        <div class="brain-spec-dot" style="background:#FF3B30"></div>
+        <div>
+          <h5 data-t="brain.spec5.title">100% On-Premise</h5>
+          <p data-t="brain.spec5.desc">Patient data never leaves your clinic. Full GDPR/HIPAA compliance.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- HOW IT WORKS -->
 <section class="section" id="how">
-  <div style="max-width:1200px;margin:0 auto;">
-  <div class="section-label reveal" data-t="how_label">How It Works</div>
-  <h2 class="section-title reveal" data-t="how_title">Plug in.<br><span class="dim">It learns. It works.</span></h2>
-  <div class="how-wrap reveal">
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-title" data-t="step1_title">Install</div>
-        <div class="step-desc" data-t="step1_desc">Mount the device, connect cameras and sensors. Setup takes one day.</div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-title" data-t="step2_title">Configure</div>
-        <div class="step-desc" data-t="step2_desc">Set your clinic's profile, services, pricing, and communication style.</div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-title" data-t="step3_title">Learn</div>
-        <div class="step-desc" data-t="step3_desc">SCYRA studies your clinic patterns and adapts to your team in 7 days.</div>
-      </div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <div class="step-title" data-t="step4_title">Grow</div>
-        <div class="step-desc" data-t="step4_desc">More patients booked, less admin work, better doctor focus. Every day.</div>
-      </div>
-    </div>
+  <div class="reveal">
+    <div class="section-label" data-t="how.label">How It Works</div>
+    <h2 class="section-title" data-t="how.title">Three steps to <span class="grad">intelligence.</span></h2>
   </div>
+  <div class="how-steps reveal">
+    <div class="how-step">
+      <div class="how-num">1</div>
+      <h4 data-t="how.step1.title">Install</h4>
+      <p data-t="how.step1.desc">We ship the Jetson pre-configured. Plug in, connect to your network. 15 minutes setup.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-num">2</div>
+      <h4 data-t="how.step2.title">Connect</h4>
+      <p data-t="how.step2.desc">SCYRA integrates with your existing cameras, X-ray systems, and practice management software.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-num">3</div>
+      <h4 data-t="how.step3.title">Transform</h4>
+      <p data-t="how.step3.desc">AI starts working immediately. Diagnostics, scheduling, analytics — all automated from day one.</p>
+    </div>
   </div>
 </section>
 
-<!-- ADMIN ROLE -->
-<section class="section section-full section-dark" id="admin">
-  <div style="max-width:1200px;margin:0 auto;">
-  <div class="section-label reveal" data-t="admin_label">Smart Administrator</div>
-  <div class="admin-grid">
-    <div class="reveal">
-      <h2 class="section-title" data-t="admin_title">More patients.<br><span class="dim">Zero missed calls.</span></h2>
-      <p class="section-desc" data-t="admin_desc">SCYRA's administrator doesn't just answer questions — it sells. Every conversation is an opportunity. It handles WhatsApp, Instagram, Telegram, and phone — simultaneously.</p>
-      <ul class="admin-list">
-        <li><span>&#10003;</span> <span data-t="admin_li1">Responds in under 30 seconds, 24/7</span></li>
-        <li><span>&#10003;</span> <span data-t="admin_li2">Books appointments directly in your calendar</span></li>
-        <li><span>&#10003;</span> <span data-t="admin_li3">Sends reminders and reduces no-shows by 40%</span></li>
-        <li><span>&#10003;</span> <span data-t="admin_li4">Upsells treatments naturally in conversation</span></li>
+<!-- AI AGENT -->
+<section class="section" id="agent">
+  <div class="reveal">
+    <div class="section-label" data-t="agent.label">AI Agent</div>
+    <h2 class="section-title" data-t="agent.title">Meet <span class="grad">SCYRA.</span></h2>
+    <p class="section-desc" data-t="agent.desc">Your clinic's AI assistant. Trained on dental workflows, protocols, and best practices.</p>
+  </div>
+  <div class="agent-grid">
+    <div class="agent-visual reveal">
+      <div class="agent-avatar">
+        <img src="img/agent-avatar.png" alt="SCYRA AI Agent" loading="lazy">
+      </div>
+    </div>
+    <div class="reveal reveal-delay-1">
+      <div class="agent-chat">
+        <div class="agent-chat-line"><span class="role">Doctor:</span> <span class="msg" data-t="agent.chat1">Show me today's schedule and flag any high-risk patients.</span></div>
+        <div class="agent-chat-line"><span class="role">SCYRA:</span> <span class="msg" data-t="agent.chat2">You have 12 appointments today. Patient #47 (Maria K.) has elevated caries risk — recommending additional X-ray before procedure at 14:00.</span></div>
+        <div class="agent-chat-line"><span class="role">Doctor:</span> <span class="msg" data-t="agent.chat3">Approved. Prepare the consent form.</span></div>
+        <div class="agent-chat-line"><span class="role">SCYRA:</span> <span class="msg" data-t="agent.chat4">Done. Consent form generated in Polish, sent to patient's email. X-ray room reserved at 13:45.</span></div>
+      </div>
+      <div class="agent-chat" style="margin-top:16px">
+        <div class="agent-chat-line"><span class="role" style="color:var(--accent2)">Analytics:</span> <span class="msg" data-t="agent.analytics">Today's projected revenue: 12,400 PLN. Chair utilization: 87%. 2 slots available for walk-ins.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOR CLINICS -->
+<section class="section" id="clinics">
+  <div class="reveal">
+    <div class="section-label" data-t="clinics.label">For Clinics</div>
+    <h2 class="section-title" data-t="clinics.title">Built for dental. <span class="grad">Only dental.</span></h2>
+  </div>
+  <div class="clinics-grid">
+    <div class="clinic-card reveal reveal-delay-1">
+      <div class="clinic-card-icon">&#x1F3E5;</div>
+      <h4 data-t="clinics.solo.title">Solo Practices</h4>
+      <p data-t="clinics.solo.desc">One dentist, one assistant. SCYRA handles everything else — scheduling, paperwork, follow-ups.</p>
+    </div>
+    <div class="clinic-card reveal reveal-delay-2">
+      <div class="clinic-card-icon">&#x1F3D7;</div>
+      <h4 data-t="clinics.group.title">Group Practices</h4>
+      <p data-t="clinics.group.desc">Multi-chair coordination, shared analytics, unified patient records across all practitioners.</p>
+    </div>
+    <div class="clinic-card reveal reveal-delay-3">
+      <div class="clinic-card-icon">&#x1F30D;</div>
+      <h4 data-t="clinics.chain.title">Clinic Chains</h4>
+      <p data-t="clinics.chain.desc">Centralized management with local AI processing. Each location runs independently, reports centrally.</p>
+    </div>
+  </div>
+  <div style="margin-top:48px;text-align:center" class="reveal">
+    <img src="img/clinic-tech.png" alt="Modern Dental Clinic" loading="lazy" style="max-width:800px;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.4);margin:0 auto">
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section" id="pricing">
+  <div class="reveal">
+    <div class="section-label" data-t="pricing.label">Pricing</div>
+    <h2 class="section-title" data-t="pricing.title">Transparent. <span class="grad">No surprises.</span></h2>
+    <p class="section-desc" data-t="pricing.desc">Hardware included. All plans include the NVIDIA Jetson device, setup, and training.</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="price-card reveal reveal-delay-1">
+      <div class="price-tier" data-t="pricing.starter.tier">Starter</div>
+      <div class="price-amount">990<span class="currency"> PLN</span><span class="period" data-t="pricing.period">/month</span></div>
+      <p class="price-desc" data-t="pricing.starter.desc">For solo practices getting started with AI.</p>
+      <ul class="price-features">
+        <li data-t="pricing.starter.f1">AI Scheduling</li>
+        <li data-t="pricing.starter.f2">Document Automation</li>
+        <li data-t="pricing.starter.f3">Basic Analytics</li>
+        <li data-t="pricing.starter.f4">Email Support</li>
       </ul>
+      <button class="price-btn price-btn-secondary" data-t="pricing.starter.btn">Start Trial</button>
     </div>
-    <div class="admin-card reveal">
-      <div class="admin-convo">
-        <div class="msg patient">
-          <div class="msg-sender" data-t="admin_patient">Patient</div>
-          <span data-t="admin_msg1">Hi, how much is teeth whitening?</span>
-        </div>
-        <div class="msg ai">
-          <div class="msg-sender ai-sender">SCYRA.AI</div>
-          <span data-t="admin_msg2">Hi! Our professional whitening starts at &#8364;199 and takes about 60 minutes. Many patients combine it with a cleaning for best results (&#8364;299 total). Would you like to book this week?</span>
-        </div>
-        <div class="msg patient">
-          <div class="msg-sender" data-t="admin_patient">Patient</div>
-          <span data-t="admin_msg3">Friday works! What time?</span>
-        </div>
-        <div class="msg ai">
-          <div class="msg-sender ai-sender">SCYRA.AI</div>
-          <span data-t="admin_msg4">We have 10:00 and 14:30 on Friday. Which works better? I'll send a confirmation to your WhatsApp.</span>
-        </div>
-      </div>
+    <div class="price-card featured reveal reveal-delay-2">
+      <div class="price-tier" data-t="pricing.pro.tier">Professional</div>
+      <div class="price-amount">2490<span class="currency"> PLN</span><span class="period" data-t="pricing.period">/month</span></div>
+      <p class="price-desc" data-t="pricing.pro.desc">Full AI suite for growing practices.</p>
+      <ul class="price-features">
+        <li data-t="pricing.pro.f1">Everything in Starter</li>
+        <li data-t="pricing.pro.f2">AI Diagnostics (X-ray)</li>
+        <li data-t="pricing.pro.f3">Patient CRM</li>
+        <li data-t="pricing.pro.f4">Advanced Analytics</li>
+        <li data-t="pricing.pro.f5">Priority Support</li>
+      </ul>
+      <button class="price-btn price-btn-primary" data-t="pricing.pro.btn">Start Trial</button>
     </div>
-  </div>
-  </div>
-</section>
-
-<!-- TECHNOLOGY -->
-<section class="section" id="tech">
-  <div style="max-width:1200px;margin:0 auto;">
-  <div class="section-label reveal" data-t="tech_label">Technology</div>
-  <h2 class="section-title reveal" data-t="tech_title">Enterprise AI.<br><span class="dim">Clinic price.</span></h2>
-  <p class="section-desc reveal" data-t="tech_desc">Built on the most capable edge AI hardware, powered by open and commercial AI models — no vendor lock-in.</p>
-  <div class="tech-grid reveal">
-    <div class="tech-card">
-      <div class="tech-icon">&#9889;</div>
-      <div>
-        <div class="tech-title" data-t="tech1_title">NVIDIA Jetson Orin Nano</div>
-        <div class="tech-desc" data-t="tech1_desc">64GB edge AI module with 40 TOPS processing power. Runs everything locally — vision models, LLMs, voice recognition.</div>
-      </div>
-    </div>
-    <div class="tech-card">
-      <div class="tech-icon">&#128065;</div>
-      <div>
-        <div class="tech-title" data-t="tech2_title">Computer Vision</div>
-        <div class="tech-desc" data-t="tech2_desc">Multi-camera setup with NVIDIA DeepStream for real-time patient tracking, occupancy analysis, and safety monitoring.</div>
-      </div>
-    </div>
-    <div class="tech-card">
-      <div class="tech-icon">&#129504;</div>
-      <div>
-        <div class="tech-title" data-t="tech3_title">Large Language Models</div>
-        <div class="tech-desc" data-t="tech3_desc">Local Llama/Mistral for private tasks + GPT-4 / Gemini for complex reasoning. Best of both worlds.</div>
-      </div>
-    </div>
-    <div class="tech-card">
-      <div class="tech-icon">&#127908;</div>
-      <div>
-        <div class="tech-title" data-t="tech4_title">Voice AI</div>
-        <div class="tech-desc" data-t="tech4_desc">Whisper-based voice recognition for doctor commands in the operatory. Hands-free control during procedures.</div>
-      </div>
-    </div>
-  </div>
-  </div>
-</section>
-
-<!-- INDIEGOGO CTA -->
-<section class="section section-full" id="back">
-  <div class="indi-section reveal">
-    <div class="section-label" data-t="indi_label">Indiegogo Campaign</div>
-    <h2 class="indi-title" data-t="indi_title">Be the first clinic<br>to run on SCYRA.AI</h2>
-    <p class="indi-desc" data-t="indi_desc">Early backers get exclusive pricing, priority installation, and lifetime updates. Limited units available.</p>
-    <div class="indi-perks">
-      <div class="perk">
-        <div class="perk-price">&#8364;499</div>
-        <div class="perk-name" data-t="perk1_name">Early Bird</div>
-        <div class="perk-desc" data-t="perk1_desc">Device + 1 year subscription</div>
-      </div>
-      <div class="perk">
-        <div class="perk-price">&#8364;999</div>
-        <div class="perk-name" data-t="perk2_name">Clinic Pack</div>
-        <div class="perk-desc" data-t="perk2_desc">Device + 2 years + priority support</div>
-      </div>
-      <div class="perk">
-        <div class="perk-price">&#8364;4,999</div>
-        <div class="perk-name" data-t="perk3_name">Franchise Ready</div>
-        <div class="perk-desc" data-t="perk3_desc">Full installation + franchise rights</div>
-      </div>
-    </div>
-    <div style="text-align:center;"><a href="#" class="btn-primary" style="padding:18px 48px;display:inline-block;" data-t="indi_btn">Back SCYRA.AI on Indiegogo</a></div>
-  </div>
-</section>
-
-<!-- FRANCHISE -->
-<section class="section" id="franchise">
-  <div style="max-width:1200px;margin:0 auto;">
-  <div class="section-label reveal" data-t="franchise_label">Franchise</div>
-  <h2 class="section-title reveal" data-t="franchise_title">Own the AI dental<br><span class="dim">market in your country.</span></h2>
-  <p class="section-desc reveal" data-t="franchise_desc">After the campaign we launch the SCYRA.AI franchise program — master franchise rights for every European country.</p>
-  <div class="franchise-grid reveal">
-    <div class="fr-card">
-      <div class="fr-step">1</div>
-      <div class="fr-title" data-t="fr1_title">Campaign Closes</div>
-      <div class="fr-desc" data-t="fr1_desc">Indiegogo funds production of first 100 units. Backers get priority delivery.</div>
-    </div>
-    <div class="fr-card">
-      <div class="fr-step">2</div>
-      <div class="fr-title" data-t="fr2_title">Concept Finalized</div>
-      <div class="fr-desc" data-t="fr2_desc">Full franchise package — documentation, training, support system, pricing model.</div>
-    </div>
-    <div class="fr-card">
-      <div class="fr-step">3</div>
-      <div class="fr-title" data-t="fr3_title">Master Franchise</div>
-      <div class="fr-desc" data-t="fr3_desc">One master franchisee per European country. Exclusive territory. Maximum upside.</div>
-    </div>
-  </div>
-  </div>
-</section>
-
-<!-- TEAM -->
-<section class="section" id="team" style="max-width:1000px;">
-  <div class="section-label reveal" data-t="team_label">Team</div>
-  <h2 class="section-title reveal" data-t="team_title">Built by people who<br><span class="dim">understand clinics.</span></h2>
-  <div class="team-grid reveal">
-    <div class="team-card">
-      <div class="team-role" data-t="team1_role">Founder &amp; CEO</div>
-      <div class="team-name">LABS67</div>
-      <div class="team-desc" data-t="team1_desc">Years of hands-on experience with dental equipment — repairing motors, building units, understanding every process inside a clinic. Combined with deep AI expertise.</div>
-      <a href="https://x.com/natchnennie" class="team-link" target="_blank">@natchnennie</a>
-    </div>
-    <div class="team-card">
-      <div class="team-role" data-t="team2_role">AI Engineering</div>
-      <div class="team-name" data-t="team2_name">5 AI Agents</div>
-      <div class="team-desc" data-t="team2_desc">Specialized AI agents handling code, research, design, operations, and testing — 24/7.</div>
-    </div>
-    <div class="team-card">
-      <div class="team-role" data-t="team3_role">Hardware</div>
-      <div class="team-name">NVIDIA Jetson</div>
-      <div class="team-desc" data-t="team3_desc">Edge AI compute. 275 TOPS of AI performance in a compact, clinic-ready form factor.</div>
+    <div class="price-card reveal reveal-delay-3">
+      <div class="price-tier" data-t="pricing.enterprise.tier">Enterprise</div>
+      <div class="price-amount" data-t="pricing.enterprise.price">Custom</div>
+      <p class="price-desc" data-t="pricing.enterprise.desc">For clinic chains and franchise networks.</p>
+      <ul class="price-features">
+        <li data-t="pricing.enterprise.f1">Everything in Pro</li>
+        <li data-t="pricing.enterprise.f2">Multi-location Management</li>
+        <li data-t="pricing.enterprise.f3">Custom AI Models</li>
+        <li data-t="pricing.enterprise.f4">Dedicated Account Manager</li>
+        <li data-t="pricing.enterprise.f5">SLA Guarantee</li>
+      </ul>
+      <button class="price-btn price-btn-secondary" data-t="pricing.enterprise.btn">Contact Us</button>
     </div>
   </div>
 </section>
 
 <!-- FAQ -->
-<section class="section section-full section-dark" id="faq">
-  <div style="max-width:800px;margin:0 auto;">
-  <div class="section-label reveal" data-t="faq_label">FAQ</div>
-  <h2 class="section-title reveal" data-t="faq_title">Frequently Asked Questions</h2>
-  <div class="faq-list reveal">
-    <details class="faq-item">
-      <summary data-t="faq1_q">What's included in the box?</summary>
-      <p data-t="faq1_a">NVIDIA Jetson Orin device, pre-configured with SCYRA.AI software, power adapter, quick-start guide, and access to the online dashboard. Camera and microphone hardware sold separately or available as add-ons.</p>
-    </details>
-    <details class="faq-item">
-      <summary data-t="faq2_q">Does it require internet to work?</summary>
-      <p data-t="faq2_a">No. SCYRA.AI runs entirely on the local device — all AI processing happens on-premise. Internet is optional for software updates and cloud analytics sync.</p>
-    </details>
-    <details class="faq-item">
-      <summary data-t="faq3_q">What languages does it support?</summary>
-      <p data-t="faq3_a">12 languages: Belarusian, German, English, Spanish, French, Italian, Japanese, Korean, Polish, Portuguese, Russian, Ukrainian. The system is designed for multilingual European clinics.</p>
-    </details>
-    <details class="faq-item">
-      <summary data-t="faq4_q">When will backers receive their devices?</summary>
-      <p data-t="faq4_a">Estimated delivery: Q4 2026 for Early Bird and Clinic Pack tiers. Franchise Ready tier includes a pre-launch consultation starting within 30 days of campaign close.</p>
-    </details>
-    <details class="faq-item">
-      <summary data-t="faq5_q">Is my patient data safe?</summary>
-      <p data-t="faq5_a">Yes. All data stays on your local device — nothing is sent to external servers. SCYRA.AI is designed GDPR-compliant from day one.</p>
-    </details>
-    <details class="faq-item">
-      <summary data-t="faq6_q">What kind of clinic is this for?</summary>
-      <p data-t="faq6_a">Any dental clinic — from solo practices to multi-chair clinics. Scales from 1 to 10+ operatory rooms. Especially effective for clinics automating reception, scheduling, and patient follow-up.</p>
-    </details>
-    <details class="faq-item">
-      <summary data-t="faq7_q">Can I get a refund?</summary>
-      <p data-t="faq7_a">Indiegogo offers a 14-day refund window after the campaign ends. After production begins, refunds follow our standard warranty policy.</p>
-    </details>
+<section class="section" id="faq">
+  <div class="reveal">
+    <div class="section-label" data-t="faq.label">FAQ</div>
+    <h2 class="section-title" data-t="faq.title">Questions? <span class="grad">Answers.</span></h2>
   </div>
+  <div class="faq-list">
+    <div class="faq-item reveal">
+      <div class="faq-q" data-t="faq.q1">Does patient data leave the clinic?</div>
+      <div class="faq-a"><div class="faq-a-inner" data-t="faq.a1">No. SCYRA processes everything on the local Jetson device. No cloud processing, no data transfer. Full GDPR and HIPAA compliance by design.</div></div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q" data-t="faq.q2">What hardware is required?</div>
+      <div class="faq-a"><div class="faq-a-inner" data-t="faq.a2">Just a network connection and a power outlet. We ship the pre-configured NVIDIA Jetson AGX Orin with 2TB storage. Setup takes 15 minutes.</div></div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q" data-t="faq.q3">Can SCYRA integrate with my current software?</div>
+      <div class="faq-a"><div class="faq-a-inner" data-t="faq.a3">Yes. SCYRA has REST API and supports integration with major practice management systems. Custom integrations available on Enterprise plan.</div></div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q" data-t="faq.q4">How accurate is the AI diagnostics?</div>
+      <div class="faq-a"><div class="faq-a-inner" data-t="faq.a4">Our diagnostic models achieve 94%+ accuracy on caries detection and 91%+ on periapical pathology, validated against clinical datasets. AI assists — the doctor decides.</div></div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q" data-t="faq.q5">What languages does SCYRA support?</div>
+      <div class="faq-a"><div class="faq-a-inner" data-t="faq.a5">SCYRA speaks 12 languages: Belarusian, German, English, Spanish, French, Italian, Japanese, Korean, Polish, Portuguese, Russian, and Ukrainian. Patient communication is automatically localized.</div></div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q" data-t="faq.q6">Is there a free trial?</div>
+      <div class="faq-a"><div class="faq-a-inner" data-t="faq.a6">Yes. 30-day free trial with full functionality. We ship the hardware, you try it. If it's not for you, ship it back — no questions asked.</div></div>
+    </div>
   </div>
 </section>
 
-<!-- PULSE NAVIGATOR -->
-<aside class="pulse-nav" id="pulseNav">
-  <a class="pn-item" href="https://labs67.com" target="_blank">
-    <span class="pn-dot" style="background:#B8860B"></span>
-    <span class="pn-label">labs67</span>
-  </a>
-  <a class="pn-item" href="https://svyatlitsa.com" target="_blank">
-    <span class="pn-dot" style="background:#C49A2D"></span>
-    <span class="pn-label">svyatlitsa</span>
-  </a>
-  <div class="pn-divider"></div>
-  <a class="pn-item" href="https://scyra.labs67.com">
-    <span class="pn-dot active" style="background:#7F77DD"></span>
-    <span class="pn-label">scyra.ai</span>
-  </a>
-  <div class="pn-divider"></div>
-  <a class="pn-item" href="https://academi67.com" target="_blank">
-    <span class="pn-dot" style="background:#2B7ACC"></span>
-    <span class="pn-label">slyah.ai</span>
-  </a>
-  <a class="pn-item" href="https://trade.labs67.com" target="_blank">
-    <span class="pn-dot" style="background:#0891B2"></span>
-    <span class="pn-label">mreza.ai</span>
-  </a>
-  <a class="pn-item" href="https://franchise.labs67.com" target="_blank">
-    <span class="pn-dot" style="background:#BA7517"></span>
-    <span class="pn-label">ladza.ai</span>
-  </a>
-  <div class="pn-pulse"></div>
-  <button class="pn-action" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Top">&#8593;</button>
-</aside>
+<!-- CTA -->
+<section class="cta">
+  <div class="reveal">
+    <h2 data-t="cta.title">Ready to transform <span class="grad">your clinic?</span></h2>
+    <p data-t="cta.desc">Join the clinics already using AI to deliver better care.</p>
+    <a href="#pricing" class="btn-primary" data-t="cta.btn">Start Free Trial</a>
+  </div>
+</section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-top">
-    <div>
-      <div class="footer-logo">SCYRA<span>.AI</span></div>
-    </div>
-    <div class="footer-links">
-      <a href="/privacy.html" data-t="footer_privacy">Privacy</a>
-      <a href="/terms.html" data-t="footer_terms">Terms</a>
-      <a href="#faq">FAQ</a>
-      <a href="https://labs67.com" target="_blank">labs67.com</a>
-      <a href="https://x.com/natchnennie" target="_blank">@natchnennie</a>
-    </div>
+  <div class="footer-links">
+    <a href="privacy.html" data-t="footer.privacy">Privacy</a>
+    <a href="terms.html" data-t="footer.terms">Terms</a>
+    <a href="https://labs67.com" data-t="footer.labs67">LABS67</a>
+    <a href="https://svyatlitsa.com" data-t="footer.clinic">Svyatlitsa</a>
+    <a href="mailto:hello@labs67.com" data-t="footer.contact">Contact</a>
   </div>
-  <div class="footer-brands">
-    <a href="https://labs67.com" target="_blank">labs67</a>
-    <span class="footer-brands-sep">&#183;</span>
-    <a href="https://svyatlitsa.com" target="_blank">svyatlitsa</a>
-    <span class="footer-brands-sep">&#183;</span>
-    <a href="https://trade.labs67.com" target="_blank">mreza.ai</a>
-    <span class="footer-brands-sep">&#183;</span>
-    <a href="https://franchise.labs67.com" target="_blank">ladza.ai</a>
-  </div>
-  <div class="footer-bottom">
-    <div class="footer-copy" data-t="footer_copy">&#169; 2026 LABS67. All rights reserved.</div>
-    <div class="footer-ai"><span class="dot-live"></span> SCYRA AI &#183; Online</div>
-  </div>
+  <div class="footer-copy">&copy; 2026 LABS67. SCYRA.AI — Edge AI for Dental Clinics.</div>
 </footer>
 
-<script>
-// Nav scroll
-window.addEventListener('scroll', () => {
-  document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 40);
-});
+<!-- PULSE NAV -->
+<aside class="pulse-nav">
+  <a href="https://labs67.com" class="pulse-dot" style="--c:#FFD700" title="LABS67"></a>
+  <a href="https://svyatlitsa.com" class="pulse-dot" style="--c:#6EC1E4" title="Svyatlitsa"></a>
+  <a href="https://scyra.labs67.com" class="pulse-dot" style="--c:#A259FF" title="SCYRA.AI"></a>
+  <a href="https://academi67.com" class="pulse-dot" style="--c:#34C759" title="Academi67"></a>
+  <a href="https://trade.labs67.com" class="pulse-dot" style="--c:#FF6B35" title="Trade67"></a>
+  <a href="https://franchise.labs67.com" class="pulse-dot" style="--c:#FF2D55" title="SVITA"></a>
+</aside>
 
-// Reveal on scroll
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      obs.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.12 });
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-// Mobile menu
-function toggleMobile() {
-  document.getElementById('hamburger').classList.toggle('active');
-  document.getElementById('mobileMenu').classList.toggle('open');
-  document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
-}
-function closeMobile() {
-  document.getElementById('hamburger').classList.remove('active');
-  document.getElementById('mobileMenu').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-// Smooth parallax glow on hero
-document.addEventListener('mousemove', (e) => {
-  const hero = document.querySelector('.hero');
-  if (!hero) return;
-  const rect = hero.getBoundingClientRect();
-  if (e.clientY > rect.bottom) return;
-  const x = ((e.clientX / window.innerWidth) - 0.5) * 30;
-  const y = ((e.clientY / window.innerHeight) - 0.5) * 30;
-  hero.style.setProperty('--glow-x', `${50 + x}%`);
-  hero.style.setProperty('--glow-y', `${50 + y}%`);
-});
-</script>
+<!-- SCRIPTS -->
 <script src="lang.js"></script>
 <script src="labs67-i18n.js"></script>
+<script>
+// Reveal on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    document.querySelectorAll('.faq-item').forEach(i => { if (i !== item) i.classList.remove('open'); });
+    item.classList.toggle('open');
+  });
+});
+
+// Smooth scroll for nav
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+</script>
 </body>
 </html>
