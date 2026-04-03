@@ -169,7 +169,7 @@ nav::after{content:'';position:absolute;bottom:0;left:10%;right:10%;height:1px;b
 
 /* ===== HARDWARE SECTION ===== */
 .hw-section{position:relative;min-height:90vh;display:flex;align-items:center;overflow:hidden}
-.hw-bg{position:absolute;inset:0;background:url(img/jetson-thor.jpg) center/cover no-repeat}
+.hw-bg{position:absolute;inset:0;background:url(img/jetson-thor-new.jpeg) center/cover no-repeat}
 .hw-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(105deg,rgba(5,5,8,.92) 0%,rgba(5,5,8,.7) 40%,rgba(5,5,8,.3) 100%)}
 .hw-content{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:120px 48px;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
 .hw-left{max-width:480px}
@@ -303,11 +303,19 @@ footer{border-top:1px solid var(--brd);max-width:1200px;margin:0 auto;padding:48
 .foot-bottom{max-width:1200px;margin:0 auto;padding:24px 48px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--brd)}
 .foot-copy{font-size:11px;color:var(--t3);font-family:var(--mono)}
 
-/* ===== PULSE NAV ===== */
-.pulse-nav{position:fixed;right:18px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:14px;z-index:999}
-.pulse-dot{width:10px;height:10px;border-radius:50%;background:var(--c);box-shadow:0 0 6px var(--c);transition:all .2s var(--e);opacity:.5}
-.pulse-dot:hover{transform:scale(1.6);box-shadow:0 0 14px var(--c);opacity:1}
-.pulse-dot.active{opacity:1;transform:scale(1.3)}
+/* ===== SIDE PANEL ===== */
+.side-panel{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:999;display:flex;flex-direction:column;gap:0;transition:width .4s var(--eo);width:56px;overflow:hidden}
+.side-panel:hover{width:220px}
+.side-panel:hover .sp-link{padding:14px 20px}
+.side-panel:hover .sp-name{opacity:1;transform:translateX(0)}
+.sp-link{display:flex;align-items:center;gap:14px;padding:14px 20px;text-decoration:none;transition:all .3s var(--e);border-left:3px solid transparent;background:rgba(5,5,8,.7);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.sp-link:hover{background:rgba(255,255,255,.06);border-left-color:var(--c)}
+.sp-link.active{border-left-color:var(--c);background:rgba(255,255,255,.04)}
+.sp-link:first-child{border-radius:var(--radius) 0 0 0}
+.sp-link:last-child{border-radius:0 0 0 var(--radius)}
+.sp-dot{width:10px;height:10px;border-radius:50%;background:var(--c);box-shadow:0 0 8px var(--c);flex-shrink:0;transition:transform .2s}
+.sp-link:hover .sp-dot{transform:scale(1.3)}
+.sp-name{font-family:var(--fd);font-size:15px;font-weight:600;color:var(--t);white-space:nowrap;opacity:0;transform:translateX(-8px);transition:all .3s var(--eo);letter-spacing:-.01em}
 
 /* ===== REVEAL ===== */
 .rv{opacity:0;transform:translateY(24px);transition:opacity .7s var(--eo),transform .7s var(--eo)}
@@ -351,7 +359,7 @@ footer{border-top:1px solid var(--brd);max-width:1200px;margin:0 auto;padding:48
   .hero-metrics{grid-template-columns:repeat(2,1fr)}
   footer{grid-template-columns:1fr 1fr}
   .foot-bottom{flex-direction:column;gap:12px;text-align:center}
-  .pulse-nav{display:none}
+  .side-panel{display:none}
   .arch-info{grid-template-columns:1fr}
 }
 @media(max-width:600px){
@@ -411,8 +419,8 @@ footer{border-top:1px solid var(--brd);max-width:1200px;margin:0 auto;padding:48
     </div>
     <div class="hero-metrics rv rvd4">
       <div class="hm"><div class="hm-n" data-count="7">0</div><div class="hm-l" data-t="hero.m1">AI Agents</div></div>
-      <div class="hm"><div class="hm-n" data-count="275">0</div><div class="hm-l" data-t="hero.m2">TOPS Performance</div></div>
-      <div class="hm"><div class="hm-n" data-count="64">0</div><div class="hm-l" data-t="hero.m3">GB Unified RAM</div></div>
+      <div class="hm"><div class="hm-n" data-count="2070">0</div><div class="hm-l" data-t="hero.m2">TFLOPS Performance</div></div>
+      <div class="hm"><div class="hm-n" data-count="128">0</div><div class="hm-l" data-t="hero.m3">GB Unified RAM</div></div>
       <div class="hm"><div class="hm-n" data-count="12">0</div><div class="hm-l" data-t="hero.m4">Languages</div></div>
     </div>
   </div>
@@ -545,8 +553,8 @@ footer{border-top:1px solid var(--brd);max-width:1200px;margin:0 auto;padding:48
         <p class="sc-desc" style="font-size:16px" data-t="hw.desc">Datacenter-class AI in a device that fits on a shelf. No server room. No IT staff. Just plug in and go.</p>
       </div>
       <div class="hw-specs rv rvd1">
-        <div class="hw-spec"><div class="hw-dot" style="background:var(--cyan)"></div><div class="hw-spec-text"><strong data-t="hw.s1.t">64 GB Unified Memory</strong><br><span data-t="hw.s1.d">Run 7 AI models simultaneously</span></div></div>
-        <div class="hw-spec"><div class="hw-dot" style="background:var(--purple)"></div><div class="hw-spec-text"><strong data-t="hw.s2.t">275 TOPS Performance</strong><br><span data-t="hw.s2.d">2048 CUDA + 64 Tensor cores</span></div></div>
+        <div class="hw-spec"><div class="hw-dot" style="background:var(--cyan)"></div><div class="hw-spec-text"><strong data-t="hw.s1.t">128 GB Unified Memory</strong><br><span data-t="hw.s1.d">Run all 7 AI models simultaneously with headroom</span></div></div>
+        <div class="hw-spec"><div class="hw-dot" style="background:var(--purple)"></div><div class="hw-spec-text"><strong data-t="hw.s2.t">2070 TFLOPS Performance</strong><br><span data-t="hw.s2.d">Blackwell GPU, next-gen AI acceleration</span></div></div>
         <div class="hw-spec"><div class="hw-dot" style="background:var(--green)"></div><div class="hw-spec-text"><strong data-t="hw.s3.t">2 TB NVMe + 48 TB NAS</strong><br><span data-t="hw.s3.d">Years of data, all local</span></div></div>
         <div class="hw-spec"><div class="hw-dot" style="background:var(--amber)"></div><div class="hw-spec-text"><strong data-t="hw.s4.t">60W Power</strong><br><span data-t="hw.s4.d">Silent, fanless, always-on</span></div></div>
         <div class="hw-spec"><div class="hw-dot" style="background:var(--red)"></div><div class="hw-spec-text"><strong data-t="hw.s5.t">100% On-Premise</strong><br><span data-t="hw.s5.d">GDPR + HIPAA by architecture</span></div></div>
@@ -803,13 +811,13 @@ footer{border-top:1px solid var(--brd);max-width:1200px;margin:0 auto;padding:48
   <!-- Memory allocation -->
   <div class="bento" style="margin-top:48px">
     <div class="bento-card b-half rv" style="--i:0">
-      <h3 data-t="tech.mem.title">Memory Allocation (64 GB)</h3>
+      <h3 data-t="tech.mem.title">Memory Allocation (128 GB)</h3>
       <div style="margin-top:20px">
         <div class="hw-bar-row"><div class="hw-bar-label"><span>LLM (Qwen 32B Q4)</span><span>~20 GB</span></div><div class="hw-bar"><div class="hw-bar-fill" data-w="100" style="background:var(--purple)"></div></div></div>
         <div class="hw-bar-row"><div class="hw-bar-label"><span>Vision (YOLO + FaceNet)</span><span>~6 GB</span></div><div class="hw-bar"><div class="hw-bar-fill" data-w="70" style="background:var(--red)"></div></div></div>
         <div class="hw-bar-row"><div class="hw-bar-label"><span>Voice (Whisper + Piper)</span><span>~3 GB</span></div><div class="hw-bar"><div class="hw-bar-fill" data-w="85" style="background:var(--amber)"></div></div></div>
         <div class="hw-bar-row"><div class="hw-bar-label"><span>OS + RAG + Reserve</span><span>~11 GB</span></div><div class="hw-bar"><div class="hw-bar-fill" data-w="70" style="background:var(--t3)"></div></div></div>
-        <div class="hw-bar-row"><div class="hw-bar-label"><span style="color:var(--green)">Available</span><span style="color:var(--green)">~24 GB</span></div><div class="hw-bar"><div class="hw-bar-fill" data-w="85" style="background:var(--green)"></div></div></div>
+        <div class="hw-bar-row"><div class="hw-bar-label"><span style="color:var(--green)">Available</span><span style="color:var(--green)">~88 GB</span></div><div class="hw-bar"><div class="hw-bar-fill" data-w="85" style="background:var(--green)"></div></div></div>
       </div>
     </div>
     <div class="bento-card b-half rv" style="--i:1">
@@ -835,13 +843,13 @@ footer{border-top:1px solid var(--brd);max-width:1200px;margin:0 auto;padding:48
   </div>
   <div class="fq-list">
     <div class="fq-item rv"><div class="fq-q" data-t="faq.q1">Does patient data ever leave the clinic?</div><div class="fq-a"><div class="fq-a-inner" data-t="faq.a1">Never. ŠČYRA processes everything on the local Jetson device. No cloud processing, no third-party APIs, no data transfer. Full GDPR and HIPAA compliance is architectural, not configured.</div></div></div>
-    <div class="fq-item rv"><div class="fq-q" data-t="faq.q2">What hardware is included?</div><div class="fq-a"><div class="fq-a-inner" data-t="faq.a2">NVIDIA Jetson AGX Orin 64GB, 2TB NVMe SSD, 48TB NAS (4x16TB RAID5), camera integration kit, and pre-installed ŠČYRA software with all 7 agents. Setup takes 15 minutes.</div></div></div>
+    <div class="fq-item rv"><div class="fq-q" data-t="faq.q2">What hardware is included?</div><div class="fq-a"><div class="fq-a-inner" data-t="faq.a2">NVIDIA Jetson Thor (Blackwell, 128GB), 2TB NVMe SSD, 48TB NAS (4x16TB RAID5), camera integration kit, and pre-installed ŠČYRA software with all 7 agents. Setup takes 15 minutes.</div></div></div>
     <div class="fq-item rv"><div class="fq-q" data-t="faq.q3">Can it integrate with existing practice management software?</div><div class="fq-a"><div class="fq-a-inner" data-t="faq.a3">Yes. ŠČYRA exposes a REST API and supports webhooks. We provide integration guides for major dental PMS platforms. Custom integrations available on request.</div></div></div>
     <div class="fq-item rv"><div class="fq-q" data-t="faq.q4">How accurate is the diagnostic AI?</div><div class="fq-a"><div class="fq-a-inner" data-t="faq.a4">94%+ accuracy on caries detection, 91%+ on periapical pathology — validated on clinical datasets. The AI provides recommendations; the doctor always makes the final decision.</div></div></div>
     <div class="fq-item rv"><div class="fq-q" data-t="faq.q5">What happens if the internet goes down?</div><div class="fq-a"><div class="fq-a-inner" data-t="faq.a5">Nothing changes. ŠČYRA runs entirely on-premise. AI inference, scheduling, patient management, face recognition — all work without internet. Only external messaging (Telegram, WhatsApp) requires connectivity.</div></div></div>
     <div class="fq-item rv"><div class="fq-q" data-t="faq.q6">What languages are supported?</div><div class="fq-a"><div class="fq-a-inner" data-t="faq.a6">12 languages: Belarusian, German, English, Spanish, French, Italian, Japanese, Korean, Polish, Portuguese, Russian, and Ukrainian. Both the staff interface and patient-facing communication.</div></div></div>
     <div class="fq-item rv"><div class="fq-q" data-t="faq.q7">How does it work for a franchise network?</div><div class="fq-a"><div class="fq-a-inner" data-t="faq.a7">Each location gets its own Jetson unit for fully independent local operation. Franchise owners get a centralized dashboard for unified reporting, KPIs, and fleet management — without accessing individual patient data.</div></div></div>
-    <div class="fq-item rv"><div class="fq-q" data-t="faq.q8">What's the next hardware upgrade path?</div><div class="fq-a"><div class="fq-a-inner" data-t="faq.a8">NVIDIA Jetson Thor (Blackwell GPU, 2070 TFLOPS, 128GB). When available, ŠČYRA will support seamless migration — same software, dramatically more power.</div></div></div>
+    <div class="fq-item rv"><div class="fq-q" data-t="faq.q8">Can the hardware be upgraded in the future?</div><div class="fq-a"><div class="fq-a-inner" data-t="faq.a8">Yes. ŠČYRA's software stack is hardware-agnostic within the Jetson family. As NVIDIA releases next-gen modules, your clinic can upgrade the device while keeping all data, models, and configurations intact.</div></div></div>
   </div>
 </section>
 
@@ -888,14 +896,14 @@ footer{border-top:1px solid var(--brd);max-width:1200px;margin:0 auto;padding:48
   <div class="foot-copy" data-t="footer.tagline">Dental Intelligence, On Premise</div>
 </div>
 
-<!-- PULSE NAV -->
-<aside class="pulse-nav">
-  <a href="https://labs67.com" class="pulse-dot" style="--c:#B8860B" title="LABS67"></a>
-  <a href="https://svyatlitsa.com" class="pulse-dot" style="--c:#CF101A" title="Svyatlitsa"></a>
-  <a href="https://academi67.com" class="pulse-dot" style="--c:#1df59a" title="SLYAH.AI"></a>
-  <a href="https://trade.labs67.com" class="pulse-dot" style="--c:#30dcff" title="Skarby"></a>
-  <a href="https://franchise.labs67.com" class="pulse-dot" style="--c:#ff4d6d" title="SVITA"></a>
-  <a href="#" class="pulse-dot active" style="--c:#00D4FF" title="ŠČYRA.AI"></a>
+<!-- SIDE PANEL -->
+<aside class="side-panel">
+  <a href="https://labs67.com" class="sp-link" style="--c:#B8860B"><span class="sp-dot"></span><span class="sp-name">LABS67</span></a>
+  <a href="https://svyatlitsa.com" class="sp-link" style="--c:#CF101A"><span class="sp-dot"></span><span class="sp-name">Svyatlitsa</span></a>
+  <a href="https://academi67.com" class="sp-link" style="--c:#1df59a"><span class="sp-dot"></span><span class="sp-name">SLYAH.AI</span></a>
+  <a href="https://trade.labs67.com" class="sp-link" style="--c:#30dcff"><span class="sp-dot"></span><span class="sp-name">Skarby</span></a>
+  <a href="https://franchise.labs67.com" class="sp-link" style="--c:#ff4d6d"><span class="sp-dot"></span><span class="sp-name">SVITA</span></a>
+  <a href="#" class="sp-link active" style="--c:#00D4FF"><span class="sp-dot"></span><span class="sp-name">ŠČYRA.AI</span></a>
 </aside>
 
 <script src="labs67-i18n.js"></script>
