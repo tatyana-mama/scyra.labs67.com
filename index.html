@@ -33,7 +33,7 @@
   --spring:cubic-bezier(.34,1.56,.64,1);
 }
 
-html{scroll-behavior:smooth;background:var(--bg);color:var(--t);font-family:var(--f);-webkit-font-smoothing:antialiased;scroll-padding-top:64px}
+html{scroll-behavior:smooth;background:var(--bg);color:var(--t);font-family:var(--f);-webkit-font-smoothing:antialiased;scroll-padding-top:64px;overflow-x:hidden}
 body{background:var(--bg);overflow-x:hidden;position:relative}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;height:auto;display:block}
@@ -337,6 +337,7 @@ footer{border-top:1px solid var(--brd);max-width:1200px;margin:0 auto;padding:48
 /* ===== RESPONSIVE ===== */
 @media(max-width:960px){
   .nm{display:none}
+  .nc{display:none}
   .menu-toggle{display:block}
   .section,.section-full{padding:100px 24px}
   .bento{grid-template-columns:1fr}
