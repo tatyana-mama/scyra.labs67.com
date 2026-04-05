@@ -24,17 +24,17 @@ window.I18N = {
     be:"AI Агент", de:"AI Agent", en:"AI Agent", es:"Agente IA", fr:"Agent IA",
     it:"Agente AI", ja:"AIエージェント", ko:"AI 에이전트", pl:"Agent AI", pt:"Agente IA", ru:"AI Агент", uk:"AI Агент"
   },
-  "nav.franchise": {
-    be:"Франшыза", de:"Franchise", en:"Franchise", es:"Franquicia", fr:"Franchise",
-    it:"Franchising", ja:"フランチャイズ", ko:"프랜차이즈", pl:"Franczyza", pt:"Franquia", ru:"Франшиза", uk:"Франшиза"
+  "nav.svita": {
+    be:"SVITA", de:"SVITA", en:"SVITA", es:"Franquicia", fr:"SVITA",
+    it:"Franchising", ja:"コンセプト", ko:"컨셉", pl:"Franczyza", pt:"Franquia", ru:"Концепция", uk:"Концепция"
   },
   "nav.faq": {
     be:"FAQ", de:"FAQ", en:"FAQ", es:"FAQ", fr:"FAQ",
     it:"FAQ", ja:"FAQ", ko:"FAQ", pl:"FAQ", pt:"FAQ", ru:"FAQ", uk:"FAQ"
   },
   "nav.cta": {
-    be:"Франшыза", de:"Franchise", en:"Franchise", es:"Franquicia", fr:"Franchise",
-    it:"Franchising", ja:"フランチャイズ", ko:"프랜차이즈", pl:"Franczyza", pt:"Franquia", ru:"Франшиза", uk:"Франшиза"
+    be:"SVITA", de:"SVITA", en:"SVITA", es:"Franquicia", fr:"SVITA",
+    it:"Franchising", ja:"コンセプト", ko:"컨셉", pl:"Franczyza", pt:"Franquia", ru:"Концепция", uk:"Концепция"
   },
 
   // ===== HERO =====
@@ -70,9 +70,9 @@ window.I18N = {
     be:"Даследаваць сістэму", de:"System erkunden", en:"Explore System", es:"Explorar sistema", fr:"Explorer le système",
     it:"Esplora il sistema", ja:"システムを探索", ko:"시스템 탐색", pl:"Poznaj system", pt:"Explorar sistema", ru:"Исследовать систему", uk:"Дослідити систему"
   },
-  "hero.franchise": {
-    be:"Мадэль франшызы", de:"Franchise-Modell", en:"Franchise Model", es:"Modelo de franquicia", fr:"Modèle de franchise",
-    it:"Modello franchising", ja:"フランチャイズモデル", ko:"프랜차이즈 모델", pl:"Model franczyzy", pt:"Modelo de franquia", ru:"Модель франшизы", uk:"Модель франшизи"
+  "hero.svita": {
+    be:"Мадэль франшызы", de:"SVITA-Modell", en:"SVITA Model", es:"Modelo de concepto", fr:"Modèle de svita",
+    it:"Modello concept", ja:"コンセプトモデル", ko:"컨셉 모델", pl:"Model franczyzy", pt:"Modelo de conceito", ru:"Модель концепции", uk:"Модель концепци"
   },
   "hero.m1": {
     be:"AI-агенты", de:"AI-Agenten", en:"AI Agents", es:"Agentes IA", fr:"Agents IA",
@@ -744,10 +744,10 @@ window.I18N = {
     uk:"Нові пацієнти анонімізовані до явної згоди. Дані обличчя зберігаються локально на NVMe. Повна картка пацієнта активується лише після згоди — без винятків."
   },
 
-  // ===== FRANCHISE =====
+  // ===== SVITA =====
   "fr.label": {
-    be:"Мадэль франшызы", de:"Franchise-Modell", en:"Franchise Model", es:"Modelo de franquicia", fr:"Modèle de franchise",
-    it:"Modello franchising", ja:"フランチャイズモデル", ko:"프랜차이즈 모델", pl:"Model franczyzy", pt:"Modelo de franquia", ru:"Модель франшизы", uk:"Модель франшизи"
+    be:"Мадэль франшызы", de:"SVITA-Modell", en:"SVITA Model", es:"Modelo de concepto", fr:"Modèle de svita",
+    it:"Modello concept", ja:"コンセプトモデル", ko:"컨셉 모델", pl:"Model franczyzy", pt:"Modelo de conceito", ru:"Модель концепции", uk:"Модель концепци"
   },
   "fr.title": {
     be:"Адна прылада на клініку.\nАб'яднаны інтэлект.", de:"Ein Gerät pro Klinik.\nVereinte Intelligenz.", en:"One device per clinic.\nUnified intelligence.",
@@ -757,18 +757,18 @@ window.I18N = {
     pt:"Um dispositivo por clinica.\nInteligencia unificada.", ru:"Одно устройство на клинику.\nОбъединённый интеллект.", uk:"Один пристрій на клініку.\nОб'єднаний інтелект."
   },
   "fr.desc": {
-    be:"Кожная франчайзінгавая лакацыя атрымлівае папярэдне сканфігураваны блок ŠČYRA. Незалежная лакальная апрацоўка з цэнтралізаваным кіраваннем і справаздачнасцю.",
-    de:"Jeder Franchise-Standort erhält eine vorkonfigurierte ŠČYRA-Einheit. Unabhängige lokale Verarbeitung mit zentralem Management und Reporting.",
-    en:"Each franchise location receives a pre-configured ŠČYRA unit. Independent local processing with centralized management and reporting.",
-    es:"Cada ubicación de franquicia recibe una unidad ŠČYRA preconfigurada. Procesamiento local independiente con gestión y reportes centralizados.",
-    fr:"Chaque emplacement de franchise reçoit une unité ŠČYRA préconfigurée. Traitement local indépendant avec gestion et reporting centralisés.",
-    it:"Ogni sede in franchising riceve un'unità ŠČYRA preconfigurata. Elaborazione locale indipendente con gestione e reportistica centralizzata.",
-    ja:"各フランチャイズ拠点に事前設定済みのŠČYRAユニットが届きます。集中管理とレポーティングを備えた独立したローカル処理。",
-    ko:"각 프랜차이즈 위치에 사전 구성된 ŠČYRA 유닛이 제공됩니다. 중앙 관리 및 보고 기능을 갖춘 독립적인 로컬 처리.",
+    be:"Кожная партнёраўнгавая лакацыя атрымлівае папярэдне сканфігураваны блок ŠČYRA. Незалежная лакальная апрацоўка з цэнтралізаваным кіраваннем і справаздачнасцю.",
+    de:"Jeder SVITA-Standort erhält eine vorkonfigurierte ŠČYRA-Einheit. Unabhängige lokale Verarbeitung mit zentralem Management und Reporting.",
+    en:"Each svita location receives a pre-configured ŠČYRA unit. Independent local processing with centralized management and reporting.",
+    es:"Cada ubicación de concepto recibe una unidad ŠČYRA preconfigurada. Procesamiento local independiente con gestión y reportes centralizados.",
+    fr:"Chaque emplacement de svita reçoit une unité ŠČYRA préconfigurée. Traitement local indépendant avec gestion et reporting centralisés.",
+    it:"Ogni sede in concept riceve un'unità ŠČYRA preconfigurata. Elaborazione locale indipendente con gestione e reportistica centralizzata.",
+    ja:"各コンセプト拠点に事前設定済みのŠČYRAユニットが届きます。集中管理とレポーティングを備えた独立したローカル処理。",
+    ko:"각 컨셉 위치에 사전 구성된 ŠČYRA 유닛이 제공됩니다. 중앙 관리 및 보고 기능을 갖춘 독립적인 로컬 처리.",
     pl:"Każda lokalizacja franczyzy otrzymuje wstępnie skonfigurowaną jednostkę ŠČYRA. Niezależne przetwarzanie lokalne z centralnym zarządzaniem i raportowaniem.",
-    pt:"Cada local de franquia recebe uma unidade ŠČYRA pré-configurada. Processamento local independente com gerenciamento e relatórios centralizados.",
-    ru:"Каждая франчайзинговая локация получает предварительно настроенный блок ŠČYRA. Независимая локальная обработка с централизованным управлением и отчётностью.",
-    uk:"Кожна франчайзингова локація отримує попередньо налаштований блок ŠČYRA. Незалежна локальна обробка з централізованим управлінням та звітністю."
+    pt:"Cada local de conceito recebe uma unidade ŠČYRA pré-configurada. Processamento local independente com gerenciamento e relatórios centralizados.",
+    ru:"Каждая концепцииовая локация получает предварительно настроенный блок ŠČYRA. Независимая локальная обработка с централизованным управлением и отчётностью.",
+    uk:"Кожна концепцииова локація отримує попередньо налаштований блок ŠČYRA. Незалежна локальна обробка з централізованим управлінням та звітністю."
   },
   "fr.hero.t": {
     be:"Што вы атрымліваеце", de:"Was Sie erhalten", en:"What You Get", es:"Qué obtienes", fr:"Ce que vous recevez",
@@ -863,18 +863,18 @@ window.I18N = {
     it:"Dashboard", ja:"ダッシュボード", ko:"대시보드", pl:"Dashboard", pt:"Painel", ru:"Дашборд", uk:"Дашборд"
   },
   "fr.t3.d": {
-    be:"Цэнтралізаваная справаздачнасць па ўсіх франчайзінгавых лакацыях. Даход, паток пацыентаў, выкарыстанне AI.",
-    de:"Zentralisiertes Reporting über alle Franchise-Standorte. Umsatz, Patientenfluss, KI-Nutzung.",
-    en:"Centralized reporting across all franchise locations. Revenue, patient flow, AI utilization.",
-    es:"Informes centralizados en todas las ubicaciones de franquicia. Ingresos, flujo de pacientes, utilización de IA.",
-    fr:"Reporting centralisé sur tous les emplacements de franchise. Revenus, flux de patients, utilisation de l'IA.",
-    it:"Reportistica centralizzata su tutte le sedi in franchising. Ricavi, flusso pazienti, utilizzo AI.",
-    ja:"全フランチャイズ拠点の一元的なレポーティング。収益、患者フロー、AI稼働率。",
-    ko:"모든 프랜차이즈 위치에 걸친 중앙 집중식 보고. 매출, 환자 흐름, AI 활용도.",
+    be:"Цэнтралізаваная справаздачнасць па ўсіх партнёраўнгавых лакацыях. Даход, паток пацыентаў, выкарыстанне AI.",
+    de:"Zentralisiertes Reporting über alle SVITA-Standorte. Umsatz, Patientenfluss, KI-Nutzung.",
+    en:"Centralized reporting across all svita locations. Revenue, patient flow, AI utilization.",
+    es:"Informes centralizados en todas las ubicaciones de concepto. Ingresos, flujo de pacientes, utilización de IA.",
+    fr:"Reporting centralisé sur tous les emplacements de svita. Revenus, flux de patients, utilisation de l'IA.",
+    it:"Reportistica centralizzata su tutte le sedi in concept. Ricavi, flusso pazienti, utilizzo AI.",
+    ja:"全コンセプト拠点の一元的なレポーティング。収益、患者フロー、AI稼働率。",
+    ko:"모든 컨셉 위치에 걸친 중앙 집중식 보고. 매출, 환자 흐름, AI 활용도.",
     pl:"Scentralizowane raportowanie ze wszystkich lokalizacji franczyzy. Przychody, przepływ pacjentów, wykorzystanie AI.",
-    pt:"Relatórios centralizados em todos os locais de franquia. Receita, fluxo de pacientes, utilização de IA.",
-    ru:"Централизованная отчётность по всем франчайзинговым локациям. Доход, поток пациентов, использование AI.",
-    uk:"Централізована звітність по всіх франчайзингових локаціях. Дохід, потік пацієнтів, використання AI."
+    pt:"Relatórios centralizados em todos os locais de conceito. Receita, fluxo de pacientes, utilização de IA.",
+    ru:"Централизованная отчётность по всем концепцииовым локациям. Доход, поток пациентов, использование AI.",
+    uk:"Централізована звітність по всіх концепцииових локаціях. Дохід, потік пацієнтів, використання AI."
   },
 
   // ===== AI AGENT =====
@@ -1194,31 +1194,31 @@ window.I18N = {
   },
   "faq.q7": {
     be:"Як гэта працуе для сеткі франшыз?",
-    de:"Wie funktioniert es für ein Franchise-Netzwerk?",
-    en:"How does it work for a franchise network?",
-    es:"¿Cómo funciona para una red de franquicias?",
-    fr:"Comment ça fonctionne pour un réseau de franchise ?",
-    it:"Come funziona per una rete in franchising?",
-    ja:"フランチャイズネットワークではどのように機能しますか？",
-    ko:"프랜차이즈 네트워크에서는 어떻게 작동하나요?",
-    pl:"Jak to działa w sieci franczyzowej?",
-    pt:"Como funciona para uma rede de franquias?",
-    ru:"Как это работает для сети франшиз?",
-    uk:"Як це працює для мережі франшиз?"
+    de:"Wie funktioniert es für ein SVITA-Netzwerk?",
+    en:"How does it work for a svita network?",
+    es:"¿Cómo funciona para una red de conceptos?",
+    fr:"Comment ça fonctionne pour un réseau de svita ?",
+    it:"Come funziona per una rete in concept?",
+    ja:"コンセプトネットワークではどのように機能しますか？",
+    ko:"컨셉 네트워크에서는 어떻게 작동하나요?",
+    pl:"Jak to działa w sieci konceptej?",
+    pt:"Como funciona para uma rede de conceitos?",
+    ru:"Как это работает для сети концепц?",
+    uk:"Як це працює для мережі концепц?"
   },
   "faq.a7": {
     be:"Кожная лакацыя атрымлівае ўласны блок Jetson для цалкам незалежнай лакальнай працы. Уладальнікі франшызы атрымліваюць цэнтралізаваны дашборд для аб'яднанай справаздачнасці, KPI і кіравання флотам — без доступу да індывідуальных даных пацыентаў.",
-    de:"Jeder Standort erhält seine eigene Jetson-Einheit für vollständig unabhängigen lokalen Betrieb. Franchise-Inhaber erhalten ein zentrales Dashboard für vereinheitlichte Berichterstattung, KPIs und Flottenmanagement — ohne Zugriff auf individuelle Patientendaten.",
-    en:"Each location gets its own Jetson unit for fully independent local operation. Franchise owners get a centralized dashboard for unified reporting, KPIs, and fleet management — without accessing individual patient data.",
-    es:"Cada ubicación recibe su propia unidad Jetson para operación local completamente independiente. Los propietarios de franquicia obtienen un panel centralizado para informes unificados, KPIs y gestión de flota — sin acceder a datos individuales de pacientes.",
-    fr:"Chaque emplacement reçoit sa propre unité Jetson pour un fonctionnement local entièrement indépendant. Les propriétaires de franchise obtiennent un tableau de bord centralisé pour un reporting unifié, des KPI et la gestion de flotte — sans accéder aux données individuelles des patients.",
-    it:"Ogni sede riceve la propria unità Jetson per un funzionamento locale completamente indipendente. I proprietari del franchising ottengono una dashboard centralizzata per reportistica unificata, KPI e gestione della flotta — senza accesso ai dati dei singoli pazienti.",
-    ja:"各拠点に独自のJetsonユニットが提供され、完全に独立したローカル運用が可能です。フランチャイズオーナーは統一レポーティング、KPI、フリート管理のための集中ダッシュボードを取得します — 個別の患者データにはアクセスしません。",
-    ko:"각 위치에 완전히 독립적인 로컬 운영을 위한 자체 Jetson 유닛이 제공됩니다. 프랜차이즈 소유자는 통합 보고, KPI, 플릿 관리를 위한 중앙 대시보드를 받습니다 — 개별 환자 데이터에 접근하지 않고.",
+    de:"Jeder Standort erhält seine eigene Jetson-Einheit für vollständig unabhängigen lokalen Betrieb. SVITA-Inhaber erhalten ein zentrales Dashboard für vereinheitlichte Berichterstattung, KPIs und Flottenmanagement — ohne Zugriff auf individuelle Patientendaten.",
+    en:"Each location gets its own Jetson unit for fully independent local operation. SVITA owners get a centralized dashboard for unified reporting, KPIs, and fleet management — without accessing individual patient data.",
+    es:"Cada ubicación recibe su propia unidad Jetson para operación local completamente independiente. Los propietarios de concepto obtienen un panel centralizado para informes unificados, KPIs y gestión de flota — sin acceder a datos individuales de pacientes.",
+    fr:"Chaque emplacement reçoit sa propre unité Jetson pour un fonctionnement local entièrement indépendant. Les propriétaires de svita obtiennent un tableau de bord centralisé pour un reporting unifié, des KPI et la gestion de flotte — sans accéder aux données individuelles des patients.",
+    it:"Ogni sede riceve la propria unità Jetson per un funzionamento locale completamente indipendente. I proprietari del concept ottengono una dashboard centralizzata per reportistica unificata, KPI e gestione della flotta — senza accesso ai dati dei singoli pazienti.",
+    ja:"各拠点に独自のJetsonユニットが提供され、完全に独立したローカル運用が可能です。コンセプトオーナーは統一レポーティング、KPI、フリート管理のための集中ダッシュボードを取得します — 個別の患者データにはアクセスしません。",
+    ko:"각 위치에 완전히 독립적인 로컬 운영을 위한 자체 Jetson 유닛이 제공됩니다. 컨셉 소유자는 통합 보고, KPI, 플릿 관리를 위한 중앙 대시보드를 받습니다 — 개별 환자 데이터에 접근하지 않고.",
     pl:"Każda lokalizacja otrzymuje własną jednostkę Jetson do w pełni niezależnego działania lokalnego. Właściciele franczyzy otrzymują centralny dashboard do zunifikowanego raportowania, KPI i zarządzania flotą — bez dostępu do indywidualnych danych pacjentów.",
-    pt:"Cada local recebe sua própria unidade Jetson para operação local totalmente independente. Os proprietários de franquia recebem um painel centralizado para relatórios unificados, KPIs e gestão de frota — sem acessar dados individuais de pacientes.",
-    ru:"Каждая локация получает собственный блок Jetson для полностью независимой локальной работы. Владельцы франшизы получают централизованный дашборд для объединённой отчётности, KPI и управления флотом — без доступа к индивидуальным данным пациентов.",
-    uk:"Кожна локація отримує власний блок Jetson для повністю незалежної локальної роботи. Власники франшизи отримують централізований дашборд для об'єднаної звітності, KPI та управління флотом — без доступу до індивідуальних даних пацієнтів."
+    pt:"Cada local recebe sua própria unidade Jetson para operação local totalmente independente. Os proprietários de conceito recebem um painel centralizado para relatórios unificados, KPIs e gestão de frota — sem acessar dados individuais de pacientes.",
+    ru:"Каждая локация получает собственный блок Jetson для полностью независимой локальной работы. Владельцы концепции получают централизованный дашборд для объединённой отчётности, KPI и управления флотом — без доступа к индивидуальным данным пациентов.",
+    uk:"Кожна локація отримує власний блок Jetson для повністю незалежної локальної роботи. Власники концепци отримують централізований дашборд для об'єднаної звітності, KPI та управління флотом — без доступу до індивідуальних даних пацієнтів."
   },
   "faq.q8": {
     be:"Ці можна абнавіць абсталяванне ў будучыні?",
@@ -1258,22 +1258,22 @@ window.I18N = {
     pt:"Pronto para transformar sua clínica?", ru:"Готовы трансформировать вашу клинику?", uk:"Готові трансформувати вашу клініку?"
   },
   "cta.desc": {
-    be:"Далучайцеся да франчайзінгавай сеткі ŠČYRA. Адна прылада. Поўны стаматалагічны інтэлект.",
-    de:"Treten Sie dem ŠČYRA-Franchise-Netzwerk bei. Ein Gerät. Vollständige zahnmedizinische Intelligenz.",
-    en:"Join the ŠČYRA franchise network. One device. Complete dental intelligence.",
-    es:"Únete a la red de franquicias ŠČYRA. Un dispositivo. Inteligencia dental completa.",
-    fr:"Rejoignez le réseau de franchise ŠČYRA. Un appareil. Intelligence dentaire complète.",
-    it:"Unisciti alla rete in franchising ŠČYRA. Un dispositivo. Intelligenza dentale completa.",
-    ja:"ŠČYRA フランチャイズネットワークに参加しましょう。1台のデバイス。完全な歯科インテリジェンス。",
-    ko:"ŠČYRA 프랜차이즈 네트워크에 참여하세요. 장치 1대. 완전한 치과 인텔리전스.",
-    pl:"Dołącz do sieci franczyzowej ŠČYRA. Jedno urządzenie. Kompletna inteligencja stomatologiczna.",
-    pt:"Junte-se à rede de franquias ŠČYRA. Um dispositivo. Inteligência dentária completa.",
-    ru:"Присоединяйтесь к франчайзинговой сети ŠČYRA. Одно устройство. Полный стоматологический интеллект.",
-    uk:"Приєднуйтесь до франчайзингової мережі ŠČYRA. Один пристрій. Повний стоматологічний інтелект."
+    be:"Далучайцеся да партнёраўнгавай сеткі ŠČYRA. Адна прылада. Поўны стаматалагічны інтэлект.",
+    de:"Treten Sie dem ŠČYRA-SVITA-Netzwerk bei. Ein Gerät. Vollständige zahnmedizinische Intelligenz.",
+    en:"Join the ŠČYRA svita network. One device. Complete dental intelligence.",
+    es:"Únete a la red de conceptos ŠČYRA. Un dispositivo. Inteligencia dental completa.",
+    fr:"Rejoignez le réseau de svita ŠČYRA. Un appareil. Intelligence dentaire complète.",
+    it:"Unisciti alla rete in concept ŠČYRA. Un dispositivo. Intelligenza dentale completa.",
+    ja:"ŠČYRA コンセプトネットワークに参加しましょう。1台のデバイス。完全な歯科インテリジェンス。",
+    ko:"ŠČYRA 컨셉 네트워크에 참여하세요. 장치 1대. 완전한 치과 인텔리전스.",
+    pl:"Dołącz do sieci konceptej ŠČYRA. Jedno urządzenie. Kompletna inteligencja stomatologiczna.",
+    pt:"Junte-se à rede de conceitos ŠČYRA. Um dispositivo. Inteligência dentária completa.",
+    ru:"Присоединяйтесь к концепцииовой сети ŠČYRA. Одно устройство. Полный стоматологический интеллект.",
+    uk:"Приєднуйтесь до концепцииової мережі ŠČYRA. Один пристрій. Повний стоматологічний інтелект."
   },
   "cta.btn1": {
-    be:"Даведацца пра франшызу", de:"Franchise entdecken", en:"Explore Franchise", es:"Explorar franquicia", fr:"Explorer la franchise",
-    it:"Esplora il franchising", ja:"フランチャイズを探索", ko:"프랜차이즈 탐색", pl:"Poznaj franczyzę", pt:"Explorar franquia", ru:"Узнать о франшизе", uk:"Дізнатися про франшизу"
+    be:"Даведацца пра франшызу", de:"SVITA entdecken", en:"Explore SVITA", es:"Explorar concepto", fr:"Explorer la svita",
+    it:"Esplora il concept", ja:"コンセプトを探索", ko:"컨셉 탐색", pl:"Poznaj franczyzę", pt:"Explorar conceito", ru:"Узнать о концепце", uk:"Дізнатися про концепцу"
   },
   "cta.btn2": {
     be:"Звязацца з намі", de:"Kontakt aufnehmen", en:"Contact Us", es:"Contáctanos", fr:"Contactez-nous",
@@ -1311,9 +1311,9 @@ window.I18N = {
     be:"Абсталяванне", de:"Hardware", en:"Hardware", es:"Hardware", fr:"Matériel",
     it:"Hardware", ja:"ハードウェア", ko:"하드웨어", pl:"Sprzęt", pt:"Hardware", ru:"Оборудование", uk:"Обладнання"
   },
-  "footer.franchise": {
-    be:"Інфармацыя пра франшызу", de:"Franchise-Info", en:"Franchise Info", es:"Info de franquicia", fr:"Info franchise",
-    it:"Info franchising", ja:"フランチャイズ情報", ko:"프랜차이즈 정보", pl:"Info o franczyzie", pt:"Info de franquia", ru:"Информация о франшизе", uk:"Інформація про франшизу"
+  "footer.svita": {
+    be:"Інфармацыя пра франшызу", de:"SVITA-Info", en:"SVITA Info", es:"Info de concepto", fr:"Info svita",
+    it:"Info concept", ja:"コンセプト情報", ko:"컨셉 정보", pl:"Info o franczyzie", pt:"Info de conceito", ru:"Информация о концепце", uk:"Інформація про концепцу"
   },
   "footer.tagline": {
     be:"Стаматалагічны інтэлект, на месцы", de:"Zahnmedizinische Intelligenz, vor Ort", en:"Dental Intelligence, On Premise",
